@@ -19,6 +19,29 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "paths": {
+      "animation": [
+        "dist/animation"
+      ],
+      "core": [
+        "dist/core"
+      ],
+      "ng": [
+        "dist/ng"
+      ],
+      "product": [
+        "dist/product"
+      ],
+      "styles": [
+        "dist/styles"
+      ],
+      "types": [
+        "dist/types"
+      ],
+      "ui": [
+        "dist/ui"
+      ]
+    },
     "lib": [
       "ES2022",
       "dom"
