@@ -1,0 +1,12 @@
+{
+  "name": "@jbr/core",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "moment": "^2.29.1",
+    "rxjs": "~7.8.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
