@@ -30,9 +30,14 @@
               "projects/portfolio/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "projects/portfolio/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "codemirror",
+              "deepmerge"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,6 +98,7 @@
               "projects/portfolio/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "projects/portfolio/src/styles.scss"
             ],
             "scripts": []
@@ -191,72 +197,6 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "libraries/core/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
-    },
-    "styles": {
-      "projectType": "library",
-      "root": "libraries/styles",
-      "sourceRoot": "libraries/styles/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "libraries/styles/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libraries/styles/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libraries/styles/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "libraries/styles/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
-    },
-    "animation": {
-      "projectType": "library",
-      "root": "libraries/animation",
-      "sourceRoot": "libraries/animation/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "libraries/animation/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libraries/animation/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libraries/animation/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "libraries/animation/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

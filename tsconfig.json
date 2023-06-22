@@ -20,26 +20,23 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "animation": [
-        "dist/animation"
+      "@jbr/animation": [
+        "dist/libraries/@jbr/animation"
       ],
-      "core": [
-        "dist/core"
+      "@jbr/core": [
+        "dist/libraries/@jbr/core"
       ],
-      "ng": [
-        "dist/ng"
+      "@jbr/ng": [
+        "dist/libraries/@jbr/ng"
       ],
-      "product": [
-        "dist/product"
+      "@jbr/product": [
+        "dist/libraries/@jbr/product"
       ],
-      "styles": [
-        "dist/styles"
+      "@jbr/types": [
+        "dist/libraries/@jbr/types"
       ],
-      "types": [
-        "dist/types"
-      ],
-      "ui": [
-        "dist/ui"
+      "@jbr/ui": [
+        "dist/libraries/@jbr/ui"
       ]
     },
     "lib": [

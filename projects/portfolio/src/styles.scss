@@ -1,0 +1,14 @@
+
+@import "~normalize.css";
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import "dist/libraries/@jbr/ui/src/lib/styles/styles.scss";
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

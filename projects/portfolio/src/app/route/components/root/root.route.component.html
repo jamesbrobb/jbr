@@ -1,0 +1,8 @@
+
+<!--<page-container *ngIf="pageConfig"
+  [pageConfig]="pageConfig">
+</page-container>-->
+
+<div *ngIf="pageConfig">{{pageConfig.githubLink}}</div>
+
+<div *ngIf="!pageConfig">404</div>
