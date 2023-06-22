@@ -3,6 +3,7 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {PageConfig, PagesConfig} from "../../../config/page/page-config";
 import {isPageNode} from "../../config/route-config";
 import {NgIf} from "@angular/common";
+import {PageContainerComponent} from "../../../components/page-container/page-container.component";
 
 
 
@@ -11,7 +12,8 @@ import {NgIf} from "@angular/common";
   standalone: true,
   templateUrl: './root.route.component.html',
   imports: [
-    NgIf
+    NgIf,
+    PageContainerComponent
   ],
   styleUrls: ['./root.route.component.scss']
 })
