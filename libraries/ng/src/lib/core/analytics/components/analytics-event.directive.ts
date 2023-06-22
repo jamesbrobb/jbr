@@ -4,7 +4,8 @@ import {AnalyticsEvent, AnalyticsService} from "@jbr/core";
 
 
 @Directive({
-    selector: '[analyticsEvent]'
+  selector: '[analyticsEvent]',
+  standalone: true
 })
 export class AnalyticsEventDirective {
 
@@ -18,7 +19,6 @@ export class AnalyticsEventDirective {
     private _service: AnalyticsService;
 
     constructor(service: AnalyticsService) {
-
         this._service = service;
     }
 
@@ -36,7 +36,8 @@ export class AnalyticsEventDirective {
 
 
 @Directive({
-    selector: '[analyticsHrefListener]'
+  selector: '[analyticsHrefListener]',
+  standalone: true
 })
 export class AnalyticsHrefListenerDirective {
 

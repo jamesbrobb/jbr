@@ -36,7 +36,8 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "codemirror",
-              "deepmerge"
+              "deepmerge",
+              "moment"
             ]
           },
           "configurations": {

@@ -25,7 +25,7 @@ export const AnalyticsAdaptorService = new InjectionToken<AnalyticsAdaptor>('Ana
  */
 export const AnalyticsHooksService = new InjectionToken<AnalyticsHook[]>('AnalyticsHooksService');
 
-const ANALYTICS_SERVICE_PROVIDER: Provider = {
+export const ANALYTICS_SERVICE_PROVIDER: Provider = {
   provide: AnalyticsService,
   useFactory: (
       actions: AnalyticsActions,
@@ -50,21 +50,3 @@ const ANALYTICS_SERVICE_PROVIDER: Provider = {
     [new Optional(), AnalyticsHooksService]
   ]
 }
-
-const COMPONENTS = [
-    AnalyticsEventDirective,
-    AnalyticsHrefListenerDirective
-];
-
-
-@NgModule({
-    imports: [
-        CommonModule
-    ],
-    providers: [
-        ANALYTICS_SERVICE_PROVIDER
-    ],
-    declarations: COMPONENTS,
-    exports: COMPONENTS
-})
-export class AnalyticsModule {}
