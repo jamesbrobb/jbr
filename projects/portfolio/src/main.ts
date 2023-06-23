@@ -3,10 +3,10 @@ import {importProvidersFrom} from "@angular/core";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {provideRouter} from "@angular/router";
-import {ANALYTICS_SERVICE_PROVIDER, ANALYTICS_ROUTER_PROVIDER, GOOGLE_ANALYTICS_ADAPTOR_PROVIDER} from "@jbr/ng";
+import {provideAnalytics, AnalyticsTracker} from "@jbr/ng";
 import {AppComponent} from "./app/app.component";
 import {APP_ROUTES} from "./app/route";
-import {APP_CONFIG_PROVIDERS} from "./app/config/app-config.providers";
+import {getAppConfigProviders} from "./app/config/app-config.providers";
 import {MarkdownModule} from "ngx-markdown";
 
 
@@ -17,13 +17,9 @@ bootstrapApplication(AppComponent, {
       BrowserAnimationsModule,
       MarkdownModule.forRoot({loader: HttpClient})
     ),
-    provideRouter(
-      APP_ROUTES
-    ),
-    ANALYTICS_SERVICE_PROVIDER,
-    ANALYTICS_ROUTER_PROVIDER,
-    GOOGLE_ANALYTICS_ADAPTOR_PROVIDER,
-    ...APP_CONFIG_PROVIDERS
+    provideRouter(APP_ROUTES),
+    getAppConfigProviders(),
+    provideAnalytics(true, AnalyticsTracker.GOOGLE)
   ]
 }).then(ref =>  {
   if (window['ngRef' as keyof Window]) {

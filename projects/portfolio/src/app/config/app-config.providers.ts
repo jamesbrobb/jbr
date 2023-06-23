@@ -1,5 +1,5 @@
-import {APP_INITIALIZER} from "@angular/core";
-import {GAConfigService, AnalyticsActionsService} from "@jbr/ng";
+import {APP_INITIALIZER, EnvironmentProviders, makeEnvironmentProviders} from "@angular/core";
+import {AnalyticsActionsService, GAConfigService} from "@jbr/ng";
 import {AnalyticsActions, GaAnalyticsConfig} from "@jbr/core";
 import {CONTROLS_PROVIDER, ControlsOptionsMapService} from "./controls/controls-config.provider";
 import {GithubConfig, githubConfigService} from "./github/github-config";
@@ -29,8 +29,8 @@ enum TEMP_FALLBACK_COLORS {
 }
 
 
-
-export const APP_CONFIG_PROVIDERS = [{
+export function getAppConfigProviders(): EnvironmentProviders {
+  return makeEnvironmentProviders([{
     provide: ControlsOptionsMapService,
     useValue: {
       OVERLAY_COLORS: Object.values(TEMP_OVERLAY_COLORS).map(key => ({value: key})),
@@ -88,6 +88,7 @@ export const APP_CONFIG_PROVIDERS = [{
     deps: [AppConfig],
     multi: true
   },
-  CONTROLS_PROVIDER,
-  AppConfig
-]
+    CONTROLS_PROVIDER,
+    AppConfig
+  ]);
+}
