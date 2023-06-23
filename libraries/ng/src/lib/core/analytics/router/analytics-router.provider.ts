@@ -9,19 +9,10 @@ import {AnalyticsService, AnalyticsTrackingTypes} from "@jbr/core";
 export const ANALYTICS_ROUTER_PROVIDER: Provider = {
   provide: APP_BOOTSTRAP_LISTENER,
   multi: true,
-  useFactory: analyticsRouterListenerFactory,
-  deps: [
-    Router,
-    AnalyticsService,
-    DOCUMENT
-  ]
-}
-
-
-export function analyticsRouterListenerFactory(
-  router:Router,
-  analyticsService: AnalyticsService,
-  document: Document) {
+  useFactory: (
+    router:Router,
+    analyticsService: AnalyticsService,
+    document: Document) => {
 
   return (component: ComponentRef<any>) => {
     router.events.pipe(filter(event => event instanceof NavigationEnd))
@@ -38,4 +29,10 @@ export function analyticsRouterListenerFactory(
         })
       });
   }
+},
+  deps: [
+    Router,
+    AnalyticsService,
+    DOCUMENT
+  ]
 }

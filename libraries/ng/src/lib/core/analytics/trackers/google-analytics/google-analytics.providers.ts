@@ -10,13 +10,15 @@ import {
 
 export const GAConfigService = new InjectionToken<GaAnalyticsConfig>('GAConfigService');
 
-export const GOOGLE_ANALYTICS_ADAPTOR_PROVIDER: Provider = {
-  provide: AnalyticsAdaptorService,
-  useFactory: (config: GaAnalyticsConfig): AnalyticsAdaptor => {
-    return new GaAnalyticsAdaptor((window as any)?.gtag, config);
-  },
-  deps: [
-    GAConfigService
-  ]
+export function getGoogleAnalyticsAdaptor(): Provider {
+  return {
+    provide: AnalyticsAdaptorService,
+    useFactory: (config: GaAnalyticsConfig): AnalyticsAdaptor => {
+      return new GaAnalyticsAdaptor((window as any)?.gtag, config);
+    },
+    deps: [
+      GAConfigService
+    ]
+  }
 }
 

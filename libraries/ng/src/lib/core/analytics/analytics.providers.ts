@@ -1,5 +1,9 @@
-import {InjectionToken, NgModule, Optional, Provider} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  EnvironmentProviders,
+  InjectionToken,
+  makeEnvironmentProviders,
+  Optional, Provider
+} from '@angular/core';
 import {
   AnalyticsActions,
   AnalyticsService,
@@ -7,7 +11,8 @@ import {
   AnalyticsHook
 } from "@jbr/core";
 import {CommandGroup, CommandProcessor} from "@jbr/core";
-import {AnalyticsEventDirective, AnalyticsHrefListenerDirective} from "./components/analytics-event.directive";
+import {ANALYTICS_ROUTER_PROVIDER} from "./router/analytics-router.provider";
+import {AnalyticsTracker, getAnalyticsTrackerProvider} from "./trackers";
 
 
 
@@ -25,28 +30,46 @@ export const AnalyticsAdaptorService = new InjectionToken<AnalyticsAdaptor>('Ana
  */
 export const AnalyticsHooksService = new InjectionToken<AnalyticsHook[]>('AnalyticsHooksService');
 
-export const ANALYTICS_SERVICE_PROVIDER: Provider = {
-  provide: AnalyticsService,
-  useFactory: (
+
+export function provideAnalytics(trackRouteChanges: boolean, tracker: AnalyticsTracker): EnvironmentProviders {
+  console.log(tracker);
+  const providers: (EnvironmentProviders | Provider)[] = [{
+    provide: AnalyticsService,
+    useFactory: (
       actions: AnalyticsActions,
       adaptor: AnalyticsAdaptor,
       hooks: AnalyticsHook[]): AnalyticsService => {
 
-    const hookGroup: CommandGroup<AnalyticsHook> = new CommandGroup<AnalyticsHook>(),
+      const hookGroup: CommandGroup<AnalyticsHook> = new CommandGroup<AnalyticsHook>(),
         processor: CommandProcessor = new CommandProcessor();
 
-    if (Array.isArray(hooks)) {
+      if (Array.isArray(hooks)) {
 
         hooks = ([] as AnalyticsHook[]).concat(...hooks);
 
         //hookGroup.addCommands(hooks);
-    }
+      }
 
-    return new AnalyticsService(actions, adaptor, hookGroup, processor);
-  },
-  deps: [
-    AnalyticsActionsService,
-    AnalyticsAdaptorService,
-    [new Optional(), AnalyticsHooksService]
-  ]
+      return new AnalyticsService(actions, adaptor, hookGroup, processor);
+    },
+    deps: [
+      AnalyticsActionsService,
+      AnalyticsAdaptorService,
+      [new Optional(), AnalyticsHooksService]
+    ]
+  }];
+
+  if(trackRouteChanges) {
+    providers.push(ANALYTICS_ROUTER_PROVIDER);
+  }
+
+  if(tracker !== undefined) {
+    const trkr = getAnalyticsTrackerProvider(tracker);
+
+    if(trkr) {
+      providers.push(trkr);
+    }
+  }
+
+  return makeEnvironmentProviders(providers);
 }
