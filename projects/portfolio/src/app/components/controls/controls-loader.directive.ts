@@ -9,9 +9,7 @@ import {
 
 import {takeUntil} from "rxjs";
 
-import {DynamicComponentModule} from "@jbr/components/dynamic/dynamic-component.module";
-import {DynamicComponentModuleMapService} from "@jbr/components/dynamic/dynamic-component-service";
-import {DynamicLoaderDirective} from "@jbr/components/dynamic/dynamic-component.directive";
+import {DynamicComponentModuleMapService, DynamicLoaderDirective} from "@jbr/ui";
 
 import {ControlComponentIO, ControlsComponent} from "./controls.component";
 import {ControlGroup} from "../../config/controls/controls-config";
@@ -19,7 +17,17 @@ import {ControlGroup} from "../../config/controls/controls-config";
 
 
 @Directive({
-  selector: '[controlsLoader]'
+  selector: '[controlsLoader]',
+  standalone: true,
+  providers: [
+    {
+      provide: DynamicComponentModuleMapService,
+      useValue: {
+        'controls-dynamic': () => import('./controls.dynamic.module'),
+      },
+      multi: true
+    }
+  ]
 })
 export class ControlsLoaderDirective extends DynamicLoaderDirective<ControlsComponent> implements OnInit, ControlComponentIO {
 
@@ -41,21 +49,3 @@ export class ControlsLoaderDirective extends DynamicLoaderDirective<ControlsComp
       .subscribe((arg) => this.dataChange.emit(arg));
   }
 }
-
-
-
-@NgModule({
-  imports:[
-    DynamicComponentModule
-  ],
-  providers: [{
-    provide: DynamicComponentModuleMapService,
-    useValue: {
-      'controls-dynamic': () => import('./controls.dynamic.module'),
-    },
-    multi: true
-  }],
-  declarations: [ControlsLoaderDirective],
-  exports: [ControlsLoaderDirective]
-})
-export class ControlsLoaderModule {}

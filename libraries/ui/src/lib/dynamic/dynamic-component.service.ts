@@ -1,12 +1,12 @@
 import {
-  createNgModuleRef,
+  createNgModule,
   InjectionToken,
   Injector,
   NgModuleRef,
   Type
 } from "@angular/core";
 
-import {StringUtils} from "@jbr/core/utils";
+import {StringUtils} from "@jbr/core";
 
 
 
@@ -74,7 +74,7 @@ export class DynamicComponentService {
     }
 
     return {
-      ngModuleRef: createNgModuleRef(moduleType, this._injector),
+      ngModuleRef: createNgModule(moduleType, this._injector),
       componentType
     }
   }
