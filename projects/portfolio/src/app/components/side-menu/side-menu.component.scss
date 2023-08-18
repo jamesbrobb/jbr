@@ -1,10 +1,42 @@
-$active-color: #ff5c8d;
-$active-0: #ffffff;
-$active-1: $active-color;
-$active-2: #{lighten($active-color, 5)};
-$active-3: #{lighten($active-color, 10)};
-$active-4: #{lighten($active-color, 15)};
-$active-5: #{lighten($active-color, 20)};
+@use '../../../theme' as theme;
+
+
+$color: theme.$jbr-primary;
+
+$inactive-color: #455a64;
+$active-color: #004D40;
+$start-left: 37px;
+$depth: 6;
+
+
+@mixin activeMenuItemColours($total:1) {
+  @for $i from 0 through $total {
+    &.active-#{$i} {
+      @if $i == 0 {
+        color: $inactive-color;
+      } @else {
+        color: #{lighten($active-color, ($i - 1) * 5%)};
+      }
+    }
+  }
+}
+
+@mixin nestedMenuItemPositions($total:1, $i:1) {
+  @if $i <= $total {
+    &> mat-nested-tree-node {
+      &> div.mat-tree-node > .mat-mdc-button {
+        padding-left: 10px * $i;
+      }
+      &> div[role=group] {
+        &> mat-tree-node > .mat-mdc-button {
+          padding-left: (10px * $i) + $start-left;
+        }
+        @include nestedMenuItemPositions($total, $i + 1);
+      }
+    }
+  }
+}
+
 
 :host {
   display: block;
@@ -25,29 +57,7 @@ $active-5: #{lighten($active-color, 20)};
     text-transform: capitalize;
     transition: color 400ms;
 
-    &.active-0 {
-      color: $active-0;
-    }
-
-    &.active-1 {
-      color: $active-1;
-    }
-
-    &.active-2 {
-      color: $active-2;
-    }
-
-    &.active-3 {
-      color: $active-3;
-    }
-
-    &.active-4 {
-      color: $active-4;
-    }
-
-    &.active-5 {
-      color: $active-5;
-    }
+    @include activeMenuItemColours($depth);
   }
 
   mat-tree {
@@ -57,67 +67,9 @@ $active-5: #{lighten($active-color, 20)};
     }
 
     &> mat-tree-node > .mat-mdc-button {
-      padding-left: 37px;
+      padding-left: $start-left;
     }
-    &> mat-nested-tree-node {
-      &> div.mat-tree-node > .mat-mdc-button {
-        padding-left: 10px;
-      }
-      &> div[role=group] {
-        &> mat-tree-node > .mat-mdc-button {
-          padding-left: 47px;
-        }
-        &> mat-nested-tree-node {
-          &> div.mat-tree-node > .mat-mdc-button {
-            padding-left: 20px;
-          }
-          &> div[role=group] {
-            &> mat-tree-node > .mat-mdc-button {
-              padding-left: 57px;
-            }
-            &> mat-nested-tree-node {
-              &> div.mat-tree-node > .mat-mdc-button {
-                padding-left: 30px;
-              }
-              &> div[role=group] {
-                &> mat-tree-node > .mat-mdc-button {
-                  padding-left: 67px;
-                }
-                &> mat-nested-tree-node {
-                  &> div.mat-tree-node > .mat-mdc-button {
-                    padding-left: 40px;
-                  }
-                  &> div[role=group] {
-                    &> mat-tree-node > .mat-mdc-button {
-                      padding-left: 77px;
-                    }
-                    &> mat-nested-tree-node {
-                      &> div.mat-tree-node > .mat-mdc-button {
-                        padding-left: 50px;
-                      }
-                      &> div[role=group] {
-                        &> mat-tree-node > .mat-mdc-button {
-                          padding-left: 87px;
-                        }
-                        &> mat-nested-tree-node {
-                          &> div.mat-tree-node > .mat-mdc-button {
-                            padding-left: 60px;
-                          }
-                          &> div[role=group] {
-                            &> mat-tree-node > .mat-mdc-button {
-                              padding-left: 97px;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+
+    @include nestedMenuItemPositions($depth);
   }
 }

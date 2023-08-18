@@ -1,0 +1,68 @@
+:host {
+  display: block;
+
+  markdown {
+    display: block;
+
+    & + markdown {
+      margin-top: 50px;
+    }
+
+    ::ng-deep {
+
+      h1, h2, h3, h4, code {
+        //color: #E9E9E9;
+      }
+
+      code {
+        font-weight: normal;
+      }
+
+      p + h2,
+      pre + h2 {
+        margin-top: 50px;
+      }
+
+      p:first-child(code) {
+        background-color: #f5f2f0;
+      }
+
+      a {
+        color: #004D40;
+        text-decoration: none;
+
+        > code {
+          color: #004D40;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      li > ul {
+        margin-top: 10px;
+      }
+
+      .language-ts {
+        .token.operator,
+        .token.entity,
+        .token.url,
+        .language-css.token.string,
+        .style .token.string {
+          background: transparent;
+        }
+      }
+
+      .language-json {
+        .token.operator {
+          background: transparent;
+        }
+      }
+    }
+  }
+}

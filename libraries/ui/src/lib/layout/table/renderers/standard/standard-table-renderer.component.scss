@@ -1,0 +1,58 @@
+
+:host {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+
+  table {
+    min-width: 100%;
+    table-layout: auto;
+    white-space: normal;
+    border: 0;
+    border-spacing: 0;
+    background: white;
+
+    thead {
+      background: inherit;
+
+      tr {
+        background: inherit;
+        height: 56px;
+
+        th {
+          background: inherit;
+          box-sizing: border-box;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          outline: none;
+          text-align: left;
+          padding: 0 16px 0 16px;
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          border-bottom-color: #0000001f;
+        }
+      }
+    }
+
+    tbody {
+      background: inherit;
+
+      tr {
+        background: inherit;
+        height: 52px;
+
+        td {
+          background: inherit;
+          box-sizing: border-box;
+          overflow: hidden;
+          text-align: left;
+          text-overflow: ellipsis;
+          padding: 0 16px 0 16px;
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          color: #000000de;
+          border-bottom-color: #0000001f;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+:host {
+  display: block;
+
+  label {
+    border-radius: 4px;
+    padding: 2px 10px;
+    display: inline;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: initial;
+    color: #ffffff;
+    background-color: #1e88e5;
+
+    &.directive {
+      background-color: #D81B60;
+    }
+
+    &.component {
+      background-color: #FF9800;
+    }
+
+    &.service {
+      background-color: #4CAF50;
+    }
+
+    &.pipe {
+      background-color: #9C27B0;
+    }
+
+    &.module {
+      background-color: #2196F3;
+    }
+
+    &.class {
+      background-color: #FF5722;
+    }
+
+    &.interface {
+      background-color: #607D8B;
+    }
+
+    &.guard {
+      background-color: #795548;
+    }
+
+    &.enum {
+      background-color: #9E9E9E;
+    }
+
+    &.type {
+      background-color: #9E9E9E;
+    }
+
+    &.function {
+      background-color: #9E9E9E;
+    }
+
+    &.variable {
+      background-color: #9E9E9E;
+    }
+
+    &.default {
+      background-color: #9E9E9E;
+    }
+
+    &.abstract {
+      background-color: #9E9E9E;
+    }
+  }
+}

@@ -21,10 +21,10 @@ export enum OVERLAY_COLORS {
 })
 export class ColorOverlayComponent implements OnChanges {
 
-    @Input() color?: OVERLAY_COLORS;
+    @Input() color?: OVERLAY_COLORS = OVERLAY_COLORS.BLUE
     @Input() allowTransition: boolean = true;
 
-    public overlayColor: OVERLAY_COLORS = OVERLAY_COLORS.BLUE;
+    public overlayColor?: OVERLAY_COLORS;
 
     public ngOnChanges(): void {
         this.overlayColor = this.color ?? OVERLAY_COLORS.BLUE;

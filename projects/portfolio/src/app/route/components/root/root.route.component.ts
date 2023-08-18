@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Data} from "@angular/router";
-import {PageConfig, PagesConfig} from "../../../config/page/page-config";
-import {isPageNode} from "../../config/route-config";
+import {Component, inject, OnInit} from '@angular/core';
 import {NgIf} from "@angular/common";
+import {ActivatedRoute, Data} from "@angular/router";
+import {Page, PagesConfig} from "../../../config/page/page-config";
+import {isPageNode} from "../../config/route-config";
 import {PageContainerComponent} from "../../../components/page-container/page-container.component";
 
 
@@ -19,21 +19,26 @@ import {PageContainerComponent} from "../../../components/page-container/page-co
 })
 export class RootRouteComponent implements OnInit {
 
-  public pageConfig?: PageConfig;
+  public page?: Page;
+  public detailsURI?: string;
 
-  constructor(
-    private _route: ActivatedRoute,
-    private _pagesConfig: PagesConfig
-  ) {}
+  #route = inject(ActivatedRoute);
+  #pagesConfig = inject(PagesConfig)
 
   ngOnInit() {
-    this._route.data.subscribe(this._handlePageChange);
+    this.#route.data.subscribe(this._handlePageChange);
   }
 
   private _handlePageChange = (data: Data): void => {
 
     const config = data['config'];
 
-    this.pageConfig = isPageNode(config) ? this._pagesConfig.getPageConfigById(config.pageId) : undefined;
+    console.log('config', config);
+
+    if(isPageNode(config)) {
+      this.page = config.page;
+      this.detailsURI = config.detailsURI;
+        //this.#pagesConfig.getPageConfigById(config.pageId)
+    }
   }
 }

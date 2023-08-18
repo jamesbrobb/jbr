@@ -32,7 +32,7 @@ export const AnalyticsHooksService = new InjectionToken<AnalyticsHook[]>('Analyt
 
 
 export function provideAnalytics(trackRouteChanges: boolean, tracker: AnalyticsTracker): EnvironmentProviders {
-  console.log(tracker);
+
   const providers: (EnvironmentProviders | Provider)[] = [{
     provide: AnalyticsService,
     useFactory: (

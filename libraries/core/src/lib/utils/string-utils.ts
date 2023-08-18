@@ -20,7 +20,27 @@ export class StringUtils {
         return text.replace(/(^\w|-\w)/g, (txt) => this._clearAndUpper(txt));
     }
 
-    private static  _clearAndUpper(text: string): string {
-        return text.replace(/-/, "").toUpperCase();
+    public static toKebabCase(text: string): string {
+        return text.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    }
+
+    public static toClassCase(text: string): string {
+      return text.replace(/(?:^|[-_/])(\w)/g, (txt) => this._clearAndUpper(txt));
+    }
+
+    public static toConstantCase(text: string): string {
+      return text.replace(/([a-z])([A-Z])/g, '$1_$2').toUpperCase();
+    }
+
+    public static toSnakeCase(text: string): string {
+      return text.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+    }
+
+    public static toWords(text: string): string {
+      return text.replace(/(?:^|[-_/])(\w)/g, (txt) => this._clearAndUpper(txt, ' '));
+    }
+
+    private static  _clearAndUpper(text: string, delimiter=""): string {
+        return text.replace(/-/, delimiter).toUpperCase();
     }
 }

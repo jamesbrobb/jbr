@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form *ngIf="form" [formGroup]="form">
 
   <ng-container *ngFor="let control of controls">
 

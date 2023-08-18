@@ -4,6 +4,4 @@ import {Command} from "../commands";
 
 
 export interface AnalyticsHook<AdaptorType extends AnalyticsAdaptor = AnalyticsAdaptor> extends
-    Command<AnalyticsAction, AnalyticsAction, [AnalyticsActions, AdaptorType]> {
-
-}
+    Command<AnalyticsAction, AnalyticsAction, [AnalyticsActions, AdaptorType]> {}

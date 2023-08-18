@@ -1,7 +1,8 @@
-
-@import "~normalize.css";
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import "normalize.css";
 @import "dist/libraries/@jbr/ui/src/lib/styles/styles.scss";
+@import "./theme.scss";
+
+
 
 html {
   box-sizing: border-box;

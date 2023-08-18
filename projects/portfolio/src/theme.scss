@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$jbr-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900);
+$jbr-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900);
+$jbr-warn: mat.define-palette(mat.$red-palette, 500, 100, 900);
+
+$jbr-typography: mat.define-typography-config();
+
+
+$jbr-theme: mat.define-light-theme((
+  color: (
+    primary: $jbr-primary,
+    accent: $jbr-accent,
+    warn: $jbr-warn,
+  ),
+  typography: $jbr-typography,
+));
+
+@include mat.core-theme($jbr-theme);
+@include mat.sidenav-theme($jbr-theme);
+@include mat.tree-theme($jbr-theme);
+@include mat.toolbar-theme($jbr-theme);
+@include mat.button-theme($jbr-theme);
+@include mat.icon-theme($jbr-theme);
+@include mat.tabs-theme($jbr-theme);
+@include mat.badge-theme($jbr-theme);
+@include mat.expansion-theme($jbr-theme);

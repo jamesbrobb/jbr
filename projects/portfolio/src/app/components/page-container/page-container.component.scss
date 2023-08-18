@@ -30,16 +30,6 @@
     position: relative;
   }
 
-  .github-link {
-    position: absolute;
-    color: white;
-    top: 5px;
-    right: 8px;
-    transform: scale(1.5);
-    z-index: 1;
-    @include button_reset;
-  }
-
   .controls {
     max-width: var(--controls-width);
     margin: 40px 0;
@@ -61,134 +51,52 @@
     }
   }
 
-  markdown {
-    display: block;
-    color: #D7D7D7;
+  .sections {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: rgba(0, 0, 0, 0.2) solid 1px;
 
-    & + markdown {
-      margin-top: 50px;
+    &:empty {
+      display: none;
     }
 
-    ::ng-deep {
+    .section {
+      --section-label-opacity: 1;
+      --entity-info-margin-top: 0;
 
-      h1, h2, h3, h4, code {
-        color: #E9E9E9;
+      &.is-open {
+        --section-label-opacity: 0;
+        --entity-info-margin-top:-30px
       }
 
-      code {
-        font-weight: normal;
-      }
-
-      p + h2,
-      pre + h2 {
-        margin-top: 50px;
-      }
-
-      a {
-        color: white;
-        text-decoration: none;
-
-        > code {
-          color: white;
-        }
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      li {
+      &:not(:last-child) {
         margin-bottom: 10px;
       }
 
-      li > ul {
-        margin-top: 10px;
-      }
+      .header {
+        background: transparent;
 
-      .language-ts {
-        .token.operator,
-        .token.entity,
-        .token.url,
-        .language-css.token.string,
-        .style .token.string {
-          background: transparent;
+        .class-details {
+          margin-right: 12px;
+          display: flex;
+          flex-grow: 1;
+          align-items: center;
+          justify-content: space-between;
+          opacity: var(--section-label-opacity);
+          transition: opacity 300ms;
+
+          .name {
+            position: relative;
+            font-size: 16px;
+            margin-right: 10px;
+          }
         }
       }
 
-        .language-json {
-            .token.operator {
-                background: transparent;
-            }
-        }
+      .entity-info {
+        margin-top: var(--entity-info-margin-top);
+        transition: margin-top 300ms;
+      }
     }
   }
-
-    .sections {
-        margin-top: 30px;
-        padding-top: 30px;
-        border-top: rgba(255, 255, 255, 0.2) solid 1px;
-
-        &:empty {
-            display: none;
-        }
-
-        .section {
-            --section-border-color: rgba(255, 255, 255, 0.2);
-            --section-button-color: rgba(255, 255, 255, 0.5);
-            --section-button-transform: rotateX(0);
-            --section-label-opacity: 1;
-            --section-label-top: 0;
-
-            &.is-open {
-                --section-border-color: rgba(255, 255, 255, 0.5);
-                --section-button-color: rgba(255, 255, 255, 0.8);
-                --section-button-transform: rotateX(180deg);
-                --section-label-opacity: 0;
-                --section-label-top: 5px;
-            }
-
-            border: var(--section-border-color) solid 1px;
-            padding: 0 20px;
-            transition: border 500ms ease;
-
-            &:not(:last-child) {
-                margin-bottom: 10px;
-            }
-
-            .bar {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                height: 50px;
-
-                .label {
-                    position: relative;
-                    font-size: 16px;
-                    opacity: var(--section-label-opacity);
-                    transform: translateY(var(--section-label-top));
-                    transition: all 500ms ease;
-                    transition-property: opacity, transform;
-                }
-
-                button {
-                    @include button_reset;
-
-                    color: var(--section-button-color);
-
-                    transform: var(--section-button-transform);
-                    transition: color 0.5s, transform 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-                }
-            }
-
-            .content {
-                position: relative;
-                overflow: hidden;
-
-                .github-link {
-                    right: 4px;
-                    transform: scale(1.2);
-                }
-            }
-        }
-    }
 }

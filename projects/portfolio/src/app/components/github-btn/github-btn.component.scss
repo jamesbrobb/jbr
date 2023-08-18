@@ -1,0 +1,13 @@
+@import "dist/libraries/@jbr/ui/src/lib/styles/styles";
+
+:host {
+  --github-btn-size: var(--jrb-github-btn-size, 40px);
+
+  display: block;
+
+  button {
+    width: var(--github-btn-size);
+    height: var(--github-btn-size);
+    @include button_reset();
+  }
+}

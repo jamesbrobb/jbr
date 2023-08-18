@@ -1,51 +1,71 @@
 import {
+  DestroyRef,
   Directive,
+  EnvironmentProviders,
   EventEmitter,
-  Input,
-  NgModule,
-  OnInit,
-  Output,
+  inject,
+  Input, makeEnvironmentProviders,
+  Output
 } from "@angular/core";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
-import {takeUntil} from "rxjs";
+import {tap} from "rxjs";
 
-import {DynamicComponentModuleMapService, DynamicLoaderDirective} from "@jbr/ui";
-
-import {ControlComponentIO, ControlsComponent} from "./controls.component";
+import {ComponentLoaderMapService, ComponentLoaderIOBase} from "@jbr/ui";
+import {ControlComponentIO} from "./controls.component";
 import {ControlGroup} from "../../config/controls/controls-config";
 
 
+export function getControlsLoaderProvider(): EnvironmentProviders {
+  return makeEnvironmentProviders([{
+    provide: ComponentLoaderMapService,
+    useValue: {
+      'example-controls': {
+        import: () => import('./controls.component'),
+        componentName: 'ControlsComponent'
+      }
+    },
+    multi: true
+  }]);
+}
 
 @Directive({
   selector: '[controlsLoader]',
-  standalone: true,
-  providers: [
-    {
-      provide: DynamicComponentModuleMapService,
-      useValue: {
-        'controls-dynamic': () => import('./controls.dynamic.module'),
-      },
-      multi: true
-    }
-  ]
+  standalone: true
 })
-export class ControlsLoaderDirective extends DynamicLoaderDirective<ControlsComponent> implements OnInit, ControlComponentIO {
+export class ControlsLoaderDirective extends ComponentLoaderIOBase<ControlComponentIO> implements ControlComponentIO {
 
   @Input() controls?: ControlGroup[];
 
-  @Output() dataChange = new EventEmitter<any>();
+  @Output() dataChange = new EventEmitter<{[key: string]: unknown}>();
 
-  ngOnInit() {
-    this._setComponentSelector('controls-dynamic');
+  #destroyRef = inject(DestroyRef);
+
+  constructor() {
+
+    super();
+
+    this.loadComponent('example-controls');
   }
 
-  protected override _updateInstanceInputValues(): void {
-    this._instance!.controls = this.controls;
+  protected override setUpInstance(): void {
+
+    if(!this.instance) {
+      return;
+    }
+
+    this.instance.dataChange.pipe(
+      takeUntilDestroyed(this.#destroyRef),
+      tap(value => this.dataChange.emit(value))
+    ).subscribe();
   }
 
-  protected override _setUpInstanceOutputs(): void {
-    this._instance!.dataChange
-      .pipe(takeUntil(this._destroyed$))
-      .subscribe((arg) => this.dataChange.emit(arg));
+  protected updateInstanceInputs(): void {
+
+    if(!this.instance) {
+      return;
+    }
+
+    this.instance.controls = this.controls;
   }
 }

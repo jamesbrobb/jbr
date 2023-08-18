@@ -6,6 +6,8 @@
     "@angular/core": "^16.1.0",
     "@angular/material": "^16.1.1",
     "@juggle/resize-observer": "^3.4.0",
+    "codemirror": "^5.65.13",
+    "json-beautify": "^1.1.1",
     "resize-observer-polyfill": "^1.5.1"
   },
   "dependencies": {

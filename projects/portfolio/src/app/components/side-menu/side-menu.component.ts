@@ -6,16 +6,16 @@ import {
   EventEmitter,
   Inject
 } from '@angular/core';
+import {NgClass} from "@angular/common";
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeModule, MatTreeNestedDataSource} from '@angular/material/tree';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 import {NavigationEnd, Router, RouterEvent, RouterLink} from "@angular/router";
 
-import {MenuConfig, MenuConfigService, MenuItemNode} from "../../config/menu/menu-config";
 import {openClose, rotate} from "@jbr/ui";
-import {MatButtonModule} from "@angular/material/button";
-import {NgClass} from "@angular/common";
-import {MatIconModule} from "@angular/material/icon";
 
+import {MenuConfig, MenuConfigService, MenuItemNode} from "../../config/menu/menu-config";
 
 
 @Component({
@@ -59,8 +59,9 @@ export class SideMenuComponent {
 
   hasChild = (_: number, node: MenuItemNode) => !!node.children && node.children.length > 0;
 
-  public onItemClick(): void {
-      this.menuItemSelected.emit();
+  public onItemClick(node: MenuItemNode): void {
+    this._router.navigate([node.path]);
+    this.menuItemSelected.emit();
   }
 
   public onGroupClick(node: MenuItemNode): void {
@@ -68,6 +69,12 @@ export class SideMenuComponent {
     if(!this.treeControl.isExpanded(node)) {
       this.treeControl.collapseDescendants(node);
     }
+
+    if(!node.hasContent) {
+      return;
+    }
+
+    this._router.navigate([node.path]);
   }
 
   private _handleRouteChange = (event: any): void => {
@@ -137,7 +144,7 @@ export class SideMenuComponent {
       })
     }
 
-    nodes.forEach((node, index) => {
+    nodes.reverse().forEach((node, index) => {
       node.active = index + 1;
     })
   }

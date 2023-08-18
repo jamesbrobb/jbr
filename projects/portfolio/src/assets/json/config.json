@@ -6,96 +6,474 @@
     },
     {
       "path": "about",
-      "pageId": "%path%"
-    }, {
-      "path": "components",
-      "children": [{
-        "path": "dynamic-loader",
-        "pageId": "%path%"
-      },{
-        "path": "layout",
-        "children": [
-          {
-            "path": "grid",
-            "pageId": "%path%"
-          },
-          {
-            "path": "flex-grid",
-            "pageId": "%path%"
-          },
-          {
-            "path": "responsive-container",
-            "pageId": "%path%"
-          }
-        ]
-      }, {
-        "path": "product",
-        "children": [{
-          "path": "common",
+      "page": {
+        "name": "about",
+        "githubLink": "/",
+        "description": "details/home/README.md"
+      }
+    },
+    {
+      "path": "libraries",
+      "children": [
+        {
+          "path": "core",
           "children": [
             {
-              "path": "overlay",
+              "path": "analytics",
               "children": [
                 {
-                  "path": "color",
-                  "pageId": "color-overlay"
+                  "path": "trackers",
+                  "children": [
+                    {
+                      "path": "google-analytics",
+                      "page": {
+                        "name": "google-analytics",
+                        "type": "",
+                        "githubLink": "libraries/core/src/lib/analytics/trackers/google-analytics",
+                        "description": "libraries/core/src/lib/analytics/trackers/google-analytics/README.md"
+                      }
+                    }
+                  ]
                 }
-              ]
-            }
-          ]
-        }, {
-          "path": "layout",
-          "children": [{
-            "path": "page-header",
-            "pageId": "%path%"
-          }]
-        }, {
-            "path": "media",
-            "children": [
-              {
-                "path": "image",
-                "children": [{
-                    "path": "fallback",
-                    "pageId": "fallback-image"
-                  }, {
-                    "path": "image-component",
-                    "pageId": "image"
+              ],
+              "page": {
+                "name": "analytics",
+                "type": "",
+                "githubLink": "libraries/core/src/lib/analytics",
+                "description": "libraries/core/src/lib/analytics/.README/DESCRIPTION.md",
+                "sections": [
+                  {
+                    "name": "analytics-service",
+                    "type": "",
+                    "githubLink": "libraries/core/src/lib/analytics/.README/analytics-service",
+                    "api": "libraries/core/src/lib/analytics/.README/analytics-service/API.md",
+                    "description": "libraries/core/src/lib/analytics/.README/analytics-service/DESCRIPTION.md",
+                    "example": "libraries/core/src/lib/analytics/.README/analytics-service/EXAMPLE.md"
                   }
                 ]
               }
-            ]
-          }, {
-            "path": "lesson-plan",
-            "children": [
-              {"path": "card"},
-              {"path": "hero"},
-              {"path": "grid"},
-              {"path": "header"},
-              {"path": "vocabulary"}
-            ]
-          }, {
-            "path": "my-library",
-            "children": [
-              {
-                "path": "lesson-plan-card",
-                "pageId": "my-library-lesson-plan-card"
+            },
+            {
+              "path": "commands",
+              "children": [
+                {
+                  "path": "command",
+                  "page": {
+                    "name": "command",
+                    "type": "",
+                    "githubLink": "libraries/core/src/lib/commands/command",
+                    "description": "libraries/core/src/lib/commands/command/README.md"
+                  }
+                },
+                {
+                  "path": "group",
+                  "page": {
+                    "name": "group",
+                    "type": "",
+                    "githubLink": "libraries/core/src/lib/commands/group",
+                    "description": "libraries/core/src/lib/commands/group/README.md"
+                  }
+                },
+                {
+                  "path": "processor",
+                  "page": {
+                    "name": "processor",
+                    "type": "",
+                    "githubLink": "libraries/core/src/lib/commands/processor",
+                    "description": "libraries/core/src/lib/commands/processor/README.md"
+                  }
+                }
+              ],
+              "page": {
+                "name": "commands",
+                "type": "",
+                "githubLink": "libraries/core/src/lib/commands",
+                "description": "libraries/core/src/lib/commands/README.md"
               }
-            ]
+            },
+            {
+              "path": "http",
+              "page": {
+                "name": "http",
+                "type": "",
+                "githubLink": "libraries/core/src/lib/http",
+                "description": "libraries/core/src/lib/http/README.md"
+              }
+            }
+          ],
+          "page": {
+            "name": "core",
+            "type": "",
+            "githubLink": "libraries/core",
+            "description": "libraries/core/README.md"
           }
-        ]
-      }]
-    }, {
-      "path": "core",
-      "children": [{
-        "path": "analytics",
-        "pageId": "%path%"
-      }, {
-        "path": "commands",
-        "pageId": "%path%"
-      }, {
-        "path": "http",
-        "pageId": "%path%"
-      }]
+        },
+        {
+          "path": "ng",
+          "children": [
+            {
+              "path": "core",
+              "children": [
+                {
+                  "path": "analytics",
+                  "children": [
+                    {
+                      "path": "trackers",
+                      "children": [
+                        {
+                          "path": "google-analytics",
+                          "page": {
+                            "name": "google-analytics",
+                            "type": "",
+                            "githubLink": "libraries/ng/src/lib/core/analytics/trackers/google-analytics",
+                            "description": "libraries/ng/src/lib/core/analytics/trackers/google-analytics/README.md"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "page": {
+                    "name": "analytics",
+                    "type": "",
+                    "githubLink": "libraries/ng/src/lib/core/analytics",
+                    "description": "libraries/ng/src/lib/core/analytics/README.md"
+                  }
+                },
+                {
+                  "path": "http",
+                  "page": {
+                    "name": "http",
+                    "type": "",
+                    "githubLink": "libraries/ng/src/lib/core/http",
+                    "description": "libraries/ng/src/lib/core/http/README.md"
+                  }
+                }
+              ]
+            }
+          ],
+          "page": {
+            "name": "ng",
+            "type": "",
+            "githubLink": "libraries/ng",
+            "description": "libraries/ng/README.md"
+          }
+        },
+        {
+          "path": "product",
+          "children": [
+            {
+              "path": "efclass",
+              "children": [
+                {
+                  "path": "components",
+                  "children": [
+                    {
+                      "path": "layout",
+                      "children": [
+                        {
+                          "path": "headers",
+                          "children": [
+                            {
+                              "path": "page",
+                              "page": {
+                                "name": "page",
+                                "type": "",
+                                "githubLink": "libraries/product/src/lib/efclass/components/layout/headers/page",
+                                "description": "libraries/product/src/lib/efclass/components/layout/headers/page/.README/DESCRIPTION.md",
+                                "example": "libraries/product/src/lib/efclass/components/layout/headers/page/.README/EXAMPLE.md"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "path": "media",
+                      "children": [
+                        {
+                          "path": "image",
+                          "children": [
+                            {
+                              "path": "fallback",
+                              "page": {
+                                "name": "fallback",
+                                "type": "",
+                                "githubLink": "libraries/product/src/lib/efclass/components/media/image/fallback",
+                                "description": "libraries/product/src/lib/efclass/components/media/image/fallback/.README/DESCRIPTION.md",
+                                "example": "libraries/product/src/lib/efclass/components/media/image/fallback/.README/EXAMPLE.md"
+                              }
+                            },
+                            {
+                              "path": "image",
+                              "page": {
+                                "name": "image",
+                                "type": "",
+                                "githubLink": "libraries/product/src/lib/efclass/components/media/image/image",
+                                "description": "libraries/product/src/lib/efclass/components/media/image/image/.README/DESCRIPTION.md",
+                                "example": "libraries/product/src/lib/efclass/components/media/image/image/.README/EXAMPLE.md"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "path": "my-library",
+                      "children": [
+                        {
+                          "path": "lesson-plan-card",
+                          "page": {
+                            "name": "lesson-plan-card",
+                            "type": "",
+                            "githubLink": "libraries/product/src/lib/efclass/components/my-library/lesson-plan-card",
+                            "description": "libraries/product/src/lib/efclass/components/my-library/lesson-plan-card/README.md"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "page": {
+            "name": "product",
+            "type": "",
+            "githubLink": "libraries/product",
+            "description": "libraries/product/README.md"
+          }
+        },
+        {
+          "path": "types",
+          "page": {
+            "name": "types",
+            "type": "",
+            "githubLink": "libraries/types",
+            "description": "libraries/types/README.md"
+          }
+        },
+        {
+          "path": "ui",
+          "children": [
+            {
+              "path": "common",
+              "children": [
+                {
+                  "path": "icons",
+                  "children": [
+                    {
+                      "path": "icon",
+                      "page": {
+                        "name": "icon",
+                        "type": "",
+                        "githubLink": "libraries/ui/src/lib/common/icons/icon",
+                        "description": "libraries/ui/src/lib/common/icons/icon/README.md"
+                      }
+                    }
+                  ],
+                  "page": {
+                    "name": "icons",
+                    "type": "",
+                    "githubLink": "libraries/ui/src/lib/common/icons",
+                    "description": "libraries/ui/src/lib/common/icons/README.md"
+                  }
+                },
+                {
+                  "path": "overlay",
+                  "children": [
+                    {
+                      "path": "color",
+                      "page": {
+                        "name": "color",
+                        "type": "",
+                        "githubLink": "libraries/ui/src/lib/common/overlay/color",
+                        "description": "libraries/ui/src/lib/common/overlay/color/.README/DESCRIPTION.md",
+                        "example": "libraries/ui/src/lib/common/overlay/color/.README/EXAMPLE.md",
+                        "sections": [
+                          {
+                            "name": "color-overlay",
+                            "type": "component",
+                            "githubLink": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component",
+                            "api": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/API.md",
+                            "description": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/DESCRIPTION.md",
+                            "controls": [
+                              {
+                                "controlType": "select",
+                                "options": "OVERLAY_COLORS",
+                                "key": "color",
+                                "label": "Color",
+                                "value": "OVERLAY_COLORS.BLUE"
+                              },
+                              {
+                                "controlType": "input",
+                                "type": "checkbox",
+                                "key": "allowTransition",
+                                "label": "Allow transition",
+                                "value": "true"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "path": "renderers",
+                  "children": [
+                    {
+                      "path": "html-renderer",
+                      "page": {
+                        "name": "html-renderer",
+                        "type": "",
+                        "githubLink": "libraries/ui/src/lib/common/renderers/html-renderer",
+                        "description": "libraries/ui/src/lib/common/renderers/html-renderer/README.md"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "path": "svg",
+                  "children": [
+                    {
+                      "path": "svg",
+                      "page": {
+                        "name": "svg",
+                        "type": "",
+                        "githubLink": "libraries/ui/src/lib/common/svg/svg",
+                        "description": "libraries/ui/src/lib/common/svg/svg/README.md"
+                      }
+                    }
+                  ],
+                  "page": {
+                    "name": "svg",
+                    "type": "",
+                    "githubLink": "libraries/ui/src/lib/common/svg",
+                    "description": "libraries/ui/src/lib/common/svg/README.md"
+                  }
+                }
+              ]
+            },
+            {
+              "path": "component-loader",
+              "page": {
+                "name": "component-loader",
+                "type": "",
+                "githubLink": "libraries/ui/src/lib/component-loader",
+                "description": "libraries/ui/src/lib/component-loader/.README/DESCRIPTION.md",
+                "sections": [
+                  {
+                    "name": "component-loader-io-base",
+                    "type": "abstract",
+                    "githubLink": "libraries/ui/src/lib/component-loader/.README/component-loader-io-base.abstract",
+                    "api": "libraries/ui/src/lib/component-loader/.README/component-loader-io-base.abstract/API.md",
+                    "description": "libraries/ui/src/lib/component-loader/.README/component-loader-io-base.abstract/DESCRIPTION.md"
+                  },
+                  {
+                    "name": "component-loader-io",
+                    "type": "directive",
+                    "githubLink": "libraries/ui/src/lib/component-loader/.README/component-loader-io.directive",
+                    "api": "libraries/ui/src/lib/component-loader/.README/component-loader-io.directive/API.md",
+                    "description": "libraries/ui/src/lib/component-loader/.README/component-loader-io.directive/DESCRIPTION.md"
+                  },
+                  {
+                    "name": "component-loader",
+                    "type": "directive",
+                    "githubLink": "libraries/ui/src/lib/component-loader/.README/component-loader.directive",
+                    "api": "libraries/ui/src/lib/component-loader/.README/component-loader.directive/API.md",
+                    "description": "libraries/ui/src/lib/component-loader/.README/component-loader.directive/DESCRIPTION.md",
+                    "controls": [
+                      {
+                        "controlType": "input",
+                        "type": "text",
+                        "key": "componentLoader",
+                        "label": "Component type"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "component-loader",
+                    "type": "service",
+                    "githubLink": "libraries/ui/src/lib/component-loader/.README/component-loader.service",
+                    "api": "libraries/ui/src/lib/component-loader/.README/component-loader.service/API.md",
+                    "description": "libraries/ui/src/lib/component-loader/.README/component-loader.service/DESCRIPTION.md"
+                  }
+                ]
+              }
+            },
+            {
+              "path": "dynamic",
+              "page": {
+                "name": "dynamic",
+                "type": "",
+                "githubLink": "libraries/ui/src/lib/dynamic",
+                "description": "libraries/ui/src/lib/dynamic/.README/DESCRIPTION.md",
+                "example": "libraries/ui/src/lib/dynamic/.README/EXAMPLE.md"
+              }
+            },
+            {
+              "path": "forms",
+              "children": [
+                {
+                  "path": "codemirror",
+                  "page": {
+                    "name": "codemirror",
+                    "type": "",
+                    "githubLink": "libraries/ui/src/lib/forms/codemirror",
+                    "description": "libraries/ui/src/lib/forms/codemirror/README.md"
+                  }
+                },
+                {
+                  "path": "json-editor",
+                  "page": {
+                    "name": "json-editor",
+                    "type": "",
+                    "githubLink": "libraries/ui/src/lib/forms/json-editor",
+                    "description": "libraries/ui/src/lib/forms/json-editor/README.md"
+                  }
+                }
+              ]
+            },
+            {
+              "path": "layout",
+              "children": [
+                {
+                  "path": "grid",
+                  "page": {
+                    "name": "grid",
+                    "type": "",
+                    "githubLink": "libraries/ui/src/lib/layout/grid",
+                    "api": "libraries/ui/src/lib/layout/grid/.README/API.md",
+                    "description": "libraries/ui/src/lib/layout/grid/.README/DESCRIPTION.md",
+                    "example": "libraries/ui/src/lib/layout/grid/.README/EXAMPLE.md"
+                  }
+                }
+              ]
+            },
+            {
+              "path": "responsive",
+              "children": [
+                {
+                  "path": "container",
+                  "page": {
+                    "name": "container",
+                    "type": "",
+                    "githubLink": "libraries/ui/src/lib/responsive/container",
+                    "description": "libraries/ui/src/lib/responsive/container/.README/DESCRIPTION.md",
+                    "example": "libraries/ui/src/lib/responsive/container/.README/EXAMPLE.md"
+                  }
+                }
+              ]
+            }
+          ],
+          "page": {
+            "name": "ui",
+            "type": "",
+            "githubLink": "libraries/ui",
+            "description": "libraries/ui/README.md"
+          }
+        }
+      ]
     }
   ],
   "pages": {

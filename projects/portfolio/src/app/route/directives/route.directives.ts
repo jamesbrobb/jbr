@@ -4,7 +4,8 @@ import {Router} from "@angular/router";
 
 
 @Directive({
-    selector: '[hrefListener]'
+  selector: '[hrefListener]',
+  standalone: true
 })
 export class HrefListenerDirective {
 

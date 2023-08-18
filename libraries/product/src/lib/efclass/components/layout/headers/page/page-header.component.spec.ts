@@ -5,8 +5,8 @@ import {By} from '@angular/platform-browser';
 import {PageHeaderComponent} from './page-header.component';
 
 
-import {ResponsiveContainerDirectiveMock} from "@jbr/components/mocks";
-import {ColorOverlayComponent} from "@jbr/components/common/overlay/color/color-overlay.component";
+import {ResponsiveContainerDirectiveMock} from "@jbr/ui/mocks";
+import {ColorOverlayComponent} from "@jbr/ui";
 import {FallbackImageComponent} from "../../../media/image/fallback/fallback-image.component";
 import {ImageComponent} from "../../../media/image/image/image.component";
 

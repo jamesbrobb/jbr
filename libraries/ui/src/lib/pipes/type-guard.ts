@@ -4,7 +4,8 @@ import {TypeGuard} from "@jbr/types";
 
 
 @Pipe({
-  name: 'guardType'
+  name: 'guardType',
+  standalone: true
 })
 export class GuardTypePipe implements PipeTransform {
 

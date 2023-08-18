@@ -1,0 +1,42 @@
+<!--<div
+  standard-table-renderer
+  [caption]="label"
+  [columns]="standardColumns"
+  [rows]="rows"
+  [cellRenderers]="{a, d}"
+  data-test-id="table-renderer"
+></div>
+
+
+<div
+  sortable-table-renderer
+  [caption]="label"
+  [columns]="sortableColumns"
+  [rows]="rows"
+  [cellRenderers]="{a, d}"
+  (sortRequest)="sortRequest($event)"
+  data-test-id="table-renderer"
+></div>
+
+
+<ng-template #a let-cellData="cellData" let-rowData="rowData" let-columnKey="columnKey">
+  <div>{{cellData}}</div>
+  <div>{{rowData}}</div>
+  <div>{{columnKey}}</div>
+</ng-template>
+
+<ng-template #d let-cellData="cellData" let-rowData="rowData" let-columnKey="columnKey">
+  <div style="width:100%;height:100%;" [ngStyle]="!!cellData ? {'background-color': 'red'} : {'background-color': 'green'}">
+    {{cellData}}
+  </div>
+</ng-template>-->
+
+
+<button (click)="loadComponent('scam')">{{'scam'}}</button>
+<button (click)="loadComponent('scam-default')">{{'scam-default'}}</button>
+<button (click)="loadComponent('standalone')">{{'standalone'}}</button>
+<button (click)="updateTitle()">Update component title</button>
+
+<ng-container [dynamicComponent]="componentType" [inputs]="inputs"></ng-container>
+
+

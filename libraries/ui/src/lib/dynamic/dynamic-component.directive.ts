@@ -8,7 +8,7 @@ import {
   ViewContainerRef
 } from "@angular/core";
 
-import {DynamicComponentService} from "./dynamic-component-service";
+import {DynamicComponentService} from "./dynamic-component.service";
 
 
 

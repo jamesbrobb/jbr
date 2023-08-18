@@ -3,12 +3,12 @@ import {Component, Input, NgModule} from '@angular/core';
 import {
   ColorOverlayComponentModule,
   OVERLAY_COLORS
-} from "@jbr/components/common/overlay/color/color-overlay.component";
+} from "@jbr/ui";
 
 import {CommonModule} from "@angular/common";
-import {ResponsiveContainerDirectiveModule} from "@jbr/components/responsive/container/responsive-container.directive";
-import {FALLBACK_COLORS} from "@jbr/product/components/media/image/fallback/fallback-image.component";
-import {ImageComponentModule} from "@jbr/product/components/media/image/image/image.component";
+import {ResponsiveContainerDirectiveModule} from "@jbr/ui";
+import {FALLBACK_COLORS} from "@jbr/ui";
+import {ImageComponentModule} from "@jbr/product";
 
 
 

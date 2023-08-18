@@ -1,5 +1,6 @@
 import {InjectionToken} from "@angular/core";
 
+
 export interface GithubConfig {
   readonly root: string;
   readonly app: string;

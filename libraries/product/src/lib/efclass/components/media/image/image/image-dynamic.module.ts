@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 
-import {BaseDynamicModule} from "@jbr/components/dynamic/dynamic-component-service";
+import {BaseDynamicModule} from "@jbr/ui";
 import {ImageComponent, ImageComponentModule} from "./image.component";
 
 

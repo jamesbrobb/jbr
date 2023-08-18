@@ -1,19 +1,7 @@
+import {InjectionToken} from "@angular/core";
+import {Config} from "./config";
 
 
-export class AppConfig {
 
-  private _config: {[key: string]: unknown} | undefined;
+export const AppConfig = new InjectionToken<Config>('AppConfig');
 
-  load(): Promise<boolean> {
-    return fetch('assets/json/config.json')
-      .then((response: Response) => response.json())
-      .then(config => {
-        this._config = config;
-        return true;
-      })
-  }
-
-  getValueByKey<T>(key: string): T {
-    return this._config?.[key] as T;
-  }
-}

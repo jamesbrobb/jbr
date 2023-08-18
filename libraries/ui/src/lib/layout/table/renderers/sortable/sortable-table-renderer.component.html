@@ -1,0 +1,25 @@
+<div
+  standard-table-renderer
+  [caption]="caption"
+  [columns]="columns"
+  [rows]="rows"
+  [customHeaderCellRenderer]="headerCell"
+  [cellRenderers]="cellRenderers"
+  [emptyLabel]="emptyLabel"
+>
+  <ng-template #headerCell let-columnConfig="columnConfig">
+    <ng-container *ngIf="!columnConfig.isSortable; else sortableHeader">
+      {{ columnConfig.label }}
+    </ng-container>
+
+    <ng-template #sortableHeader>
+      <sortable-header
+        [(direction)]="columnConfig.direction"
+        (directionChange)="onSort($event, columnConfig)"
+        data-test-id="sortable-header"
+      >
+        {{ columnConfig.label }}
+      </sortable-header>
+    </ng-template>
+  </ng-template>
+</div>

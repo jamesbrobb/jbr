@@ -16,18 +16,18 @@ import {RootRouteComponent} from "./components/root/root.route.component";
 const shouldRedirect: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree => {
   const router = inject(Router),
     routesConfig = inject(RoutesConfig),
-    routeNode = routesConfig.getRouteNodeByPath(state.url);
+    routeNodeConfig = routesConfig.getRouteNodeByPath(state.url);
 
-  if(isRedirectNode(routeNode)) {
-    return router.parseUrl(routeNode.redirectTo);
+  if(isRedirectNode(routeNodeConfig)) {
+    return router.parseUrl(routeNodeConfig.redirectTo);
   }
 
   return true
 }
 
-const getRouteConfig: ResolveFn<RouteNode | undefined> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): RouteNode | undefined => {
-  const routesConfig = inject(RoutesConfig);
-  return routesConfig.getRouteNodeByPath(state.url);
+const getRouteNodeConfig: ResolveFn<RouteNode | undefined> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): RouteNode | undefined => {
+  const routeNodeConfig = inject(RoutesConfig);
+  return routeNodeConfig.getRouteNodeByPath(state.url);
 }
 
 
@@ -38,7 +38,7 @@ export const APP_ROUTES: Routes = [
     component: RootRouteComponent,
     canActivate: [shouldRedirect],
     resolve: {
-      config: getRouteConfig
+      config: getRouteNodeConfig
     }
   },
 ]

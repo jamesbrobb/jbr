@@ -1,0 +1,59 @@
+<table [attr.aria-label]="caption" role="table">
+  <thead role="rowgroup">
+    <tr role="row">
+      <ng-container *ngFor="let col of columns">
+        <th role="columnheader"
+          [style.width]="col.width ? col.width + '%' : null"
+          [attr.data-test-id]="col.key + '-column'"
+        >
+          <ng-container *ngIf="!customHeaderCellRenderer; else customHeaderCell">
+            {{ col.label }}
+          </ng-container>
+
+          <ng-template #customHeaderCell>
+            <ng-container
+              [ngTemplateOutletContext]="{ columnConfig: col }"
+              [ngTemplateOutlet]="customHeaderCellRenderer"
+            >
+            </ng-container>
+          </ng-template>
+        </th>
+      </ng-container>
+    </tr>
+  </thead>
+
+  <tbody role="rowgroup">
+    <ng-template #empty>
+      <div data-test-id="empty-label">{{ emptyLabel }}</div>
+    </ng-template>
+
+    <ng-container *ngIf="rows && rows.length > 0; else empty">
+      <ng-container *ngFor="let rowData of rows">
+        <tr role="row" style="vertical-align: top;" data-test-id="row">
+          <ng-container *ngFor="let col of columns">
+            <td [attr.data-test-id]="col.key + '-cell'" role="cell">
+
+              <ng-container
+                [ngTemplateOutletContext]="{
+                  cellData: rowData[col.key],
+                  rowData: rowData,
+                  columnKey: col.key
+                }"
+                [ngTemplateOutlet]="
+                  (rowData[col.key] | isDefinedValue) && !!cellRenderers && !!cellRenderers[col.key]
+                    ? $any(cellRenderers![col.key])
+                    : defaultCell
+                "
+              >
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table>
+
+<ng-template #defaultCell let-cellData="cellData">
+  <div label-cell [label]="cellData" data-test-id="cell-value"></div>
+</ng-template>

@@ -1,6 +1,6 @@
 import {Component, ContentChild, Input, NgModule, TemplateRef} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {ResponsiveContainerDirectiveModule} from "../../responsive/container/responsive-container.directive";
+import {ResponsiveContainerDirectiveModule} from "../../responsive";
 
 
 
@@ -11,7 +11,7 @@ import {ResponsiveContainerDirectiveModule} from "../../responsive/container/res
 })
 export class GridLayoutComponent {
 
-  @Input() dataProvider: unknown[] | undefined;
+  @Input() dataProvider?: unknown[];
 
   @ContentChild(TemplateRef, {static: true})
   public itemTemplate: TemplateRef<any> | null = null;

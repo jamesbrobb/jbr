@@ -1,6 +1,9 @@
 
-<page-container *ngIf="pageConfig"
-  [pageConfig]="pageConfig">
-</page-container>
+<ng-container *ngIf="!page; else pageView">
+  <div>404</div>
+</ng-container>
 
-<div *ngIf="!pageConfig">404</div>
+<ng-template #pageView>
+  <page-container [detailsURI]="detailsURI" [page]="page">
+  </page-container>
+</ng-template>

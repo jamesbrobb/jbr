@@ -2,17 +2,24 @@ import {ControlGroup} from "../controls/controls-config";
 import {ControlsConfigParser} from "../controls/controls-config.parser";
 
 
+export type Page = {
+  name: string;
+  githubLink?: string;
+  type: string;
+  description: string;
+  example?: string;
+  api?: string;
+  sections?: Page[];
+}
+
 export type Section = {
   isOpen: boolean;
-  readonly label: string;
-  readonly docURI: string;
-  readonly githubLink?: string;
+  label?: string;
+  readonly page: Page;
 }
 
 export type PageConfig = {
   detailsURI?: string,
-  docURI?: string,
-  githubLink?: string,
   controls?: ControlGroup[],
   examples?: string[],
   sections?: Section[]

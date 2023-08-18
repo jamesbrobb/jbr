@@ -1,0 +1,14 @@
+
+{
+    "controls": [
+    
+        {
+  "controlType": "input",
+  "type": "text",
+  "key": "componentLoader",
+  "label": "Component type"
+}
+    
+    ]
+}
+

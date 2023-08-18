@@ -1,18 +1,18 @@
-import {debounceTime, Subject, Subscription, takeUntil} from "rxjs";
-import {CommonModule} from "@angular/common";
+import {debounceTime, Subject, Subscription, tap} from "rxjs";
+import {NgClass, NgForOf, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
 import {
   Component,
   EventEmitter,
   Input,
-  NgModule,
   OnChanges,
   OnDestroy,
   Output
 } from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, ReactiveFormsModule} from "@angular/forms";
-import {MatInputModule} from '@angular/material/input';
-
-import {JsonEditorComponentModule} from "../forms";
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  ReactiveFormsModule
+} from "@angular/forms";
 
 
 import {
@@ -25,19 +25,37 @@ import {
   isSelectControl
 } from "../../config/controls/controls-config";
 
-import {PipesModule} from "@jbr/components/pipes/pipes.module";
+import {GuardTypePipe, JsonEditorComponent, JsonEditorControlValueAccessor} from "@jbr/ui";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 
-
-export interface ControlComponentIO {
+export type ControlComponentInput = {
   controls?: ControlGroup[];
-  dataChange: EventEmitter<unknown>;
 }
+
+export type ControlComponentOutput = {
+  dataChange: EventEmitter<{[key: string]: unknown}>;
+}
+
+export type ControlComponentIO = ControlComponentInput & ControlComponentOutput & OnChanges;
 
 
 
 @Component({
   selector: 'div[example-controls]',
+  standalone: true,
+  imports: [
+    GuardTypePipe,
+    JsonEditorComponent,
+    JsonEditorControlValueAccessor,
+    NgIf,
+    NgSwitch,
+    NgClass,
+    NgForOf,
+    NgSwitchCase,
+    NgSwitchDefault,
+    ReactiveFormsModule
+  ],
   templateUrl: './controls.component.html',
   styleUrls: ['./controls.component.scss']
 })
@@ -45,7 +63,7 @@ export class ControlsComponent implements ControlComponentIO, OnChanges, OnDestr
 
   @Input() controls?: ControlGroup[];
 
-  @Output() dataChange = new EventEmitter<unknown>();
+  @Output() dataChange = new EventEmitter<{[key: string]: unknown}>();
 
   form!: UntypedFormGroup;
 
@@ -57,7 +75,6 @@ export class ControlsComponent implements ControlComponentIO, OnChanges, OnDestr
   isInteractiveControl = isInteractiveControl;
 
   private _formSubscription: Subscription | undefined;
-  private _destroy$ = new Subject();
   private _debounce$ = new Subject<{[key: string]: unknown }>();
 
 
@@ -65,10 +82,11 @@ export class ControlsComponent implements ControlComponentIO, OnChanges, OnDestr
 
     this._debounce$
       .pipe(
-        takeUntil(this._destroy$),
-        debounceTime(100)
+        takeUntilDestroyed(),
+        debounceTime(100),
+        tap((value) => this.dataChange.emit(value))
       )
-      .subscribe((value) => this.dataChange.emit(value));
+      .subscribe();
   }
 
   ngOnChanges(): void {
@@ -78,9 +96,6 @@ export class ControlsComponent implements ControlComponentIO, OnChanges, OnDestr
 
   ngOnDestroy() {
     this._cleanUp();
-
-    this._destroy$.next('');
-    this._destroy$.complete();
   }
 
   private _formValueChange(value: {[key: string]: unknown }, throttle: boolean = true): void {
@@ -119,17 +134,3 @@ export class ControlsComponent implements ControlComponentIO, OnChanges, OnDestr
     this._formValueChange(this.form.value, false);
   }
 }
-
-
-@NgModule({
-  imports: [
-    CommonModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    JsonEditorComponentModule,
-    PipesModule
-  ],
-  declarations: [ControlsComponent],
-  exports: [ControlsComponent]
-})
-export class ControlsComponentModule {}

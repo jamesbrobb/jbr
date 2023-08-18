@@ -48,7 +48,7 @@ export type CommandProcessorArgType<T> =
     >
 
 
-export class AnalyticsService<T extends CommandGroup<AnalyticsHook> | undefined = undefined> {
+export class AnalyticsService<T extends CommandGroup<AnalyticsHook>> {
 
     private readonly _actions: AnalyticsActions;
     private readonly _adaptor: AnalyticsAdaptor;

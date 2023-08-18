@@ -1,11 +1,10 @@
 import {TypeGuard} from "@jbr/types";
-import {walk} from "@jbr/core";
+import {Page} from "../../config/page/page-config";
 
 export type RouteConfig = RouteNode[];
 
 export type RouteNodeBase = {
-  path: string,
-  label?: string,
+  path: string
 }
 
 export type RouteNode = RedirectNode | ParentNode | PageNode
@@ -19,13 +18,14 @@ export type ParentNode = {
 } & RouteNodeBase;
 
 export type PageNode = {
-  pageId: string
+  detailsURI?: string
+  page: Page
 } & RouteNodeBase;
 
 
 export const isRedirectNode = routeNodeGuard<RedirectNode>('redirectTo');
 export const isParentNode = routeNodeGuard<ParentNode>('children');
-export const isPageNode = routeNodeGuard<PageNode>('pageId');
+export const isPageNode = routeNodeGuard<PageNode>('page');
 
 type routeNodeGuardProp<NT> = NT extends RouteNode ? keyof Omit<NT, keyof RouteNodeBase> : never
 
@@ -68,13 +68,13 @@ export class RoutesConfig {
 
   private _parseConfig(): void {
 
-    walk<RouteNode, ParentNode>(this._config, isParentNode, 'children', (node) => {
+    /*walk<RouteNode, ParentNode>(this._config, isParentNode, 'children', (node) => {
 
       if (!isPageNode(node) || (node.pageId && node.pageId !== '%path%')) {
         return;
       }
 
       node.pageId = node.path;
-    })
+    })*/
   }
 }

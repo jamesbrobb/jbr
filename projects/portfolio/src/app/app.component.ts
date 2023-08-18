@@ -19,8 +19,7 @@ import {MatButtonModule} from "@angular/material/button";
     MatIconModule,
     MatButtonModule,
     SideMenuComponent
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class AppComponent implements OnInit, OnDestroy {
 
