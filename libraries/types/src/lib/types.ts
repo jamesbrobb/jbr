@@ -116,6 +116,8 @@ export type OptionalLiteralKeys<T> = keyof { [K in keyof T as string extends K ?
 
 export type IsIndexSignatureKey<K> = string extends K ? true : number extends K ? true : symbol extends K ? true : false
 
+export type SetKeyAsOptional<R extends Record<PropertyKey, unknown>, K extends keyof R> = Omit<R, K> & Partial<Pick<R, K>>
+
 export type GetPropNamesByType<T, KT> = {[K in keyof T]: KT extends T[K] ? K : never}[keyof T]
 
 export type MergeUnionOfRecordTypes<U extends Record<string, unknown>> = { [K in (U extends unknown ? keyof U : never)]: U extends unknown ? K extends keyof U ? U[K] : never : never}

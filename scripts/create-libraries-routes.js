@@ -42,15 +42,21 @@ function parsePageData(node) {
     return
   }
 
+  let pageData;
+
   if(readme && !readmeDir) {
-    node.page = {
-      ...getPageData(node),
-      description: readme.path
-    }
+    pageData = getPageData(node)
+    node.description = readme.path;
   }
 
   if(readmeDir) {
-    node.page = getPageData(node, readmeDir.children);
+    pageData = getPageData(node, readmeDir.children)
+  }
+
+  if(pageData) {
+    for (key in pageData) {
+      node[key] = pageData[key]
+    }
   }
 
   node.children = node.children.filter(child => !child.name.includes('README'));
@@ -63,7 +69,7 @@ function getPageData(node, children) {
     name = parts[0];
 
   const pageData = {
-    name,
+    path: name,
     type,
     githubLink: `${node.path.replace('/.README', '')}.ts`
   }
@@ -77,11 +83,21 @@ function getPageData(node, children) {
       }
 
       if (child.name === 'EXAMPLE.md') {
-        pageData.example = child.path;
+        pageData.info = pageData.info || [];
+        pageData.info.push({
+          name: 'Example',
+          path: 'example',
+          uri: child.path
+        });
       }
 
       if (child.name === 'API.md') {
-        pageData.api = child.path;
+        pageData.info = pageData.info || [];
+        pageData.info.push({
+          name: 'API',
+          path: 'api',
+          uri: child.path
+        });
       }
 
       if (child.name === 'controls.json') {

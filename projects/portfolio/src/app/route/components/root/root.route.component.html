@@ -4,6 +4,6 @@
 </ng-container>
 
 <ng-template #pageView>
-  <page-container [detailsURI]="detailsURI" [page]="page">
+  <page-container [page]="page" (pageSelected)="onPageSelected($event)">
   </page-container>
 </ng-template>

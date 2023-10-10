@@ -2,7 +2,6 @@ import {inject} from "@angular/core";
 import {
   ActivatedRouteSnapshot,
   CanActivateFn, ResolveFn, Router,
-  RouterModule,
   RouterStateSnapshot,
   Routes,
   UrlTree

@@ -9,7 +9,7 @@
         <jbr-entity-type-label [type]="type"></jbr-entity-type-label>
       </ng-container>
 
-      <h1 class="title">{{page?.type ? (page?.name | classCase) : (page?.name | words)}}</h1>
+      <h1 class="title">{{page?.type ? (page?.path | classCase) : (page?.path | words)}}</h1>
 
     </div>
 
@@ -28,7 +28,7 @@
 </section>
 
 
-<section *ngIf="page?.example || page?.api">
+<section *ngIf="page|guardType : isSectionNode as section">
 
   <mat-tab-group dynamicHeight #group>
 
@@ -60,7 +60,15 @@
       </mat-tab>
     </ng-container>-->
 
-    <ng-container *ngIf="page?.api as api">
+    <ng-container *ngFor="let info of section.info">
+
+        <mat-tab [label]="info.name">
+          <jbr-markdown [uri]="info.uri" type="{{info.name}}"></jbr-markdown>
+        </mat-tab>
+
+    </ng-container>
+
+    <!--<ng-container *ngIf="page?.api as api">
       <mat-tab label="API">
         <jbr-markdown [uri]="api" type="API docs"></jbr-markdown>
       </mat-tab>
@@ -70,7 +78,7 @@
       <mat-tab label="Example">
         <jbr-markdown [uri]="example" type="example"></jbr-markdown>
       </mat-tab>
-    </ng-container>
+    </ng-container>-->
 
   </mat-tab-group>
 

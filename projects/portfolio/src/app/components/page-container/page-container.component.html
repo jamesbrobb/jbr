@@ -1,9 +1,9 @@
 
-<section class="details" [style.display]="detailsURI ? 'block' : 'none'">
+<!--<section class="details" [style.display]="detailsURI ? 'block' : 'none'">
 
   <jbr-markdown [uri]="detailsURI"></jbr-markdown>
 
-</section>
+</section>-->
 
 <jbr-entity-info [page]="page"></jbr-entity-info>
 
@@ -13,18 +13,18 @@
 
     <ng-container *ngFor="let section of sections">
 
-      <mat-expansion-panel #panel class="section" [ngClass]="panel.expanded ? 'is-open' : ''">
+      <mat-expansion-panel #panel class="section" [ngClass]="panel.expanded ? 'is-open' : ''" (opened)="toggleSection(section)" (closed)="closeSection(section)">
         <mat-expansion-panel-header class="header" collapsedHeight="100px">
           <mat-panel-title>
             <div class="class-details">
               <div class="name">{{section.label | classCase}}</div>
-              <jbr-entity-type-label [type]="section.page.type"></jbr-entity-type-label>
+              <jbr-entity-type-label [type]="section.section.type"></jbr-entity-type-label>
             </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
 
         <ng-template matExpansionPanelContent>
-          <jbr-entity-info class="entity-info" [page]="section.page"></jbr-entity-info>
+          <jbr-entity-info class="entity-info" [page]="section.section"></jbr-entity-info>
         </ng-template>
 
       </mat-expansion-panel>

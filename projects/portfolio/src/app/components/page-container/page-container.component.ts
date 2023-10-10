@@ -1,19 +1,24 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
+import {MatExpansionModule} from "@angular/material/expansion";
+
+import {MarkdownModule} from "ngx-markdown";
 
 import {rotate, openClose, toClassCasePipe} from "@jbr/ui";
 import {AnalyticsHrefListenerDirective, AnalyticsEventDirective} from "@jbr/ng";
 
-import {MarkdownModule} from "ngx-markdown";
-
-import {Page, Section} from "../../config/page/page-config";
-
 import {EntityInfoComponent} from "../entity-info/entity-info.component";
-import {MatExpansionModule} from "@angular/material/expansion";
 import {MarkdownComponent} from "../markdown/markdown.component";
 import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.component";
+import {isSectionsNode, PageNode, SectionNode} from "../../route";
 
+
+type Section = {
+  section: SectionNode,
+  isOpen: boolean,
+  label: string
+}
 
 
 @Component({
@@ -43,19 +48,33 @@ import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.c
 })
 export class PageContainerComponent implements OnChanges {
 
-  @Input({required: true}) page?: Page;
-  @Input() detailsURI?: string;
+  @Input({required: true}) page?: PageNode;
+
+  @Output() pageSelected = new EventEmitter<PageNode>();
 
   sections?: Section[];
 
   ngOnChanges(changes?: SimpleChanges) {
 
-    this.detailsURI = this?.detailsURI;
-    this.sections = this.page?.sections?.map(page => ({
-      page,
-      label: page.name,
-      isOpen: false
-    }));
+    if(isSectionsNode(this.page)) {
+      this.sections = this.page.sections.map(section => ({
+        section,
+        label: section.path.replace(/-/g, ' '),
+        isOpen: false
+      }));
+      return;
+    }
+
+    this.sections = undefined;
+  }
+
+  public toggleSection(section: Section): void {
+    this.pageSelected.emit(section.section);
+  }
+
+  public closeSection(section: Section): void {
+    console.log('CLOSE SECTION')
+    console.log(section);
   }
 }
 
