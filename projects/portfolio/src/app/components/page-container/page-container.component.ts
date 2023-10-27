@@ -11,14 +11,16 @@ import {AnalyticsHrefListenerDirective, AnalyticsEventDirective} from "@jbr/ng";
 import {EntityInfoComponent} from "../entity-info/entity-info.component";
 import {MarkdownComponent} from "../markdown/markdown.component";
 import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.component";
-import {isSectionsNode, PageNode, SectionNode} from "../../route";
-
-
-type Section = {
-  section: SectionNode,
-  isOpen: boolean,
-  label: string
-}
+import {
+  InfoNode,
+  isInfoNode,
+  isPageNode,
+  isSectionNode,
+  isSectionsNode,
+  PageNode,
+  RouteNode,
+  SectionNode
+} from "../../route";
 
 
 @Component({
@@ -48,33 +50,67 @@ type Section = {
 })
 export class PageContainerComponent implements OnChanges {
 
-  @Input({required: true}) page?: PageNode;
+  @Input({required: true}) routeNodes?: RouteNode[];
+  @Input() detailsURI?: string;
 
-  @Output() pageSelected = new EventEmitter<PageNode>();
+  @Output() routeSelected = new EventEmitter<RouteNode>();
 
-  sections?: Section[];
+  page?: PageNode;
+  section?: SectionNode;
+  info?: InfoNode;
+
+  sections?: SectionNode[];
 
   ngOnChanges(changes?: SimpleChanges) {
 
-    if(isSectionsNode(this.page)) {
-      this.sections = this.page.sections.map(section => ({
-        section,
-        label: section.path.replace(/-/g, ' '),
-        isOpen: false
-      }));
+    const nodes = this.routeNodes?.concat().reverse();
+    console.log('nodes', nodes);
+    this.page = undefined;
+    this.section = undefined;
+    this.info = undefined;
+    this.sections = undefined;
+
+    if(!nodes || !nodes.length) {
       return;
     }
 
-    this.sections = undefined;
+    nodes.forEach(node => {
+      if(isInfoNode(node)) {
+        this.info = node;
+      }
+      if(isSectionNode(node)) {
+        this.section = node;
+      }
+      if(!this.page && !isSectionNode(node) && isPageNode(node)) {
+        this.page = node;
+
+        if(isSectionsNode(this.page)) {
+          this.sections = this.page.sections;
+        }
+      }
+    });
   }
 
-  public toggleSection(section: Section): void {
-    this.pageSelected.emit(section.section);
+  onSectionOpened(section: SectionNode): void {
+
+    if(section === this.section) {
+      return;
+    }
+    // TODO - navigate to current info of section
+    this.routeSelected.emit(section);
   }
 
-  public closeSection(section: Section): void {
-    console.log('CLOSE SECTION')
-    console.log(section);
+  onSectionClosed(section: SectionNode): void {
+
+    if(section !== this.section) {
+      return;
+    }
+
+    this.routeSelected.emit(this.page);
+  }
+
+  onInfoSelected(info: InfoNode): void {
+    this.routeSelected.emit(info);
   }
 }
 

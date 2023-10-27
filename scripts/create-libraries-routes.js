@@ -65,11 +65,13 @@ function parsePageData(node) {
 function getPageData(node, children) {
 
   const parts = node.name.split('.'),
+    path = parts.join('-'),
     type = parts.length > 1 ? parts.pop() : '',
-    name = parts[0];
+    label = parts[0].replaceAll('-', ' ');
 
   const pageData = {
-    path: name,
+    path,
+    label,
     type,
     githubLink: `${node.path.replace('/.README', '')}.ts`
   }

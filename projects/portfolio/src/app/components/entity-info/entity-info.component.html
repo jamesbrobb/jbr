@@ -27,59 +27,69 @@
 
 </section>
 
+<ng-container *ngIf="!!page">
 
-<section *ngIf="page|guardType : isSectionNode as section">
+  <section *ngIf="page|guardType : isSectionNode as section">
 
-  <mat-tab-group dynamicHeight #group>
+    <mat-tab-group dynamicHeight #group [selectedIndex]="selectedInfoIndex" (selectedIndexChange)="onSelectedIndexChange($event)">
 
-    <!--<ng-container *ngIf="page?.usage as usage">
-      <mat-tab label="Usage">
-        <ng-template matTabContent>
+      <!--<ng-container *ngIf="page?.usage as usage">
+        <mat-tab label="Usage">
+          <ng-template matTabContent>
 
-          <section class="controls" *ngIf="controls">
+            <section class="controls" *ngIf="controls">
 
-            <ng-container controlsLoader
-                          [controls]="controls"
-                          (dataChange)="onControlDataChange($event)">
-            </ng-container>
-
-          </section>
-
-          <section class="example" *ngIf="examples">
-
-            <ng-container *ngFor="let example of examples">
-
-              <ng-container componentLoaderIO="{{example}}" [inputs]="controlData">
+              <ng-container controlsLoader
+                            [controls]="controls"
+                            (dataChange)="onControlDataChange($event)">
               </ng-container>
 
-            </ng-container>
+            </section>
 
-          </section>
+            <section class="example" *ngIf="examples">
 
-        </ng-template>
-      </mat-tab>
-    </ng-container>-->
+              <ng-container *ngFor="let example of examples">
 
-    <ng-container *ngFor="let info of section.info">
+                <ng-container componentLoaderIO="{{example}}" [inputs]="controlData">
+                </ng-container>
+
+              </ng-container>
+
+            </section>
+
+          </ng-template>
+        </mat-tab>
+      </ng-container>-->
+
+      <ng-container *ngFor="let info of section.info">
 
         <mat-tab [label]="info.name">
           <jbr-markdown [uri]="info.uri" type="{{info.name}}"></jbr-markdown>
         </mat-tab>
 
-    </ng-container>
+        <!-- as it stands defered loading of each tab content is clunky. Needs investigation to get working smoothly-->
+        <!--<mat-tab [label]="info.name">
+          <ng-template matTabContent>
+            <jbr-markdown [uri]="info.uri" type="{{info.name}}"></jbr-markdown>
+          </ng-template>
+        </mat-tab>-->
 
-    <!--<ng-container *ngIf="page?.api as api">
-      <mat-tab label="API">
-        <jbr-markdown [uri]="api" type="API docs"></jbr-markdown>
-      </mat-tab>
-    </ng-container>
+      </ng-container>
 
-    <ng-container *ngIf="page?.example as example">
-      <mat-tab label="Example">
-        <jbr-markdown [uri]="example" type="example"></jbr-markdown>
-      </mat-tab>
-    </ng-container>-->
+      <!--<ng-container *ngIf="page?.api as api">
+        <mat-tab label="API">
+          <jbr-markdown [uri]="api" type="API docs"></jbr-markdown>
+        </mat-tab>
+      </ng-container>
 
-  </mat-tab-group>
+      <ng-container *ngIf="page?.example as example">
+        <mat-tab label="Example">
+          <jbr-markdown [uri]="example" type="example"></jbr-markdown>
+        </mat-tab>
+      </ng-container>-->
 
-</section>
+    </mat-tab-group>
+
+  </section>
+
+</ng-container>

@@ -7,28 +7,29 @@ import {
   UrlTree
 } from '@angular/router';
 
-import {isRedirectNode, RouteNode, RoutesConfig} from "./config/route-config";
+import {RoutesConfig} from './config/route-config'
+import {RouteNode, isRedirectNode} from "./config/route-config.types";
 import {RootRouteComponent} from "./components/root/root.route.component";
-
 
 
 const shouldRedirect: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree => {
   const router = inject(Router),
     routesConfig = inject(RoutesConfig),
-    routeNodeConfig = routesConfig.getRouteNodeByPath(state.url);
+    routeNodes = routesConfig.getRouteNodesByPath(state.url) || [],
+    routeNode = routeNodes[routeNodes.length - 1];
 
-  if(isRedirectNode(routeNodeConfig)) {
-    return router.parseUrl(routeNodeConfig.redirectTo);
+  if(isRedirectNode(routeNode)) {
+    return router.parseUrl(routeNode.redirectTo);
   }
 
   return true
 }
 
-const getRouteNodeConfig: ResolveFn<RouteNode | undefined> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): RouteNode | undefined => {
-  const routeNodeConfig = inject(RoutesConfig);
-  return routeNodeConfig.getRouteNodeByPath(state.url);
-}
 
+const getRouteNodes: ResolveFn<RouteNode[] | undefined> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): RouteNode[] | undefined => {
+  const routeNodeConfig = inject(RoutesConfig);
+  return routeNodeConfig.getRouteNodesByPath(state.url);
+}
 
 
 export const APP_ROUTES: Routes = [
@@ -37,7 +38,7 @@ export const APP_ROUTES: Routes = [
     component: RootRouteComponent,
     canActivate: [shouldRedirect],
     resolve: {
-      config: getRouteNodeConfig
+      routeNodes: getRouteNodes
     }
   },
 ]

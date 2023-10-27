@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 
 import {MatButtonModule} from "@angular/material/button";
 import {MatTabsModule} from "@angular/material/tabs";
@@ -18,7 +18,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {GithubBtnComponent} from "../github-btn/github-btn.component";
 import {MarkdownComponent} from "../markdown/markdown.component";
 import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.component";
-import {isSectionNode, PageNode} from "../../route";
+import {InfoNode, isSectionNode, PageNode} from "../../route";
 
 @Component({
   selector: 'jbr-entity-info',
@@ -50,7 +50,10 @@ import {isSectionNode, PageNode} from "../../route";
 export class EntityInfoComponent implements OnChanges {
 
   @Input({required: true}) page?: PageNode;
+  @Input() info?: InfoNode;
+  @Output() infoSelectionChange = new EventEmitter<InfoNode>();
 
+  selectedInfoIndex: number = 0;
   controls?: ControlGroup[];
   examples?: string[];
   controlData: {[key: string]: any} = {};
@@ -67,11 +70,24 @@ export class EntityInfoComponent implements OnChanges {
     //this.controls = this.page?.controls;
     //this.examples = this.page?.examples;
 
-    console.log('page', this.page);
+    if(!isSectionNode(this.page) || !this.info) {
+      return;
+    }
+
+    this.selectedInfoIndex = this.page.info.indexOf(this.info);
   }
 
   onControlDataChange(data: {[key: string]: any}): void {
     this.controlData = data;
     console.log('onControlDataChange', this.controlData);
+  }
+
+  onSelectedIndexChange(index: number): void {
+
+    if(!this.page || !isSectionNode(this.page)) {
+      return;
+    }
+
+    this.infoSelectionChange.emit(this.page.info[index]);
   }
 }

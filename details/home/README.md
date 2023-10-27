@@ -1,5 +1,3 @@
-# About me
-
 I have 16 years experience as a front-end developer and currently develop web apps in Angular.
 
 I can confidently work independently or within a team and always strive to create clean, decoupled, scaleable code.

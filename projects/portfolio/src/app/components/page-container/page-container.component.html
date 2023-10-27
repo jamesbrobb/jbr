@@ -1,63 +1,38 @@
 
-<!--<section class="details" [style.display]="detailsURI ? 'block' : 'none'">
+<section class="details" [style.display]="detailsURI ? 'block' : 'none'">
 
   <jbr-markdown [uri]="detailsURI"></jbr-markdown>
 
-</section>-->
+</section>
 
 <jbr-entity-info [page]="page"></jbr-entity-info>
 
 <section class="sections">
 
-  <mat-accordion>
+  <ng-container *ngFor="let sctn of sections">
 
-    <ng-container *ngFor="let section of sections">
+    <mat-expansion-panel #panel class="section"
+      [ngClass]="sctn === section ? 'is-open' : ''"
+      [expanded]="sctn === section"
+      (opened)="onSectionOpened(sctn)"
+      (closed)="onSectionClosed(sctn)">
 
-      <mat-expansion-panel #panel class="section" [ngClass]="panel.expanded ? 'is-open' : ''" (opened)="toggleSection(section)" (closed)="closeSection(section)">
-        <mat-expansion-panel-header class="header" collapsedHeight="100px">
-          <mat-panel-title>
-            <div class="class-details">
-              <div class="name">{{section.label | classCase}}</div>
-              <jbr-entity-type-label [type]="section.section.type"></jbr-entity-type-label>
-            </div>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+      <mat-expansion-panel-header class="header" collapsedHeight="100px">
+        <mat-panel-title>
+          <div class="class-details">
+            <div class="name">{{sctn.label | classCase}}</div>
+            <jbr-entity-type-label [type]="sctn.type"></jbr-entity-type-label>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-        <ng-template matExpansionPanelContent>
-          <jbr-entity-info class="entity-info" [page]="section.section"></jbr-entity-info>
-        </ng-template>
+      <ng-template matExpansionPanelContent>
+        <jbr-entity-info class="entity-info" [page]="sctn" [info]="info" (infoSelectionChange)="onInfoSelected($event)"></jbr-entity-info>
+      </ng-template>
 
-      </mat-expansion-panel>
+    </mat-expansion-panel>
 
-    </ng-container>
-
-  </mat-accordion>
-
-    <!--<div class="section" *ngFor="let section of sections" [ngClass]="{'is-open': section.isOpen}">
-
-        <div class="bar">
-
-            <div class="label">{{section.label}}</div>
-
-            <button
-                (click)="section.isOpen = !section.isOpen"
-                [analyticsEvent]="{actionId:'child-section', propertyValueMap: {label: section.label, value: section.isOpen ? 0 : 1}}">
-
-              <mat-icon [@rotate]="section.isOpen">
-                chevron_right
-              </mat-icon>
-
-            </button>
-
-        </div>
-
-        <div class="content" [@openClose]="section.isOpen">
-
-          <jbr-entity-info [page]="section.page"></jbr-entity-info>
-
-        </div>
-
-    </div>-->
+  </ng-container>
 
 </section>
 

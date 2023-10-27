@@ -1,4 +1,4 @@
-import {isPageNode, isParentNode, isRedirectNode, RouteConfig, RouteNode} from "../../route";
+import {isPageNode, isParentNode, isRedirectNode, RouteNode} from "../../route";
 import {InjectionToken} from "@angular/core";
 
 export type MenuConfig = MenuItemNode[];
@@ -11,7 +11,7 @@ export type MenuItemNode = {
   children?: MenuItemNode[]
 }
 
-export function menuConfigFactory(routeConfig: RouteConfig): MenuConfig {
+export function menuConfigFactory(routeConfig: RouteNode[]): MenuConfig {
 
   return routeConfig
     .filter((routeNode) => !isRedirectNode(routeNode))
