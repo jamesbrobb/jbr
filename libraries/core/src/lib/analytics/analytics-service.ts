@@ -48,7 +48,7 @@ export type CommandProcessorArgType<T> =
     >
 
 
-export class AnalyticsService<T extends CommandGroup<AnalyticsHook>> {
+export class AnalyticsService {
 
     private readonly _actions: AnalyticsActions;
     private readonly _adaptor: AnalyticsAdaptor;
@@ -59,8 +59,12 @@ export class AnalyticsService<T extends CommandGroup<AnalyticsHook>> {
     private readonly _matcher: RegExp = /{%\s*([\w.]+)\s*%}/g;
 
 
-    constructor(actions: AnalyticsActions, adaptor: AnalyticsAdaptor, hooks?: T, ...args: CommandProcessorArgType<T>) {
-
+    constructor(
+      actions: AnalyticsActions,
+      adaptor: AnalyticsAdaptor,
+      hooks?: CommandGroup<AnalyticsHook>,
+      ...args: CommandProcessorArgType<CommandGroup<AnalyticsHook>>
+    ) {
         this._actions = actions;
         this._adaptor = adaptor;
 

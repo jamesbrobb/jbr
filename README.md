@@ -15,6 +15,19 @@ create library routes
  npm run create-libraries-routes
 ```
 
+run ts test script
+```
+cd libraries/<library>
+```
+or
+```
+cd projects/<project>
+```
+Then run with tsx relative to execution.
+So for either of the above
+```
+tsx ../../scripts/ts-test-script.ts
+```
 create readme
 ```
 ng generate @jbr/schematics:tsc-test <path to file>
