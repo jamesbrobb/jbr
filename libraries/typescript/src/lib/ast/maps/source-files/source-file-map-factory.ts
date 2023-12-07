@@ -1,39 +1,34 @@
 import * as ts from "typescript";
-import {SetKeyAsOptional} from "@jbr/types";
-import {log} from "../../utilities";
+
+import {log, convertSourceFileToSymbol} from "../../utilities";
 import {SourceFileMap, SourceFileMapOptions} from "./source-file-map";
-import {convertSourceFileToSymbol} from "../../declarations";
 
 
 export type IgnorePathsMap = (string | RegExp)[];
-
-export type SourceModuleCreatorFn<T extends unknown[]> = (
+export type SourceModuleCreatorFn<R extends unknown[]> = (
   node: ts.Node,
   sourceFile: ts.SourceFile,
   debug?: boolean
-) => [...args: T];
+) => [...args: R];
 
-type _SourceFileMapFactoryOptionsInt<T extends unknown[]> = {
+type Options = {
   ignorePathsWith?: IgnorePathsMap,
-  sourceModuleCreatorFn: SourceModuleCreatorFn<T>
 } & SourceFileMapOptions
 
-export type SourceFileMapFactoryOptions<T extends unknown[] = []> =
-    T['length'] extends 0 ?
-      SetKeyAsOptional<_SourceFileMapFactoryOptionsInt<T>, 'sourceModuleCreatorFn'> :
-      _SourceFileMapFactoryOptionsInt<T>
+
+export type SourceFileMapFactoryOptions<R extends unknown[] = []> =
+  R['length'] extends 0 ? Options : Options & { sourceModuleCreatorFn: SourceModuleCreatorFn<R> }
 
 
 type SymbolWithExports = ts.Symbol & {exports: ts.SymbolTable};
 type SourceAndSymbolTuple = [sourceFile: ts.SourceFile, symbol: SymbolWithExports];
 
+export function createSourceFileMap<R extends unknown[] = []>(program: ts.Program, options?: SourceFileMapFactoryOptions<R>): SourceFileMap<R> {
 
-export function createSourceFileMap<T extends unknown[] = []>(program: ts.Program, options?: SourceFileMapFactoryOptions<T>): SourceFileMap<T> {
-
-  const sourceFilesMap = new SourceFileMap<T>(options);
+  const sourceFilesMap = new SourceFileMap<R>(options);
 
   program.getSourceFiles()
-    .filter(sourceFile => isSourceFileEligible<T>(program, sourceFile, options))
+    .filter(sourceFile => isSourceFileEligible(program, sourceFile, options))
     .map(sourceFile => [sourceFile, getSymbolFromSource(program, sourceFile)])
     .filter((arg): arg is SourceAndSymbolTuple => !!arg[1])
     .forEach(([sourceFile, symbol]) => {
@@ -50,13 +45,13 @@ export function createSourceFileMap<T extends unknown[] = []>(program: ts.Progra
           return;
         }
 
-        let extras: T | undefined;
+        let extras: R | undefined;
 
-        if(!!options?.sourceModuleCreatorFn) {
+        if(options && 'sourceModuleCreatorFn' in options) {
           extras = options.sourceModuleCreatorFn(declaration, sourceFile, options.debug);
         }
 
-        sourceFilesMap.set(symbol.name, key.toString(), declaration.kind, ...(extras || []) as T);
+        sourceFilesMap.set(symbol.name, key.toString(), declaration.kind, ...(extras || []) as any);
       });
     });
 
@@ -67,7 +62,7 @@ export function createSourceFileMap<T extends unknown[] = []>(program: ts.Progra
   return sourceFilesMap;
 }
 
-function isSourceFileEligible<T extends unknown[]>(program: ts.Program, sourceFile: ts.SourceFile, options?: SourceFileMapFactoryOptions<T>): boolean {
+function isSourceFileEligible(program: ts.Program, sourceFile: ts.SourceFile, options?: SourceFileMapFactoryOptions): boolean {
 
   const baseUrl = program.getCompilerOptions().baseUrl || '';
 
@@ -80,19 +75,6 @@ function isSourceFileEligible<T extends unknown[]>(program: ts.Program, sourceFi
   }
 
   return !ignorePath(sourceFile.fileName, options?.ignorePathsWith || [], options?.debug)
-}
-
-function ignorePath(path: string, map: IgnorePathsMap, debug: boolean = false): boolean {
-
-  const ignore = map.some(value => {
-    return path.search(value) !== -1;
-  });
-
-  if(ignore && debug) {
-    log(path, 'IGNORING PATH')
-  }
-
-  return ignore;
 }
 
 function getSymbolFromSource(program: ts.Program, sourceFile: ts.SourceFile): SymbolWithExports | undefined {
@@ -108,4 +90,18 @@ function getSymbolFromSource(program: ts.Program, sourceFile: ts.SourceFile): Sy
 
 function isSymbolWithExports(symbol?: ts.Symbol): symbol is SymbolWithExports {
   return !!symbol?.exports?.size;
+}
+
+
+function ignorePath(path: string, map: IgnorePathsMap, debug: boolean = false): boolean {
+
+  const ignore = map.some(value => {
+    return path.search(value) !== -1;
+  });
+
+  if(ignore && debug) {
+    log(path, 'IGNORING PATH')
+  }
+
+  return ignore;
 }

@@ -1,11 +1,6 @@
 import * as ts from "typescript";
-import {
-  PathResolutionMap,
-  resolvePath,
-  DuplicatePathPrecedenceMap,
-  resolveDuplicatePath,
-  log
-} from "../../utilities";
+import { log } from "../../utilities";
+import {DuplicatePathPrecedenceMap, PathResolutionMap, resolveDuplicatePath, resolvePath} from "../../paths";
 
 
 export type SourceFileMapElement<T extends unknown[]> = [path: string, kind: ts.SyntaxKind, ...rest: T]
