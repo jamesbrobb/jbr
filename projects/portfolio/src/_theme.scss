@@ -1,5 +1,4 @@
 @use '@angular/material' as mat;
-@use 'sass:map';
 
 @include mat.core();
 
@@ -18,6 +17,7 @@ $jbr-theme: mat.define-light-theme((
   typography: $jbr-typography
 ));
 
+
 $jbr-dark-primary: mat.define-palette(mat.$amber-palette, 500, 100, 900);
 $jbr-dark-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900);
 $jbr-dark-warn: mat.define-palette(mat.$red-palette, 500, 100, 900);
@@ -31,36 +31,30 @@ $jbr-dark-theme: mat.define-dark-theme((
   typography: $jbr-typography
 ));
 
-@include mat.all-component-themes($jbr-theme);
+@include mat.core-theme($jbr-theme);
+@include mat.sidenav-theme($jbr-theme);
+@include mat.tree-theme($jbr-theme);
+@include mat.toolbar-theme($jbr-theme);
+@include mat.button-theme($jbr-theme);
+@include mat.icon-theme($jbr-theme);
+@include mat.tabs-theme($jbr-theme);
+@include mat.badge-theme($jbr-theme);
+@include mat.expansion-theme($jbr-theme);
 
 @media (prefers-color-scheme: dark) {
-  @include mat.all-component-colors($jbr-dark-theme);
+  @include mat.core-color($jbr-dark-theme);
+  @include mat.sidenav-color($jbr-dark-theme);
+  @include mat.tree-color($jbr-dark-theme);
+  @include mat.toolbar-color($jbr-dark-theme);
+  @include mat.button-color($jbr-dark-theme);
+  @include mat.icon-color($jbr-dark-theme);
+  @include mat.tabs-color($jbr-dark-theme);
+  @include mat.badge-color($jbr-dark-theme);
+  @include mat.expansion-color($jbr-dark-theme);
 }
 
 
-@function get-palette-from-theme($theme, $palette-type) {
-  $color-config: mat.get-color-config($theme);
-  @return map.get($color-config, $palette-type);
-}
 
-@function get-color-from-theme($theme, $palette-type, $type) {
-  $palette: get-palette-from-theme($theme, $palette-type);
-  @return map.get($palette, $type);
-}
-
-@function get-mode-palettes-for($palette-type) {
-  @return (
-    light: get-palette-from-theme($jbr-theme, $palette-type),
-    dark: get-palette-from-theme($jbr-dark-theme, $palette-type),
-  )
-}
-
-@function get-mode-colors-for($palette-type, $type) {
-  @return (
-    light: get-color-from-theme($jbr-theme, $palette-type, $type),
-    dark: get-color-from-theme($jbr-dark-theme, $palette-type, $type)
-  );
-}
 
 
 
