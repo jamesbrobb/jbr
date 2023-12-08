@@ -1,17 +1,16 @@
-@use 'sass:map';
 @use '@angular/material' as mat;
-@use '../../../theme' as theme;
+@use '../../../theme-helpers' as theme;
 
-@import "dist/libraries/@jbr/ui/src/lib/styles/styles";
+@use "libraries/styles/elements" as elements;
 
 
 $colors: theme.get-mode-colors-for($palette-type: foreground, $type: text);
-$light: map.get($colors, light);
-$dark: map.get($colors, dark);
+$light: nth($colors, 1);
+$dark: nth($colors, 2);
 
 
 :host {
-  --github-btn-size: var(--jrb-github-btn-size, 40px);
+  --github-btn-size: var(--jbr-github-btn-size, 40px);
   --icon-color: #{$light};
 
   display: block;
@@ -23,7 +22,7 @@ $dark: map.get($colors, dark);
   button {
     width: var(--github-btn-size);
     height: var(--github-btn-size);
-    @include button_reset();
+    @include elements.button_reset();
 
     mat-icon {
       color: var(--icon-color);

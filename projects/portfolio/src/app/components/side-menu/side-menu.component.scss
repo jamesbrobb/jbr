@@ -1,13 +1,12 @@
 @use 'sass:map';
-@use '@angular/material' as mat;
-@use '../../../theme' as theme;
+@use '../../../theme-helpers' as theme;
 
 $start-left: 37px;
 $depth: 8;
 
 $palettes: theme.get-mode-palettes-for(primary);
-$light-palette: map.get($palettes, light);
-$dark-palette: map.get($palettes, dark);
+$light-palette: nth($palettes, 1);
+$dark-palette: nth($palettes, 2);
 
 
 @mixin colorVars($total:1, $palette, $inactive-color) {

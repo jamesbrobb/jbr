@@ -1,7 +1,5 @@
 @use '@angular/material' as mat;
 
-@include mat.core();
-
 $jbr-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900, 100);
 $jbr-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900, 100);
 $jbr-warn: mat.define-palette(mat.$red-palette, 500, 100, 900, 100);
@@ -31,31 +29,28 @@ $jbr-dark-theme: mat.define-dark-theme((
   typography: $jbr-typography
 ));
 
-@include mat.core-theme($jbr-theme);
-@include mat.sidenav-theme($jbr-theme);
-@include mat.tree-theme($jbr-theme);
-@include mat.toolbar-theme($jbr-theme);
-@include mat.button-theme($jbr-theme);
-@include mat.icon-theme($jbr-theme);
-@include mat.tabs-theme($jbr-theme);
-@include mat.badge-theme($jbr-theme);
-@include mat.expansion-theme($jbr-theme);
 
-@media (prefers-color-scheme: dark) {
-  @include mat.core-color($jbr-dark-theme);
-  @include mat.sidenav-color($jbr-dark-theme);
-  @include mat.tree-color($jbr-dark-theme);
-  @include mat.toolbar-color($jbr-dark-theme);
-  @include mat.button-color($jbr-dark-theme);
-  @include mat.icon-color($jbr-dark-theme);
-  @include mat.tabs-color($jbr-dark-theme);
-  @include mat.badge-color($jbr-dark-theme);
-  @include mat.expansion-color($jbr-dark-theme);
+@mixin set-themes($light-theme, $dark-theme) {
+  @include mat.core();
+  @include mat.core-theme($light-theme);
+  @include mat.sidenav-theme($light-theme);
+  @include mat.tree-theme($light-theme);
+  @include mat.toolbar-theme($light-theme);
+  @include mat.button-theme($light-theme);
+  @include mat.icon-theme($light-theme);
+  @include mat.tabs-theme($light-theme);
+  @include mat.badge-theme($light-theme);
+  @include mat.expansion-theme($light-theme);
+
+  @media (prefers-color-scheme: dark) {
+    @include mat.core-color($dark-theme);
+    @include mat.sidenav-color($dark-theme);
+    @include mat.tree-color($dark-theme);
+    @include mat.toolbar-color($dark-theme);
+    @include mat.button-color($dark-theme);
+    @include mat.icon-color($dark-theme);
+    @include mat.tabs-color($dark-theme);
+    @include mat.badge-color($dark-theme);
+    @include mat.expansion-color($dark-theme);
+  }
 }
-
-
-
-
-
-
-
