@@ -1,22 +1,29 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
 @use '../../../theme' as theme;
 
-
-$color: theme.$jbr-primary;
-
-$inactive-color: #455a64;
-$active-color: #004D40;
 $start-left: 37px;
-$depth: 6;
+$depth: 8;
 
+$palettes: theme.get-mode-palettes-for(primary);
+$light-palette: map.get($palettes, light);
+$dark-palette: map.get($palettes, dark);
+
+
+@mixin colorVars($total:1, $palette, $inactive-color) {
+  @for $i from 0 through $total {
+    @if $i == 0 {
+      --menu-color-item-color-0: #{$inactive-color};
+    } @else {
+      --menu-color-item-color-#{$i}: #{map.get($palette, (900 - (($i - 1) * 100)))};
+    }
+  }
+}
 
 @mixin activeMenuItemColours($total:1) {
   @for $i from 0 through $total {
     &.active-#{$i} {
-      @if $i == 0 {
-        color: $inactive-color;
-      } @else {
-        color: #{lighten($active-color, ($i - 1) * 5%)};
-      }
+      color: var(--menu-color-item-color-#{$i});
     }
   }
 }
@@ -41,6 +48,12 @@ $depth: 6;
 :host {
   display: block;
   padding: 20px 0;
+
+  @include colorVars($depth, $light-palette, #a1a1a1);
+
+  @media (prefers-color-scheme: dark) {
+    @include colorVars($depth, $dark-palette, #efefef);
+  }
 
   .side-menu-tree {
     height: 100%;
