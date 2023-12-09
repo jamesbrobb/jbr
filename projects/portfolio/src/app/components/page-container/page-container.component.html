@@ -1,11 +1,13 @@
 
-<section class="details" [style.display]="detailsURI ? 'block' : 'none'">
+<section class="details" [style.display]="page?.details ? 'block' : 'none'">
 
-  <jbr-markdown [uri]="detailsURI"></jbr-markdown>
+  <jbr-markdown [uri]="page?.details"></jbr-markdown>
 
 </section>
 
 <jbr-entity-info [page]="page"></jbr-entity-info>
+
+<mat-divider class="divider"></mat-divider>
 
 <section class="sections">
 

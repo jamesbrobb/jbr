@@ -1,4 +1,4 @@
-@import "dist/libraries/@jbr/ui/src/lib/styles/styles";
+@use "libraries/styles/flex" as *;
 
 $grid_class_name:'grid-layout';
 $grid_item_class_name:'grid-layout-item';

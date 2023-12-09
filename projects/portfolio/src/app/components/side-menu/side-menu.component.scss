@@ -27,6 +27,20 @@ $dark-palette: nth($palettes, 2);
   }
 }
 
+@mixin menuItemScales($total: 1) {
+  @for $i from 0 through $total {
+    &.active-#{$i} {
+      ::ng-deep {
+        .mdc-button__label {
+          transform: scale(#{1 + (0.01 * $i)});
+          transform-origin: center left;
+          transition: transform 400ms;
+        }
+      }
+    }
+  }
+}
+
 @mixin nestedMenuItemPositions($total:1, $i:1) {
   @if $i <= $total {
     &> mat-nested-tree-node {
@@ -70,6 +84,7 @@ $dark-palette: nth($palettes, 2);
     transition: color 400ms;
 
     @include activeMenuItemColours($depth);
+    @include menuItemScales($depth);
   }
 
   mat-tree {

@@ -1,4 +1,4 @@
-@import "responsive";
+@use "responsive" as r;
 
 
 @mixin flex-grid(
@@ -36,8 +36,8 @@
 
   /* used in conjunction with [responsiveContainer] directive*/
 
-  @each $name in $breakpoint-keys {
-    $i: index($breakpoint-keys, $name);
+  @each $name in r.$breakpoint-keys {
+    $i: index(r.$breakpoint-keys, $name);
     --#{$name}: #{($min-column-width * $i) + ($horizontal-gap * $i)};
 
     .#{$grid_class_name}.#{$name} {

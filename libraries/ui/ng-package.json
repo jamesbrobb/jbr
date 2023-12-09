@@ -2,17 +2,13 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/libraries/@jbr/ui",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "src/public-api.ts",
+    "styleIncludePaths": [
+      "src/styles.scss",
+      "../styles/_index.scss"
+    ]
   },
   "assets": [
-    "src/lib/styles/elements.scss",
-    "src/lib/styles/flex.scss",
-    "src/lib/styles/grid.scss",
-    "src/lib/styles/mat-design.scss",
-    "src/lib/styles/measurements.scss",
-    "src/lib/styles/palette.scss",
-    "src/lib/styles/responsive.scss",
-    "src/lib/styles/styles.scss",
-    "src/lib/styles/text.scss"
+    "src/styles.scss"
   ]
 }

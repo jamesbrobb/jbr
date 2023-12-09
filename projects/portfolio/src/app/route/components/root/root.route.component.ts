@@ -1,9 +1,9 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {ActivatedRoute, Data, Router} from "@angular/router";
-import {isChildOf, PageNode, RouteNode} from "../../config/route-config.types";
-import {PageContainerComponent} from "../../../components/page-container/page-container.component";
 
+import {isChildOf, RouteNode} from "../../config/route-config.types";
+import {PageContainerComponent} from "../../../components/page-container/page-container.component";
 
 
 @Component({
@@ -19,7 +19,6 @@ import {PageContainerComponent} from "../../../components/page-container/page-co
 export class RootRouteComponent implements OnInit {
 
   public routeNodes?: RouteNode[];
-  public detailsURI?: string;
 
   #router = inject(Router);
   #route = inject(ActivatedRoute);
@@ -56,7 +55,5 @@ export class RootRouteComponent implements OnInit {
   private _handlePageChange = (data: Data): void => {
     this.routeNodes = data['routeNodes'];
     console.log('routeNodes', this.routeNodes);
-    // TODO - this.detailsURI = this._getDetailsURI(this.page);
-    // need to retrieve details URI from another loaded config
   }
 }

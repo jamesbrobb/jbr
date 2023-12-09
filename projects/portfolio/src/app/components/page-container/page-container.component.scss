@@ -1,5 +1,3 @@
-@import "dist/libraries/@jbr/ui/src/lib/styles/styles";
-
 
 :host {
   display: block;
@@ -51,10 +49,12 @@
     }
   }
 
-  .sections {
+  .divider {
     margin-top: 30px;
+  }
+
+  .sections {
     padding-top: 30px;
-    border-top: rgba(0, 0, 0, 0.2) solid 1px;
 
     &:empty {
       display: none;

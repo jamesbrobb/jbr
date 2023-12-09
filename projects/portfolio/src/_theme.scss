@@ -41,6 +41,7 @@ $jbr-dark-theme: mat.define-dark-theme((
   @include mat.tabs-theme($light-theme);
   @include mat.badge-theme($light-theme);
   @include mat.expansion-theme($light-theme);
+  @include mat.divider-theme($light-theme);
 
   @media (prefers-color-scheme: dark) {
     @include mat.core-color($dark-theme);
@@ -52,5 +53,6 @@ $jbr-dark-theme: mat.define-dark-theme((
     @include mat.tabs-color($dark-theme);
     @include mat.badge-color($dark-theme);
     @include mat.expansion-color($dark-theme);
+    @include mat.divider-color($dark-theme);
   }
 }

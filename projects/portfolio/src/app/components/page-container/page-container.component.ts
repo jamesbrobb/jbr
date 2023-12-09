@@ -21,6 +21,7 @@ import {
   RouteNode,
   SectionNode
 } from "../../route";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @Component({
@@ -38,7 +39,8 @@ import {
     MatExpansionModule,
     MarkdownComponent,
     EntityTypeLabelComponent,
-    toClassCasePipe
+    toClassCasePipe,
+    MatDividerModule
   ],
   templateUrl: './page-container.component.html',
   styleUrls: ['./page-container.component.scss'],
@@ -51,7 +53,6 @@ import {
 export class PageContainerComponent implements OnChanges {
 
   @Input({required: true}) routeNodes?: RouteNode[];
-  @Input() detailsURI?: string;
 
   @Output() routeSelected = new EventEmitter<RouteNode>();
 

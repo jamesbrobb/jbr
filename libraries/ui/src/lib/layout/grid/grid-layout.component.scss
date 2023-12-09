@@ -1,7 +1,7 @@
-@import "../../styles/styles";
+@use "../../../styles" as s;
 
 :host {
   display: block;
   //overflow-x: hidden;
-  @include auto-fill-grid('grid-layout', 'grid-layout-item', 200px, 10px, 10px);
+  @include s.auto-fill-grid('grid-layout', 'grid-layout-item', 200px, 10px, 10px);
 }

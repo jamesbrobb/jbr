@@ -33,6 +33,7 @@
               ],
               "label": "analytics",
               "type": "",
+              "details": "details/analytics/README.md",
               "githubLink": "libraries/core/src/lib/analytics.ts",
               "description": "libraries/core/src/lib/analytics/.README/DESCRIPTION.md",
               "sections": [
