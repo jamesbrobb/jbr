@@ -25,7 +25,7 @@ $divider-colors: theme.get-mode-colors-for($palette-type: foreground, $type: div
     ::ng-deep {
 
       hr {
-        margin: 20px 0;
+        margin: 30px 0;
         height: 0;
         border: 0;
         border-top: 1px solid  var(--divider-color);
