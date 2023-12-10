@@ -1,3 +1,8 @@
+@use '../../../theme-helpers' as theme;
+
+
+$divider-colors: theme.get-mode-colors-for($palette-type: foreground, $type: divider);
+
 
 :host {
   display: block;
@@ -7,7 +12,12 @@
   padding: 10px;
   padding-top: 20px;
 
+  --details-border-color: #{nth($divider-colors, 1)};
   --controls-width: 100%;
+
+  @media (prefers-color-scheme: dark) {
+    --details-border-color: #{nth($divider-colors, 2)};
+  }
 
   @media(min-width: 320px) {
     padding: 30px;
@@ -19,9 +29,10 @@
 
   .details {
     position: relative;
-    padding: 20px;
-    border: rgba(255, 255, 255, 0.2) solid 1px;
-    margin-bottom: 50px;
+    padding: 10px 30px 15px;
+    border: var(--details-border-color) solid 1px;
+    margin-bottom: 30px;
+    opacity: 0.8;
   }
 
   .docs {
@@ -51,10 +62,10 @@
 
   .divider {
     margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   .sections {
-    padding-top: 30px;
 
     &:empty {
       display: none;

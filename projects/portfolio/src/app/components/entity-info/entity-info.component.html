@@ -19,15 +19,17 @@
 
   </div>
 
-  <ng-container *ngIf="page?.description as desctiption">
+  <ng-container *ngIf="page?.description as description">
 
-    <jbr-markdown [uri]="desctiption" type="description"></jbr-markdown>
+    <jbr-markdown [uri]="description" type="description"></jbr-markdown>
 
   </ng-container>
 
 </section>
 
 <ng-container *ngIf="!!page">
+
+  <!--<mat-divider class="divider"></mat-divider>-->
 
   <section *ngIf="page|guardType : isSectionNode as section">
 

@@ -11,10 +11,9 @@
   --title-vertical-margin: 15px;
   --title-font-size: 28px;
 
-  section:not(:first-child) {
+  .divider {
     margin-top: 30px;
-    padding-top: 30px;
-    border-top: rgba(0, 0, 0, 0.2) solid 1px;
+    margin-bottom: 30px;
   }
 
   .header {

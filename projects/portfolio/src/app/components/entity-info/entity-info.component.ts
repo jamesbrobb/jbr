@@ -19,6 +19,7 @@ import {GithubBtnComponent} from "../github-btn/github-btn.component";
 import {MarkdownComponent} from "../markdown/markdown.component";
 import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.component";
 import {InfoNode, isSectionNode, PageNode} from "../../route";
+import {MatDividerModule} from "@angular/material/divider";
 
 @Component({
   selector: 'jbr-entity-info',
@@ -42,6 +43,7 @@ import {InfoNode, isSectionNode, PageNode} from "../../route";
     toClassCasePipe,
     toWordsPipe,
     GuardTypePipe,
+    MatDividerModule,
   ],
   templateUrl: './entity-info.component.html',
   styleUrls: ['./entity-info.component.scss'],
