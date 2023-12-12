@@ -1,0 +1,24 @@
+<ng-container *ngFor="let sctn of sections">
+
+    <mat-expansion-panel #panel class="section"
+                         [ngClass]="sctn === section ? 'is-open' : ''"
+                         [expanded]="sctn === section"
+                         (opened)="onSectionOpened(sctn)"
+                         (closed)="onSectionClosed(sctn)">
+
+        <mat-expansion-panel-header class="header" collapsedHeight="70px">
+            <mat-panel-title>
+                <div class="class-details">
+                    <div class="name">{{sctn.label | classCase}}</div>
+                    <jbr-entity-type-label [type]="sctn.type"></jbr-entity-type-label>
+                </div>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+            <jbr-entity-info class="entity-info" [page]="sctn" [info]="info" (infoSelectionChange)="onInfoSelected($event)"></jbr-entity-info>
+        </ng-template>
+
+    </mat-expansion-panel>
+
+</ng-container>

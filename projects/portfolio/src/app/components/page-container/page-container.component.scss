@@ -35,10 +35,6 @@ $divider-colors: theme.get-mode-colors-for($palette-type: foreground, $type: div
     opacity: 0.8;
   }
 
-  .docs {
-    position: relative;
-  }
-
   .controls {
     max-width: var(--controls-width);
     margin: 40px 0;
@@ -69,45 +65,6 @@ $divider-colors: theme.get-mode-colors-for($palette-type: foreground, $type: div
 
     &:empty {
       display: none;
-    }
-
-    .section {
-      --section-label-opacity: 1;
-      --entity-info-margin-top: 0;
-
-      &.is-open {
-        --section-label-opacity: 0;
-        --entity-info-margin-top:-30px
-      }
-
-      &:not(:last-child) {
-        margin-bottom: 10px;
-      }
-
-      .header {
-        background: transparent;
-
-        .class-details {
-          margin-right: 12px;
-          display: flex;
-          flex-grow: 1;
-          align-items: center;
-          justify-content: space-between;
-          opacity: var(--section-label-opacity);
-          transition: opacity 300ms;
-
-          .name {
-            position: relative;
-            font-size: 16px;
-            margin-right: 10px;
-          }
-        }
-      }
-
-      .entity-info {
-        margin-top: var(--entity-info-margin-top);
-        transition: margin-top 300ms;
-      }
     }
   }
 }

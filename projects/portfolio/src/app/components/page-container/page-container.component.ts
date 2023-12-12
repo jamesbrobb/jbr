@@ -22,6 +22,7 @@ import {
   SectionNode
 } from "../../route";
 import {MatDividerModule} from "@angular/material/divider";
+import {PageSectionsComponent} from "../page-sections/page-sections.component";
 
 
 @Component({
@@ -40,7 +41,8 @@ import {MatDividerModule} from "@angular/material/divider";
     MarkdownComponent,
     EntityTypeLabelComponent,
     toClassCasePipe,
-    MatDividerModule
+    MatDividerModule,
+    PageSectionsComponent
   ],
   templateUrl: './page-container.component.html',
   styleUrls: ['./page-container.component.scss'],
@@ -92,22 +94,9 @@ export class PageContainerComponent implements OnChanges {
     });
   }
 
-  onSectionOpened(section: SectionNode): void {
-
-    if(section === this.section) {
-      return;
-    }
+  onSectionSelected(section: SectionNode | undefined): void {
     // TODO - navigate to current info of section
-    this.routeSelected.emit(section);
-  }
-
-  onSectionClosed(section: SectionNode): void {
-
-    if(section !== this.section) {
-      return;
-    }
-
-    this.routeSelected.emit(this.page);
+    this.routeSelected.emit(section || this.page);
   }
 
   onInfoSelected(info: InfoNode): void {

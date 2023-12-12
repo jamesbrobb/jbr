@@ -7,33 +7,17 @@
 
 <jbr-entity-info [page]="page"></jbr-entity-info>
 
-<section class="sections">
+<ng-container *ngIf="sections && sections.length > 0">
 
-  <ng-container *ngFor="let sctn of sections">
+  <section class="sections">
 
-    <mat-expansion-panel #panel class="section"
-      [ngClass]="sctn === section ? 'is-open' : ''"
-      [expanded]="sctn === section"
-      (opened)="onSectionOpened(sctn)"
-      (closed)="onSectionClosed(sctn)">
+    <jbr-page-sections [sections]="sections"
+      [section]="section"
+      [info]="info"
+      (sectionSelected)="onSectionSelected($event)"
+      (infoSelected)="onInfoSelected($event)">
+    </jbr-page-sections>
 
-      <mat-expansion-panel-header class="header" collapsedHeight="70px">
-        <mat-panel-title>
-          <div class="class-details">
-            <div class="name">{{sctn.label | classCase}}</div>
-            <jbr-entity-type-label [type]="sctn.type"></jbr-entity-type-label>
-          </div>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
+  </section>
 
-      <ng-template matExpansionPanelContent>
-        <jbr-entity-info class="entity-info" [page]="sctn" [info]="info" (infoSelectionChange)="onInfoSelected($event)"></jbr-entity-info>
-      </ng-template>
-
-    </mat-expansion-panel>
-
-  </ng-container>
-
-</section>
-
-
+</ng-container>
