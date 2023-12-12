@@ -25,23 +25,22 @@
                       "path": "google-analytics",
                       "description": "libraries/core/src/lib/analytics/trackers/google-analytics/README.md",
                       "label": "google analytics",
-                      "type": "",
-                      "githubLink": "libraries/core/src/lib/analytics/trackers/google-analytics.ts"
+                      "type": "module",
+                      "githubLink": "libraries/core/src/lib/analytics/trackers/google-analytics"
                     }
                   ]
                 }
               ],
               "label": "analytics",
-              "type": "",
-              "demonstrates": "details/analytics/README.md",
-              "githubLink": "libraries/core/src/lib/analytics.ts",
+              "type": "module",
+              "githubLink": "libraries/core/src/lib/analytics",
               "description": "libraries/core/src/lib/analytics/.README/DESCRIPTION.md",
               "sections": [
                 {
                   "path": "analytics-service",
                   "label": "analytics service",
-                  "type": "",
-                  "githubLink": "analytics-service.ts",
+                  "type": "service",
+                  "githubLink": "libraries/core/src/lib/analytics/analytics-service.ts",
                   "info": [
                     {
                       "name": "API",
@@ -49,7 +48,7 @@
                       "uri": "libraries/core/src/lib/analytics/.README/analytics-service/API.md"
                     },
                     {
-                      "name": "Example",
+                      "name": "EXAMPLE",
                       "path": "example",
                       "uri": "libraries/core/src/lib/analytics/.README/analytics-service/EXAMPLE.md"
                     }
@@ -65,41 +64,41 @@
                   "path": "command",
                   "description": "libraries/core/src/lib/commands/command/README.md",
                   "label": "command",
-                  "type": "",
-                  "githubLink": "libraries/core/src/lib/commands/command.ts"
+                  "type": "module",
+                  "githubLink": "libraries/core/src/lib/commands/command"
                 },
                 {
                   "path": "group",
                   "description": "libraries/core/src/lib/commands/group/README.md",
                   "label": "group",
-                  "type": "",
-                  "githubLink": "libraries/core/src/lib/commands/group.ts"
+                  "type": "module",
+                  "githubLink": "libraries/core/src/lib/commands/group"
                 },
                 {
                   "path": "processor",
                   "description": "libraries/core/src/lib/commands/processor/README.md",
                   "label": "processor",
-                  "type": "",
-                  "githubLink": "libraries/core/src/lib/commands/processor.ts"
+                  "type": "module",
+                  "githubLink": "libraries/core/src/lib/commands/processor"
                 }
               ],
               "description": "libraries/core/src/lib/commands/README.md",
               "label": "commands",
-              "type": "",
-              "githubLink": "libraries/core/src/lib/commands.ts"
+              "type": "module",
+              "githubLink": "libraries/core/src/lib/commands"
             },
             {
               "path": "http",
               "description": "libraries/core/src/lib/http/README.md",
               "label": "http",
-              "type": "",
-              "githubLink": "libraries/core/src/lib/http.ts"
+              "type": "module",
+              "githubLink": "libraries/core/src/lib/http"
             }
           ],
           "description": "libraries/core/README.md",
           "label": "core",
-          "type": "",
-          "githubLink": "libraries/core.ts"
+          "type": "module",
+          "githubLink": "libraries/core"
         },
         {
           "path": "ng",
@@ -117,31 +116,31 @@
                           "path": "google-analytics",
                           "description": "libraries/ng/src/lib/core/analytics/trackers/google-analytics/README.md",
                           "label": "google analytics",
-                          "type": "",
-                          "githubLink": "libraries/ng/src/lib/core/analytics/trackers/google-analytics.ts"
+                          "type": "module",
+                          "githubLink": "libraries/ng/src/lib/core/analytics/trackers/google-analytics"
                         }
                       ]
                     }
                   ],
                   "description": "libraries/ng/src/lib/core/analytics/README.md",
                   "label": "analytics",
-                  "type": "",
-                  "githubLink": "libraries/ng/src/lib/core/analytics.ts"
+                  "type": "module",
+                  "githubLink": "libraries/ng/src/lib/core/analytics"
                 },
                 {
                   "path": "http",
                   "description": "libraries/ng/src/lib/core/http/README.md",
                   "label": "http",
-                  "type": "",
-                  "githubLink": "libraries/ng/src/lib/core/http.ts"
+                  "type": "module",
+                  "githubLink": "libraries/ng/src/lib/core/http"
                 }
               ]
             }
           ],
           "description": "libraries/ng/README.md",
           "label": "ng",
-          "type": "",
-          "githubLink": "libraries/ng.ts"
+          "type": "module",
+          "githubLink": "libraries/ng"
         },
         {
           "path": "product",
@@ -161,12 +160,12 @@
                             {
                               "path": "page",
                               "label": "page",
-                              "type": "",
-                              "githubLink": "libraries/product/src/lib/efclass/components/layout/headers/page.ts",
+                              "type": "module",
+                              "githubLink": "libraries/product/src/lib/efclass/components/layout/headers/page",
                               "description": "libraries/product/src/lib/efclass/components/layout/headers/page/.README/DESCRIPTION.md",
                               "info": [
                                 {
-                                  "name": "Example",
+                                  "name": "EXAMPLE",
                                   "path": "example",
                                   "uri": "libraries/product/src/lib/efclass/components/layout/headers/page/.README/EXAMPLE.md"
                                 }
@@ -185,12 +184,12 @@
                             {
                               "path": "fallback",
                               "label": "fallback",
-                              "type": "",
-                              "githubLink": "libraries/product/src/lib/efclass/components/media/image/fallback.ts",
+                              "type": "module",
+                              "githubLink": "libraries/product/src/lib/efclass/components/media/image/fallback",
                               "description": "libraries/product/src/lib/efclass/components/media/image/fallback/.README/DESCRIPTION.md",
                               "info": [
                                 {
-                                  "name": "Example",
+                                  "name": "EXAMPLE",
                                   "path": "example",
                                   "uri": "libraries/product/src/lib/efclass/components/media/image/fallback/.README/EXAMPLE.md"
                                 }
@@ -199,12 +198,12 @@
                             {
                               "path": "image",
                               "label": "image",
-                              "type": "",
-                              "githubLink": "libraries/product/src/lib/efclass/components/media/image/image.ts",
+                              "type": "module",
+                              "githubLink": "libraries/product/src/lib/efclass/components/media/image/image",
                               "description": "libraries/product/src/lib/efclass/components/media/image/image/.README/DESCRIPTION.md",
                               "info": [
                                 {
-                                  "name": "Example",
+                                  "name": "EXAMPLE",
                                   "path": "example",
                                   "uri": "libraries/product/src/lib/efclass/components/media/image/image/.README/EXAMPLE.md"
                                 }
@@ -221,8 +220,8 @@
                           "path": "lesson-plan-card",
                           "description": "libraries/product/src/lib/efclass/components/my-library/lesson-plan-card/README.md",
                           "label": "lesson plan card",
-                          "type": "",
-                          "githubLink": "libraries/product/src/lib/efclass/components/my-library/lesson-plan-card.ts"
+                          "type": "module",
+                          "githubLink": "libraries/product/src/lib/efclass/components/my-library/lesson-plan-card"
                         }
                       ]
                     }
@@ -233,22 +232,22 @@
           ],
           "description": "libraries/product/README.md",
           "label": "product",
-          "type": "",
-          "githubLink": "libraries/product.ts"
+          "type": "module",
+          "githubLink": "libraries/product"
         },
         {
           "path": "types",
           "description": "libraries/types/README.md",
           "label": "types",
-          "type": "",
-          "githubLink": "libraries/types.ts"
+          "type": "module",
+          "githubLink": "libraries/types"
         },
         {
           "path": "typescript",
           "description": "libraries/typescript/README.md",
           "label": "typescript",
-          "type": "",
-          "githubLink": "libraries/typescript.ts"
+          "type": "module",
+          "githubLink": "libraries/typescript"
         },
         {
           "path": "ui",
@@ -263,14 +262,14 @@
                       "path": "icon",
                       "description": "libraries/ui/src/lib/common/icons/icon/README.md",
                       "label": "icon",
-                      "type": "",
-                      "githubLink": "libraries/ui/src/lib/common/icons/icon.ts"
+                      "type": "module",
+                      "githubLink": "libraries/ui/src/lib/common/icons/icon"
                     }
                   ],
                   "description": "libraries/ui/src/lib/common/icons/README.md",
                   "label": "icons",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/common/icons.ts"
+                  "type": "module",
+                  "githubLink": "libraries/ui/src/lib/common/icons"
                 },
                 {
                   "path": "overlay",
@@ -280,14 +279,6 @@
                       "label": "color",
                       "type": "",
                       "githubLink": "libraries/ui/src/lib/common/overlay/color.ts",
-                      "description": "libraries/ui/src/lib/common/overlay/color/.README/DESCRIPTION.md",
-                      "info": [
-                        {
-                          "name": "Example",
-                          "path": "example",
-                          "uri": "libraries/ui/src/lib/common/overlay/color/.README/EXAMPLE.md"
-                        }
-                      ],
                       "sections": [
                         {
                           "path": "color-overlay-component",
@@ -330,8 +321,8 @@
                       "path": "html-renderer",
                       "description": "libraries/ui/src/lib/common/renderers/html-renderer/README.md",
                       "label": "html renderer",
-                      "type": "",
-                      "githubLink": "libraries/ui/src/lib/common/renderers/html-renderer.ts"
+                      "type": "module",
+                      "githubLink": "libraries/ui/src/lib/common/renderers/html-renderer"
                     }
                   ]
                 },
@@ -342,22 +333,22 @@
                       "path": "svg",
                       "description": "libraries/ui/src/lib/common/svg/svg/README.md",
                       "label": "svg",
-                      "type": "",
-                      "githubLink": "libraries/ui/src/lib/common/svg/svg.ts"
+                      "type": "module",
+                      "githubLink": "libraries/ui/src/lib/common/svg/svg"
                     }
                   ],
                   "description": "libraries/ui/src/lib/common/svg/README.md",
                   "label": "svg",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/common/svg.ts"
+                  "type": "module",
+                  "githubLink": "libraries/ui/src/lib/common/svg"
                 }
               ]
             },
             {
               "path": "component-loader",
               "label": "component loader",
-              "type": "",
-              "githubLink": "libraries/ui/src/lib/component-loader.ts",
+              "type": "module",
+              "githubLink": "libraries/ui/src/lib/component-loader",
               "description": "libraries/ui/src/lib/component-loader/.README/DESCRIPTION.md",
               "sections": [
                 {
@@ -429,12 +420,12 @@
             {
               "path": "dynamic",
               "label": "dynamic",
-              "type": "",
-              "githubLink": "libraries/ui/src/lib/dynamic.ts",
+              "type": "module",
+              "githubLink": "libraries/ui/src/lib/dynamic",
               "description": "libraries/ui/src/lib/dynamic/.README/DESCRIPTION.md",
               "info": [
                 {
-                  "name": "Example",
+                  "name": "EXAMPLE",
                   "path": "example",
                   "uri": "libraries/ui/src/lib/dynamic/.README/EXAMPLE.md"
                 }
@@ -447,15 +438,15 @@
                   "path": "codemirror",
                   "description": "libraries/ui/src/lib/forms/codemirror/README.md",
                   "label": "codemirror",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/forms/codemirror.ts"
+                  "type": "module",
+                  "githubLink": "libraries/ui/src/lib/forms/codemirror"
                 },
                 {
                   "path": "json-editor",
                   "description": "libraries/ui/src/lib/forms/json-editor/README.md",
                   "label": "json editor",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/forms/json-editor.ts"
+                  "type": "module",
+                  "githubLink": "libraries/ui/src/lib/forms/json-editor"
                 }
               ]
             },
@@ -465,8 +456,8 @@
                 {
                   "path": "grid",
                   "label": "grid",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/layout/grid.ts",
+                  "type": "module",
+                  "githubLink": "libraries/ui/src/lib/layout/grid",
                   "info": [
                     {
                       "name": "API",
@@ -474,7 +465,7 @@
                       "uri": "libraries/ui/src/lib/layout/grid/.README/API.md"
                     },
                     {
-                      "name": "Example",
+                      "name": "EXAMPLE",
                       "path": "example",
                       "uri": "libraries/ui/src/lib/layout/grid/.README/EXAMPLE.md"
                     }
@@ -489,12 +480,12 @@
                 {
                   "path": "container",
                   "label": "container",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/responsive/container.ts",
+                  "type": "module",
+                  "githubLink": "libraries/ui/src/lib/responsive/container",
                   "description": "libraries/ui/src/lib/responsive/container/.README/DESCRIPTION.md",
                   "info": [
                     {
-                      "name": "Example",
+                      "name": "EXAMPLE",
                       "path": "example",
                       "uri": "libraries/ui/src/lib/responsive/container/.README/EXAMPLE.md"
                     }
@@ -505,8 +496,8 @@
           ],
           "description": "libraries/ui/README.md",
           "label": "ui",
-          "type": "",
-          "githubLink": "libraries/ui.ts"
+          "type": "module",
+          "githubLink": "libraries/ui"
         }
       ]
     }
@@ -813,7 +804,7 @@
     }
   },
   "github-config": {
-      "root": "https://github.com/jamesbrobb/portfolio/",
-      "app": "tree/main/src/app/"
+      "root": "https://github.com/jamesbrobb/jbr/",
+      "app": "tree/main/"
   }
 }

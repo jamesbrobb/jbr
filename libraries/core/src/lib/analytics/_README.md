@@ -1,4 +1,9 @@
-Config example:
+# Analytics
+
+A configurable analytics management implementation, that's both framework and tracking library agnostic.
+
+## Usage
+`analytics-config.json`
 
 ```json
 {
@@ -60,3 +65,4 @@ const event: AnalyticsEvent = {
 
 service.track(event);
 ```
+

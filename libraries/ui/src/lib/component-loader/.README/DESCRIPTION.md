@@ -1,1 +1,1 @@
-A collection of directives and services enabling the dynamic loading of components.
+A collection of directives and services enabling the dynamic/lazy loading of components.

@@ -28,29 +28,36 @@ function walk(node, cb) {
   cb(node);
 }
 
-
 function parsePageData(node) {
 
   if(!node.children) {
     return;
   }
 
+  const isReadmeDir = node.name === '.README';
+  const isChildOfReadmeDir = !isReadmeDir && node.path.includes('.README');
   const readme = node.children.find(child => child.name === 'README.md');
   const readmeDir = node.children.find(child => child.name === '.README');
 
-  if(!readme && !readmeDir) {
-    return
+  if (!isReadmeDir && !isChildOfReadmeDir && !readmeDir && !readme) {
+    return;
   }
 
   let pageData;
 
-  if(readme && !readmeDir) {
-    pageData = getPageData(node)
-    node.description = readme.path;
+  if (!isReadmeDir && !isChildOfReadmeDir && !readmeDir) {
+    if (readme) {
+        pageData = getPageData(node, null, true);
+        node.description = readme.path;
+    }
   }
 
-  if(readmeDir) {
-    pageData = getPageData(node, readmeDir.children)
+  if (readmeDir) {
+      pageData = getPageData(
+        node,
+        readmeDir.children,
+        !!readmeDir.children.find(child => child.name === 'DESCRIPTION.md')
+      )
   }
 
   if(pageData) {
@@ -62,49 +69,60 @@ function parsePageData(node) {
   node.children = node.children.filter(child => !child.name.includes('README'));
 }
 
-function getPageData(node, children) {
+function createPageData(node, isDir) {
 
-  const parts = node.name.split('.'),
-    path = parts.join('-'),
-    type = parts.length > 1 ? parts.pop() : '',
+  let parts = node.name.split('.'),
+    type = '';;
+
+  const  path = parts.join('-'),
     label = parts[0].replaceAll('-', ' ');
 
-  const pageData = {
+  if(isDir) {
+    type = 'module';
+  } else if (parts.length > 1) {
+    type = parts.pop();
+  } else {
+    parts = path.split('-');
+    if(parts.length > 1) {
+      type = parts.pop();
+    }
+  }
+
+  return {
     path,
     label,
     type,
-    githubLink: `${node.path.replace('/.README', '')}.ts`
+    githubLink: `${node.path.replace('/.README', '')}${isDir ? '' : '.ts'}`
   }
+}
+
+function getPageData(node, children, isDir) {
+
+  const pageData = createPageData(node, isDir)
 
   if(children) {
 
     children.forEach(child => {
 
-      if (child.name === 'DESCRIPTION.md') {
-        pageData.description = child.path;
-      }
-
-      if (child.name === 'EXAMPLE.md') {
-        pageData.info = pageData.info || [];
-        pageData.info.push({
-          name: 'Example',
-          path: 'example',
-          uri: child.path
-        });
-      }
-
-      if (child.name === 'API.md') {
-        pageData.info = pageData.info || [];
-        pageData.info.push({
-          name: 'API',
-          path: 'api',
-          uri: child.path
-        });
-      }
-
-      if (child.name === 'controls.json') {
-        var data = fs.readFileSync(child.path,'utf8');
-        pageData.controls = JSON.parse(data).controls;
+      switch(child.name) {
+        case 'DESCRIPTION.md':
+          pageData.description = child.path;
+          break;
+        case 'API.md':
+        //case 'USAGE.md':
+        case 'EXAMPLE.md':
+          let name = child.name.split('.')[0];
+          pageData.info = pageData.info || [];
+          pageData.info.push({
+            name: name,
+            path: name.toLowerCase(),
+            uri: child.path
+          });
+          break;
+        case 'controls.json':
+          const data = fs.readFileSync(child.path,'utf8');
+          pageData.controls = JSON.parse(data).controls;
+          break;
       }
 
       if (child.children && child.children.length) {
@@ -205,7 +223,7 @@ if (!fs.existsSync(options.path)) {
 try {
 
   const ignoreHidden = new RegExp('.*\\/\\..*');
-  const ignoreTpl = new RegExp('.*\\/.*\.tpl.md');
+  const ignoreTpl = new RegExp('.*\\/.*\\.tpl\\.md');
 
   const dirTree = directoryTree(options.path, {
     extensions: new RegExp('\.(md|json)$'),
