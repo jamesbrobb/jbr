@@ -37,7 +37,13 @@
               "githubLink": "libraries/core/src/lib/analytics",
               "isModule": true,
               "description": "libraries/core/src/lib/analytics/.README/DESCRIPTION.md",
-              "usage": "libraries/core/src/lib/analytics/.README/USAGE.md",
+              "info": [
+                {
+                  "name": "USAGE",
+                  "path": "usage",
+                  "uri": "libraries/core/src/lib/analytics/.README/USAGE.md"
+                }
+              ],
               "sections": [
                 {
                   "path": "analytics-service",

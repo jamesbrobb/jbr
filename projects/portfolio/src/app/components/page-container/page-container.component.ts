@@ -12,14 +12,13 @@ import {EntityInfoComponent} from "../entity-info/entity-info.component";
 import {MarkdownComponent} from "../markdown/markdown.component";
 import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.component";
 import {
+  getCurrentPageNode,
   InfoNode,
   isInfoNode,
   isPageNode,
-  isSectionNode,
   isSectionsNode,
   PageNode,
   RouteNode,
-  SectionNode
 } from "../../route";
 import {MatDividerModule} from "@angular/material/divider";
 import {PageSectionsComponent} from "../page-sections/page-sections.component";
@@ -59,10 +58,10 @@ export class PageContainerComponent implements OnChanges {
   @Output() routeSelected = new EventEmitter<RouteNode>();
 
   page?: PageNode;
-  section?: SectionNode;
+  section?: PageNode;
   info?: InfoNode;
 
-  sections?: SectionNode[];
+  sections?: PageNode[];
 
   ngOnChanges(changes?: SimpleChanges) {
 
@@ -75,28 +74,27 @@ export class PageContainerComponent implements OnChanges {
       return;
     }
 
-    const nodes = this.routeNodes.concat().reverse();
+    this.page = getCurrentPageNode(this.routeNodes);
 
-    nodes.forEach((node, index) => {
-      if(index === 0 && isInfoNode(node)) {
-        this.info = node;
-      }
-      if(index <= 1 && isSectionNode(node)) {
-        this.section = node;
-      }
-      if(!this.page && !isSectionNode(node) && isPageNode(node)) {
-        this.page = node;
+    if(!this.page) {
+      return;
+    }
 
-        if(isSectionsNode(this.page)) {
-          this.sections = this.page.sections;
-        }
-      }
-    });
+    const nodeIndex = this.routeNodes.indexOf(this.page),
+        nodes = this.routeNodes.slice(nodeIndex + 1),
+        child1 = nodes.at(0),
+        child2 = nodes.at(1);
+
+    if(isSectionsNode(this.page)) {
+      this.sections = this.page.sections;
+      this.section = child1 ? isPageNode(child1) ? child1 : undefined : undefined;
+      this.info = child2 ? isInfoNode(child2) ? child2 : undefined : undefined;
+    } else {
+      this.info = this.info = child1 ? isInfoNode(child1) ? child1 : undefined : undefined;
+    }
   }
 
-  onSectionSelected(section: SectionNode | undefined): void {
-    // TODO - navigate to current info of section
-
+  onSectionSelected(section: PageNode | undefined): void {
     this.routeSelected.emit(section || this.page);
   }
 

@@ -18,7 +18,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {GithubBtnComponent} from "../github-btn/github-btn.component";
 import {MarkdownComponent} from "../markdown/markdown.component";
 import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.component";
-import {InfoNode, isSectionNode, PageNode} from "../../route";
+import {InfoNode, isPageNodeWithInfo, PageNode, PageNodeWithInfo} from "../../route";
 import {MatDividerModule} from "@angular/material/divider";
 
 @Component({
@@ -51,7 +51,7 @@ import {MatDividerModule} from "@angular/material/divider";
 })
 export class EntityInfoComponent implements OnChanges {
 
-  @Input({required: true}) page?: PageNode;
+  @Input({required: true}) page?: PageNode | PageNodeWithInfo;
   @Input() info?: InfoNode;
   @Output() infoSelectionChange = new EventEmitter<InfoNode>();
 
@@ -60,7 +60,7 @@ export class EntityInfoComponent implements OnChanges {
   examples?: string[];
   controlData: {[key: string]: any} = {};
 
-  isSectionNode = isSectionNode;
+  isPageNodeWithInfo = isPageNodeWithInfo;
 
   ngOnChanges(changes: SimpleChanges) {
 
@@ -72,7 +72,7 @@ export class EntityInfoComponent implements OnChanges {
     //this.controls = this.page?.controls;
     //this.examples = this.page?.examples;
 
-    if(!isSectionNode(this.page) || !this.info) {
+    if(!isPageNodeWithInfo(this.page) || !this.info) {
       return;
     }
 
@@ -86,7 +86,7 @@ export class EntityInfoComponent implements OnChanges {
 
   onSelectedIndexChange(index: number): void {
 
-    if(!this.page || !isSectionNode(this.page)) {
+    if(!this.page || !isPageNodeWithInfo(this.page)) {
       return;
     }
 

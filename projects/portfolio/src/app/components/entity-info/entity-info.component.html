@@ -37,7 +37,7 @@
 
   <mat-divider class="divider"></mat-divider>
 
-  <section *ngIf="page|guardType : isSectionNode as section">
+  <section *ngIf="page|guardType : isPageNodeWithInfo as section">
 
     <mat-tab-group dynamicHeight #group [selectedIndex]="selectedInfoIndex" (selectedIndexChange)="onSelectedIndexChange($event)">
 

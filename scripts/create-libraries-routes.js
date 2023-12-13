@@ -47,7 +47,7 @@ function parsePageData(node) {
 
   if (!isReadmeDir && !isChildOfReadmeDir && !readmeDir) {
     if (readme) {
-        pageData = getPageData(node, null, 'page');
+        pageData = getPageData(node, null, true);
         node.description = readme.path;
     }
   }
@@ -56,7 +56,7 @@ function parsePageData(node) {
       pageData = getPageData(
         node,
         readmeDir.children,
-        !!readmeDir.children.find(child => child.name === 'DESCRIPTION.md') ? 'page' : 'module'
+        !!readmeDir.children.find(child => child.name === 'DESCRIPTION.md')
       )
   }
 
@@ -69,14 +69,13 @@ function parsePageData(node) {
   node.children = node.children.filter(child => !child.name.includes('README'));
 }
 
-function createPageData(node, nodeType) {
+function createPageData(node, isModule) {
 
   let parts = node.name.split('.'),
     type = '';
 
   const  path = parts.join('-'),
-    label = parts[0].replaceAll('-', ' '),
-    isModule = nodeType === 'module';
+    label = parts[0].replaceAll('-', ' ');
 
   if(isModule) {
     type = '';
@@ -93,13 +92,14 @@ function createPageData(node, nodeType) {
     path,
     label,
     type,
-    githubLink: `${node.path.replace('/.README', '')}${isModule ? '' : '.ts'}`
+    githubLink: `${node.path.replace('/.README', '')}${isModule ? '' : '.ts'}`,
+    isModule: isModule
   }
 }
 
-function getPageData(node, children, nodeType) {
+function getPageData(node, children, isDir) {
 
-  const pageData = createPageData(node, nodeType)
+  const pageData = createPageData(node, isDir)
 
   if(children) {
 
@@ -110,10 +110,10 @@ function getPageData(node, children, nodeType) {
           pageData.description = child.path;
           break;
         case 'USAGE.md':
-          if(pageData.nodeType !== 'section') {
+          /*if(pageData.isModule) {
             pageData.usage = child.path;
             break;
-          }
+          }*/
         case 'API.md':
         case 'EXAMPLE.md':
           let name = child.name.split('.')[0];
@@ -132,7 +132,7 @@ function getPageData(node, children, nodeType) {
 
       if (child.children && child.children.length) {
         pageData.sections = pageData.sections || [];
-        pageData.sections.push(getPageData(child, child.children, 'section'));
+        pageData.sections.push(getPageData(child, child.children));
       }
     });
   }
@@ -142,7 +142,7 @@ function getPageData(node, children, nodeType) {
 
 function parseNode(node) {
 
-  if(!node.description && node.sections && node.sections.length === 1) {
+  if(!node.isModule && node.sections && node.sections.length === 1) {
 
     const section = node.sections[0];
 

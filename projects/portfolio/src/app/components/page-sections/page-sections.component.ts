@@ -4,7 +4,7 @@ import {EntityInfoComponent} from "../entity-info/entity-info.component";
 import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.component";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {toClassCasePipe} from "@jbr/ui";
-import {InfoNode, SectionNode} from "../../route";
+import {InfoNode, PageNode} from "../../route";
 
 @Component({
   selector: 'jbr-page-sections',
@@ -16,14 +16,14 @@ import {InfoNode, SectionNode} from "../../route";
 })
 export class PageSectionsComponent {
 
-  @Input({required: true}) sections?: SectionNode[];
-  @Input({required: true}) section?: SectionNode;
+  @Input({required: true}) sections?: PageNode[];
+  @Input({required: true}) section?: PageNode;
   @Input() info?: InfoNode;
 
-  @Output() sectionSelected = new EventEmitter<SectionNode | undefined>();
+  @Output() sectionSelected = new EventEmitter<PageNode | undefined>();
   @Output() infoSelected = new EventEmitter<InfoNode>();
 
-  onSectionOpened(section: SectionNode): void {
+  onSectionOpened(section: PageNode): void {
 
     if(section === this.section) {
       return;
@@ -32,7 +32,7 @@ export class PageSectionsComponent {
     this.sectionSelected.emit(section);
   }
 
-  onSectionClosed(section: SectionNode): void {
+  onSectionClosed(section: PageNode): void {
 
     if(section !== this.section) {
       return;

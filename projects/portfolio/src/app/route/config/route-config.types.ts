@@ -1,7 +1,7 @@
 import {TypeGuard} from "@jbr/types";
 
 
-export type RouteNode = RedirectNode | ParentNode | PageNode | SectionsNode | SectionNode | InfoNode
+export type RouteNode = RedirectNode | ParentNode | PageNode | SectionsNode | InfoNode
 
 export type RouteNodeBase = {
   path: string
@@ -22,16 +22,15 @@ export type PageNode = {
   type: string
   isModule: boolean
   demonstrates?: string
-  usage?: string,
-  //info?: InfoNode[]
+  usage?: string
 } & RouteNodeBase
 
-export type SectionsNode = {
-  sections: SectionNode[]
-} & PageNode
-
-export type SectionNode = {
+export type PageNodeWithInfo = {
   info: InfoNode[]
+} & PageNode;
+
+export type SectionsNode = {
+  sections: PageNode[]
 } & PageNode
 
 export type InfoNode = {
@@ -43,7 +42,7 @@ export type InfoNode = {
 type routeNodeGuardProp<NT extends RouteNode> = keyof Omit<NT, keyof RouteNodeBase>
 
 function routeNodeGuard<NT extends RouteNode>(...props: routeNodeGuardProp<NT>[]): TypeGuard<RouteNode, NT> {
-  return (node: RouteNode): node is NT => !!node && props.every(prop => prop in node)
+  return (node?: RouteNode): node is NT => !!node && props.every(prop => prop in node)
 }
 
 
@@ -85,14 +84,17 @@ export const isRouteNode = (arg: unknown): arg is RouteNode => {
 export const isRedirectNode = routeNodeGuard<RedirectNode>('redirectTo');
 export const isParentNode = routeNodeGuard<ParentNode>('children');
 export const isPageNode = routeNodeGuard<PageNode>('description');
+const _isPageNodeWithInfo = routeNodeGuard<PageNodeWithInfo>('info');
+export const isPageNodeWithInfo: TypeGuard<RouteNode, PageNodeWithInfo> = (node: RouteNode): node is PageNodeWithInfo => {
+  return isPageNode(node) && _isPageNodeWithInfo(node);
+}
 export const isSectionsNode = routeNodeGuard<SectionsNode>('sections');
-export const isSectionNode = routeNodeGuard<SectionNode>('info');
 export const isInfoNode = routeNodeGuard<InfoNode>('name', 'uri');
 
 export function getChildNodes(node: RouteNode): RouteNode[] {
   let childNodes: RouteNode[] = [];
 
-  if(isSectionNode(node)) {
+  if(isPageNodeWithInfo(node)) {
     childNodes = childNodes.concat(node.info);
   }
 
@@ -112,4 +114,39 @@ export function isChildOf(parentNode: RouteNode, childNode: RouteNode): boolean 
   const childNodes = getChildNodes(parentNode);
 
   return childNodes.some(node => node === childNode);
+}
+
+export function getCurrentPageNode(routeNodes: RouteNode[]): PageNode | undefined {
+  let node: RouteNode | undefined;
+  const rnLength = routeNodes.length;
+
+  if(rnLength === 1 && isPageNode(routeNodes[0])) {
+    node = routeNodes[0]
+  }
+
+  if(rnLength > 1) {
+    const ancestors = routeNodes.filter(isParentNode),
+        ancLength = ancestors.length;
+
+    if(ancLength === rnLength) {
+
+      node = routeNodes[rnLength - 1];
+
+    } else {
+
+      if(ancLength > 0) {
+
+        node = ancestors[ancLength - 1];
+
+        const index = routeNodes.indexOf(node),
+            child =  routeNodes[index + 1];
+
+        if(isPageNode(child) && node.children.indexOf(child) > -1) {
+          node = child;
+        }
+      }
+    }
+  }
+
+  return node ? isPageNode(node) ? node : undefined : undefined;
 }
