@@ -66,22 +66,22 @@ export class PageContainerComponent implements OnChanges {
 
   ngOnChanges(changes?: SimpleChanges) {
 
-    const nodes = this.routeNodes?.concat().reverse();
-    console.log('nodes', nodes);
     this.page = undefined;
     this.section = undefined;
     this.info = undefined;
     this.sections = undefined;
 
-    if(!nodes || !nodes.length) {
+    if(!this.routeNodes || !this.routeNodes.length) {
       return;
     }
 
-    nodes.forEach(node => {
-      if(isInfoNode(node)) {
+    const nodes = this.routeNodes.concat().reverse();
+
+    nodes.forEach((node, index) => {
+      if(index === 0 && isInfoNode(node)) {
         this.info = node;
       }
-      if(isSectionNode(node)) {
+      if(index <= 1 && isSectionNode(node)) {
         this.section = node;
       }
       if(!this.page && !isSectionNode(node) && isPageNode(node)) {
@@ -96,6 +96,7 @@ export class PageContainerComponent implements OnChanges {
 
   onSectionSelected(section: SectionNode | undefined): void {
     // TODO - navigate to current info of section
+
     this.routeSelected.emit(section || this.page);
   }
 
@@ -103,4 +104,3 @@ export class PageContainerComponent implements OnChanges {
     this.routeSelected.emit(info);
   }
 }
-

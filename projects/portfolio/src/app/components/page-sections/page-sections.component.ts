@@ -28,7 +28,7 @@ export class PageSectionsComponent {
     if(section === this.section) {
       return;
     }
-    // TODO - navigate to current info of section
+
     this.sectionSelected.emit(section);
   }
 

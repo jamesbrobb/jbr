@@ -25,16 +25,19 @@
                       "path": "google-analytics",
                       "description": "libraries/core/src/lib/analytics/trackers/google-analytics/README.md",
                       "label": "google analytics",
-                      "type": "module",
-                      "githubLink": "libraries/core/src/lib/analytics/trackers/google-analytics"
+                      "type": "",
+                      "githubLink": "libraries/core/src/lib/analytics/trackers/google-analytics",
+                      "isModule": true
                     }
                   ]
                 }
               ],
               "label": "analytics",
-              "type": "module",
+              "type": "",
               "githubLink": "libraries/core/src/lib/analytics",
+              "isModule": true,
               "description": "libraries/core/src/lib/analytics/.README/DESCRIPTION.md",
+              "usage": "libraries/core/src/lib/analytics/.README/USAGE.md",
               "sections": [
                 {
                   "path": "analytics-service",
@@ -64,41 +67,47 @@
                   "path": "command",
                   "description": "libraries/core/src/lib/commands/command/README.md",
                   "label": "command",
-                  "type": "module",
-                  "githubLink": "libraries/core/src/lib/commands/command"
+                  "type": "",
+                  "githubLink": "libraries/core/src/lib/commands/command",
+                  "isModule": true
                 },
                 {
                   "path": "group",
                   "description": "libraries/core/src/lib/commands/group/README.md",
                   "label": "group",
-                  "type": "module",
-                  "githubLink": "libraries/core/src/lib/commands/group"
+                  "type": "",
+                  "githubLink": "libraries/core/src/lib/commands/group",
+                  "isModule": true
                 },
                 {
                   "path": "processor",
                   "description": "libraries/core/src/lib/commands/processor/README.md",
                   "label": "processor",
-                  "type": "module",
-                  "githubLink": "libraries/core/src/lib/commands/processor"
+                  "type": "",
+                  "githubLink": "libraries/core/src/lib/commands/processor",
+                  "isModule": true
                 }
               ],
               "description": "libraries/core/src/lib/commands/README.md",
               "label": "commands",
-              "type": "module",
-              "githubLink": "libraries/core/src/lib/commands"
+              "type": "",
+              "githubLink": "libraries/core/src/lib/commands",
+              "isModule": true
             },
             {
               "path": "http",
               "description": "libraries/core/src/lib/http/README.md",
               "label": "http",
-              "type": "module",
-              "githubLink": "libraries/core/src/lib/http"
+              "type": "",
+              "githubLink": "libraries/core/src/lib/http",
+              "isModule": true
             }
           ],
           "description": "libraries/core/README.md",
           "label": "core",
-          "type": "module",
-          "githubLink": "libraries/core"
+          "type": "",
+          "githubLink": "libraries/core",
+          "isModule": true
         },
         {
           "path": "ng",
@@ -116,31 +125,35 @@
                           "path": "google-analytics",
                           "description": "libraries/ng/src/lib/core/analytics/trackers/google-analytics/README.md",
                           "label": "google analytics",
-                          "type": "module",
-                          "githubLink": "libraries/ng/src/lib/core/analytics/trackers/google-analytics"
+                          "type": "",
+                          "githubLink": "libraries/ng/src/lib/core/analytics/trackers/google-analytics",
+                          "isModule": true
                         }
                       ]
                     }
                   ],
                   "description": "libraries/ng/src/lib/core/analytics/README.md",
                   "label": "analytics",
-                  "type": "module",
-                  "githubLink": "libraries/ng/src/lib/core/analytics"
+                  "type": "",
+                  "githubLink": "libraries/ng/src/lib/core/analytics",
+                  "isModule": true
                 },
                 {
                   "path": "http",
                   "description": "libraries/ng/src/lib/core/http/README.md",
                   "label": "http",
-                  "type": "module",
-                  "githubLink": "libraries/ng/src/lib/core/http"
+                  "type": "",
+                  "githubLink": "libraries/ng/src/lib/core/http",
+                  "isModule": true
                 }
               ]
             }
           ],
           "description": "libraries/ng/README.md",
           "label": "ng",
-          "type": "module",
-          "githubLink": "libraries/ng"
+          "type": "",
+          "githubLink": "libraries/ng",
+          "isModule": true
         },
         {
           "path": "product",
@@ -160,8 +173,9 @@
                             {
                               "path": "page",
                               "label": "page",
-                              "type": "module",
+                              "type": "",
                               "githubLink": "libraries/product/src/lib/efclass/components/layout/headers/page",
+                              "isModule": true,
                               "description": "libraries/product/src/lib/efclass/components/layout/headers/page/.README/DESCRIPTION.md",
                               "info": [
                                 {
@@ -184,8 +198,9 @@
                             {
                               "path": "fallback",
                               "label": "fallback",
-                              "type": "module",
+                              "type": "",
                               "githubLink": "libraries/product/src/lib/efclass/components/media/image/fallback",
+                              "isModule": true,
                               "description": "libraries/product/src/lib/efclass/components/media/image/fallback/.README/DESCRIPTION.md",
                               "info": [
                                 {
@@ -198,8 +213,9 @@
                             {
                               "path": "image",
                               "label": "image",
-                              "type": "module",
+                              "type": "",
                               "githubLink": "libraries/product/src/lib/efclass/components/media/image/image",
+                              "isModule": true,
                               "description": "libraries/product/src/lib/efclass/components/media/image/image/.README/DESCRIPTION.md",
                               "info": [
                                 {
@@ -220,8 +236,9 @@
                           "path": "lesson-plan-card",
                           "description": "libraries/product/src/lib/efclass/components/my-library/lesson-plan-card/README.md",
                           "label": "lesson plan card",
-                          "type": "module",
-                          "githubLink": "libraries/product/src/lib/efclass/components/my-library/lesson-plan-card"
+                          "type": "",
+                          "githubLink": "libraries/product/src/lib/efclass/components/my-library/lesson-plan-card",
+                          "isModule": true
                         }
                       ]
                     }
@@ -232,22 +249,25 @@
           ],
           "description": "libraries/product/README.md",
           "label": "product",
-          "type": "module",
-          "githubLink": "libraries/product"
+          "type": "",
+          "githubLink": "libraries/product",
+          "isModule": true
         },
         {
           "path": "types",
           "description": "libraries/types/README.md",
           "label": "types",
-          "type": "module",
-          "githubLink": "libraries/types"
+          "type": "",
+          "githubLink": "libraries/types",
+          "isModule": true
         },
         {
           "path": "typescript",
           "description": "libraries/typescript/README.md",
           "label": "typescript",
-          "type": "module",
-          "githubLink": "libraries/typescript"
+          "type": "",
+          "githubLink": "libraries/typescript",
+          "isModule": true
         },
         {
           "path": "ui",
@@ -262,53 +282,47 @@
                       "path": "icon",
                       "description": "libraries/ui/src/lib/common/icons/icon/README.md",
                       "label": "icon",
-                      "type": "module",
-                      "githubLink": "libraries/ui/src/lib/common/icons/icon"
+                      "type": "",
+                      "githubLink": "libraries/ui/src/lib/common/icons/icon",
+                      "isModule": true
                     }
                   ],
                   "description": "libraries/ui/src/lib/common/icons/README.md",
                   "label": "icons",
-                  "type": "module",
-                  "githubLink": "libraries/ui/src/lib/common/icons"
+                  "type": "",
+                  "githubLink": "libraries/ui/src/lib/common/icons",
+                  "isModule": true
                 },
                 {
                   "path": "overlay",
                   "children": [
                     {
                       "path": "color",
-                      "label": "color",
-                      "type": "",
-                      "githubLink": "libraries/ui/src/lib/common/overlay/color.ts",
-                      "sections": [
+                      "label": "color overlay",
+                      "type": "component",
+                      "githubLink": "libraries/ui/src/lib/common/overlay/color/color-overlay.component.ts",
+                      "info": [
                         {
-                          "path": "color-overlay-component",
-                          "label": "color overlay",
-                          "type": "component",
-                          "githubLink": "libraries/ui/src/lib/common/overlay/color/color-overlay.component.ts",
-                          "info": [
-                            {
-                              "name": "API",
-                              "path": "api",
-                              "uri": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/API.md"
-                            }
-                          ],
-                          "description": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/DESCRIPTION.md",
-                          "controls": [
-                            {
-                              "controlType": "select",
-                              "options": "OVERLAY_COLORS",
-                              "key": "color",
-                              "label": "Color",
-                              "value": "OVERLAY_COLORS.BLUE"
-                            },
-                            {
-                              "controlType": "input",
-                              "type": "checkbox",
-                              "key": "allowTransition",
-                              "label": "Allow transition",
-                              "value": "true"
-                            }
-                          ]
+                          "name": "API",
+                          "path": "api",
+                          "uri": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/API.md"
+                        }
+                      ],
+                      "description": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/DESCRIPTION.md",
+                      "controls": [
+                        {
+                          "controlType": "select",
+                          "options": "OVERLAY_COLORS",
+                          "key": "color",
+                          "label": "Color",
+                          "value": "OVERLAY_COLORS.BLUE"
+                        },
+                        {
+                          "controlType": "input",
+                          "type": "checkbox",
+                          "key": "allowTransition",
+                          "label": "Allow transition",
+                          "value": "true"
                         }
                       ]
                     }
@@ -321,8 +335,9 @@
                       "path": "html-renderer",
                       "description": "libraries/ui/src/lib/common/renderers/html-renderer/README.md",
                       "label": "html renderer",
-                      "type": "module",
-                      "githubLink": "libraries/ui/src/lib/common/renderers/html-renderer"
+                      "type": "",
+                      "githubLink": "libraries/ui/src/lib/common/renderers/html-renderer",
+                      "isModule": true
                     }
                   ]
                 },
@@ -333,22 +348,25 @@
                       "path": "svg",
                       "description": "libraries/ui/src/lib/common/svg/svg/README.md",
                       "label": "svg",
-                      "type": "module",
-                      "githubLink": "libraries/ui/src/lib/common/svg/svg"
+                      "type": "",
+                      "githubLink": "libraries/ui/src/lib/common/svg/svg",
+                      "isModule": true
                     }
                   ],
                   "description": "libraries/ui/src/lib/common/svg/README.md",
                   "label": "svg",
-                  "type": "module",
-                  "githubLink": "libraries/ui/src/lib/common/svg"
+                  "type": "",
+                  "githubLink": "libraries/ui/src/lib/common/svg",
+                  "isModule": true
                 }
               ]
             },
             {
               "path": "component-loader",
               "label": "component loader",
-              "type": "module",
+              "type": "",
               "githubLink": "libraries/ui/src/lib/component-loader",
+              "isModule": true,
               "description": "libraries/ui/src/lib/component-loader/.README/DESCRIPTION.md",
               "sections": [
                 {
@@ -420,8 +438,9 @@
             {
               "path": "dynamic",
               "label": "dynamic",
-              "type": "module",
+              "type": "",
               "githubLink": "libraries/ui/src/lib/dynamic",
+              "isModule": true,
               "description": "libraries/ui/src/lib/dynamic/.README/DESCRIPTION.md",
               "info": [
                 {
@@ -438,15 +457,17 @@
                   "path": "codemirror",
                   "description": "libraries/ui/src/lib/forms/codemirror/README.md",
                   "label": "codemirror",
-                  "type": "module",
-                  "githubLink": "libraries/ui/src/lib/forms/codemirror"
+                  "type": "",
+                  "githubLink": "libraries/ui/src/lib/forms/codemirror",
+                  "isModule": true
                 },
                 {
                   "path": "json-editor",
                   "description": "libraries/ui/src/lib/forms/json-editor/README.md",
                   "label": "json editor",
-                  "type": "module",
-                  "githubLink": "libraries/ui/src/lib/forms/json-editor"
+                  "type": "",
+                  "githubLink": "libraries/ui/src/lib/forms/json-editor",
+                  "isModule": true
                 }
               ]
             },
@@ -456,8 +477,9 @@
                 {
                   "path": "grid",
                   "label": "grid",
-                  "type": "module",
+                  "type": "",
                   "githubLink": "libraries/ui/src/lib/layout/grid",
+                  "isModule": true,
                   "info": [
                     {
                       "name": "API",
@@ -480,8 +502,9 @@
                 {
                   "path": "container",
                   "label": "container",
-                  "type": "module",
+                  "type": "",
                   "githubLink": "libraries/ui/src/lib/responsive/container",
+                  "isModule": true,
                   "description": "libraries/ui/src/lib/responsive/container/.README/DESCRIPTION.md",
                   "info": [
                     {
@@ -496,8 +519,9 @@
           ],
           "description": "libraries/ui/README.md",
           "label": "ui",
-          "type": "module",
-          "githubLink": "libraries/ui"
+          "type": "",
+          "githubLink": "libraries/ui",
+          "isModule": true
         }
       ]
     }

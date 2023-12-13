@@ -20,7 +20,10 @@ export type PageNode = {
   description: string
   githubLink: string
   type: string
+  isModule: boolean
   demonstrates?: string
+  usage?: string,
+  //info?: InfoNode[]
 } & RouteNodeBase
 
 export type SectionsNode = {
