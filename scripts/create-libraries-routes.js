@@ -109,11 +109,10 @@ function getPageData(node, children, isDir) {
         case 'DESCRIPTION.md':
           pageData.description = child.path;
           break;
+        case 'DEMONSTRATES.md':
+          pageData.demonstrates = child.path;
+          break;
         case 'USAGE.md':
-          /*if(pageData.isModule) {
-            pageData.usage = child.path;
-            break;
-          }*/
         case 'API.md':
         case 'EXAMPLE.md':
           let name = child.name.split('.')[0];
@@ -121,7 +120,8 @@ function getPageData(node, children, isDir) {
           pageData.info.push({
             name: name,
             path: name.toLowerCase(),
-            uri: child.path
+            uri: child.path,
+            isExample: child.name.includes('EXAMPLE')
           });
           break;
         case 'controls.json':

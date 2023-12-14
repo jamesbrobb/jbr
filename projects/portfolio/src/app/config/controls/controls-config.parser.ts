@@ -12,16 +12,13 @@ export class ControlsConfigParser {
     private _optionsMap?:ControlsOptionsMap
   ) {}
 
-  parseOptions(controls: ControlGroup[]): void {
+  parseOptions(control: ControlGroup): void {
 
-    controls.forEach((control) => {
-
-      switch(control.controlType) {
-        case ControlTypes.select:
-          this._parseSelect(control);
-          break;
-      }
-    });
+    switch(control.controlType) {
+      case ControlTypes.select:
+        this._parseSelect(control);
+        break;
+    }
   }
 
   private _parseSelect(control: SelectControl): void {
@@ -39,7 +36,7 @@ export class ControlsConfigParser {
   }
 
   private _setSelectDefault(control: SelectControl): void {
-
+    console.log(control);
     if(control.defaultValue === undefined || !control.options || !control.options.length) {
       return;
     }

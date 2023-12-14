@@ -1,18 +1,18 @@
 
 {
     "controls": [
-    
+
         {
   "controlType": "select",
-  "options": "OVERLAY_COLORS",
+  "optionsId": "OVERLAY_COLORS",
   "key": "color",
   "label": "Color",
   "value": "OVERLAY_COLORS.BLUE"
 }
-        
+
         ,
-        
-    
+
+
         {
   "controlType": "input",
   "type": "checkbox",
@@ -20,8 +20,8 @@
   "label": "Allow transition",
   "value": "true"
 }
-        
-    
+
+
     ]
 }
 

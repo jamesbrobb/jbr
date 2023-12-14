@@ -1,11 +1,18 @@
 import {EnvironmentProviders, makeEnvironmentProviders} from "@angular/core";
 import {ComponentLoaderMapService} from "@jbr/ui";
+import {
+  ColorOverlayComponentModule
+} from "../../../../../../libraries/ui/src/lib/common/overlay/color/color-overlay.component";
 
 export function getExampleProvider(): EnvironmentProviders {
+
   return makeEnvironmentProviders([{
     provide: ComponentLoaderMapService,
     useValue: {
-      //'color-overlay-dynamic': () => import('@jbr/components/common/overlay/color/color-overlay-dynamic.module'),
+      'color-overlay': {
+        import: () => import('../../../../../../libraries/ui/src/lib/common/overlay/color/color-overlay.component'),
+        standalone: false
+      },
       'grid-layout-example': {
         import:() => import('./grid-layout/grid-layout-example.component'),
         standalone: false

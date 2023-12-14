@@ -25,12 +25,14 @@
           "type": "",
           "githubLink": "libraries/core/src/lib/analytics",
           "isModule": true,
+          "demonstrates": "libraries/core/src/lib/analytics/.README/DEMONSTRATES.md",
           "description": "libraries/core/src/lib/analytics/.README/DESCRIPTION.md",
           "info": [
             {
               "name": "USAGE",
               "path": "usage",
-              "uri": "libraries/core/src/lib/analytics/.README/USAGE.md"
+              "uri": "libraries/core/src/lib/analytics/.README/USAGE.md",
+              "isExample": false
             }
           ],
           "sections": [
@@ -43,12 +45,14 @@
                 {
                   "name": "API",
                   "path": "api",
-                  "uri": "libraries/core/src/lib/analytics/.README/analytics-service/API.md"
+                  "uri": "libraries/core/src/lib/analytics/.README/analytics-service/API.md",
+                  "isExample": false
                 },
                 {
                   "name": "EXAMPLE",
                   "path": "example",
-                  "uri": "libraries/core/src/lib/analytics/.README/analytics-service/EXAMPLE.md"
+                  "uri": "libraries/core/src/lib/analytics/.README/analytics-service/EXAMPLE.md",
+                  "isExample": true
                 }
               ],
               "description": "libraries/core/src/lib/analytics/.README/analytics-service/DESCRIPTION.md"
@@ -176,7 +180,8 @@
                             {
                               "name": "EXAMPLE",
                               "path": "example",
-                              "uri": "libraries/product/src/lib/efclass/components/layout/headers/page/.README/EXAMPLE.md"
+                              "uri": "libraries/product/src/lib/efclass/components/layout/headers/page/.README/EXAMPLE.md",
+                              "isExample": true
                             }
                           ]
                         }
@@ -201,7 +206,8 @@
                             {
                               "name": "EXAMPLE",
                               "path": "example",
-                              "uri": "libraries/product/src/lib/efclass/components/media/image/fallback/.README/EXAMPLE.md"
+                              "uri": "libraries/product/src/lib/efclass/components/media/image/fallback/.README/EXAMPLE.md",
+                              "isExample": true
                             }
                           ]
                         },
@@ -216,7 +222,8 @@
                             {
                               "name": "EXAMPLE",
                               "path": "example",
-                              "uri": "libraries/product/src/lib/efclass/components/media/image/image/.README/EXAMPLE.md"
+                              "uri": "libraries/product/src/lib/efclass/components/media/image/image/.README/EXAMPLE.md",
+                              "isExample": true
                             }
                           ]
                         }
@@ -300,14 +307,15 @@
                     {
                       "name": "API",
                       "path": "api",
-                      "uri": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/API.md"
+                      "uri": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/API.md",
+                      "isExample": false
                     }
                   ],
                   "description": "libraries/ui/src/lib/common/overlay/color/.README/color-overlay.component/DESCRIPTION.md",
                   "controls": [
                     {
                       "controlType": "select",
-                      "options": "OVERLAY_COLORS",
+                      "optionsId": "OVERLAY_COLORS",
                       "key": "color",
                       "label": "Color",
                       "value": "OVERLAY_COLORS.BLUE"
@@ -373,7 +381,8 @@
                 {
                   "name": "API",
                   "path": "api",
-                  "uri": "libraries/ui/src/lib/component-loader/.README/component-loader-io-base.abstract/API.md"
+                  "uri": "libraries/ui/src/lib/component-loader/.README/component-loader-io-base.abstract/API.md",
+                  "isExample": false
                 }
               ],
               "description": "libraries/ui/src/lib/component-loader/.README/component-loader-io-base.abstract/DESCRIPTION.md"
@@ -387,7 +396,8 @@
                 {
                   "name": "API",
                   "path": "api",
-                  "uri": "libraries/ui/src/lib/component-loader/.README/component-loader-io.directive/API.md"
+                  "uri": "libraries/ui/src/lib/component-loader/.README/component-loader-io.directive/API.md",
+                  "isExample": false
                 }
               ],
               "description": "libraries/ui/src/lib/component-loader/.README/component-loader-io.directive/DESCRIPTION.md"
@@ -401,7 +411,8 @@
                 {
                   "name": "API",
                   "path": "api",
-                  "uri": "libraries/ui/src/lib/component-loader/.README/component-loader.directive/API.md"
+                  "uri": "libraries/ui/src/lib/component-loader/.README/component-loader.directive/API.md",
+                  "isExample": false
                 }
               ],
               "description": "libraries/ui/src/lib/component-loader/.README/component-loader.directive/DESCRIPTION.md",
@@ -423,7 +434,8 @@
                 {
                   "name": "API",
                   "path": "api",
-                  "uri": "libraries/ui/src/lib/component-loader/.README/component-loader.service/API.md"
+                  "uri": "libraries/ui/src/lib/component-loader/.README/component-loader.service/API.md",
+                  "isExample": false
                 }
               ],
               "description": "libraries/ui/src/lib/component-loader/.README/component-loader.service/DESCRIPTION.md"
@@ -441,7 +453,8 @@
             {
               "name": "EXAMPLE",
               "path": "example",
-              "uri": "libraries/ui/src/lib/dynamic/.README/EXAMPLE.md"
+              "uri": "libraries/ui/src/lib/dynamic/.README/EXAMPLE.md",
+              "isExample": true
             }
           ]
         },
@@ -479,12 +492,14 @@
                 {
                   "name": "API",
                   "path": "api",
-                  "uri": "libraries/ui/src/lib/layout/grid/.README/API.md"
+                  "uri": "libraries/ui/src/lib/layout/grid/.README/API.md",
+                  "isExample": false
                 },
                 {
                   "name": "EXAMPLE",
                   "path": "example",
-                  "uri": "libraries/ui/src/lib/layout/grid/.README/EXAMPLE.md"
+                  "uri": "libraries/ui/src/lib/layout/grid/.README/EXAMPLE.md",
+                  "isExample": true
                 }
               ],
               "description": "libraries/ui/src/lib/layout/grid/.README/DESCRIPTION.md"
@@ -505,7 +520,8 @@
                 {
                   "name": "EXAMPLE",
                   "path": "example",
-                  "uri": "libraries/ui/src/lib/responsive/container/.README/EXAMPLE.md"
+                  "uri": "libraries/ui/src/lib/responsive/container/.README/EXAMPLE.md",
+                  "isExample": true
                 }
               ]
             }
