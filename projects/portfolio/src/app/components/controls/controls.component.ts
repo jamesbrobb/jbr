@@ -3,6 +3,7 @@ import {NgClass, NgForOf, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@
 import {
   Component,
   EventEmitter,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -27,6 +28,7 @@ import {
 
 import {GuardTypePipe, JsonEditorComponent, JsonEditorControlValueAccessor} from "@jbr/ui";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {ControlsConfigParser} from "../../config/controls/controls-config.parser";
 
 
 export type ControlComponentInput = {
@@ -64,6 +66,8 @@ export class ControlsComponent implements ControlComponentIO, OnChanges, OnDestr
   @Input() controls?: ControlGroup[];
 
   @Output() dataChange = new EventEmitter<{[key: string]: unknown}>();
+
+  #parser = inject(ControlsConfigParser);
 
   form!: UntypedFormGroup;
 
@@ -125,6 +129,8 @@ export class ControlsComponent implements ControlComponentIO, OnChanges, OnDestr
         if(!isInteractiveControl(control)) {
           return;
         }
+
+        this.#parser.parseOptions(control);
 
         controls[control.key] = new UntypedFormControl(control.value)
       });

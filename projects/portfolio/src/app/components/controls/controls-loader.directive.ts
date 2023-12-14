@@ -11,7 +11,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 import {tap} from "rxjs";
 
-import {ComponentLoaderMapService, ComponentLoaderIOBase} from "@jbr/ui";
+import {ComponentLoaderMapService, ComponentLoaderIOBase, ComponentLoaderDirective} from "@jbr/ui";
 import {ControlComponentIO} from "./controls.component";
 import {ControlGroup} from "../../config/controls/controls-config";
 
@@ -31,7 +31,10 @@ export function getControlsLoaderProvider(): EnvironmentProviders {
 
 @Directive({
   selector: '[controlsLoader]',
-  standalone: true
+  standalone: true,
+  hostDirectives: [
+    ComponentLoaderDirective
+  ]
 })
 export class ControlsLoaderDirective extends ComponentLoaderIOBase<ControlComponentIO> implements ControlComponentIO {
 
@@ -54,18 +57,20 @@ export class ControlsLoaderDirective extends ComponentLoaderIOBase<ControlCompon
       return;
     }
 
-    this.instance.dataChange.pipe(
+    this.instance.instance.dataChange.pipe(
       takeUntilDestroyed(this.#destroyRef),
       tap(value => this.dataChange.emit(value))
     ).subscribe();
   }
 
-  protected updateInstanceInputs(): void {
+  protected override updateInstanceInputs(): void {
 
     if(!this.instance) {
       return;
     }
 
-    this.instance.controls = this.controls;
+    this.instance.setInput('controls', this.controls);
   }
+
+  protected override cleanUpInstance(): void {}
 }
