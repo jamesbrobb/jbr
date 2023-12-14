@@ -2,10 +2,10 @@
 <ng-container *ngFor="let node of routeNodes">
     <div class="breadcrumb">
         <ng-container *ngIf="node| guardType:isPageNode as page; else label">
-            <a (click)="selectNode(node)">{{page.label}}</a>
+            <a class="label" (click)="selectNode(node)">{{page.label}}</a>
         </ng-container>
     </div>
     <ng-template #label>
-        <div>{{node.path}}</div>
+        <div class="label">{{node.path}}</div>
     </ng-template>
 </ng-container>
