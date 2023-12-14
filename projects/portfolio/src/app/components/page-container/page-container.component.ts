@@ -22,27 +22,29 @@ import {
 } from "../../route";
 import {MatDividerModule} from "@angular/material/divider";
 import {PageSectionsComponent} from "../page-sections/page-sections.component";
+import {BreadcrumbsComponent} from "../breadcrumbs/breadcrumbs.component";
 
 
 @Component({
   selector: 'page-container',
   standalone: true,
-  imports: [
-    NgIf,
-    NgForOf,
-    NgClass,
-    MarkdownModule,
-    AnalyticsHrefListenerDirective,
-    AnalyticsEventDirective,
-    MatIconModule,
-    EntityInfoComponent,
-    MatExpansionModule,
-    MarkdownComponent,
-    EntityTypeLabelComponent,
-    toClassCasePipe,
-    MatDividerModule,
-    PageSectionsComponent
-  ],
+    imports: [
+        NgIf,
+        NgForOf,
+        NgClass,
+        MarkdownModule,
+        AnalyticsHrefListenerDirective,
+        AnalyticsEventDirective,
+        MatIconModule,
+        EntityInfoComponent,
+        MatExpansionModule,
+        MarkdownComponent,
+        EntityTypeLabelComponent,
+        toClassCasePipe,
+        MatDividerModule,
+        PageSectionsComponent,
+        BreadcrumbsComponent
+    ],
   templateUrl: './page-container.component.html',
   styleUrls: ['./page-container.component.scss'],
   //changeDetection: ChangeDetectionStrategy.OnPush,
@@ -94,11 +96,7 @@ export class PageContainerComponent implements OnChanges {
     }
   }
 
-  onSectionSelected(section: PageNode | undefined): void {
-    this.routeSelected.emit(section || this.page);
-  }
-
-  onInfoSelected(info: InfoNode): void {
-    this.routeSelected.emit(info);
+  onRouteSelected(node: RouteNode | undefined): void {
+    this.routeSelected.emit(node || this.page);
   }
 }

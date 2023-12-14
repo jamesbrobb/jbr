@@ -1,14 +1,29 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {isPageNode, RouteNode} from "../../route";
+import {NgForOf, NgIf} from "@angular/common";
+import {GuardTypePipe} from "@jbr/ui";
+
 
 @Component({
   selector: 'jbr-breadcrumbs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    NgForOf,
+    GuardTypePipe,
+    NgIf
+  ],
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbsComponent {
 
+  @Input({required: true}) routeNodes?: RouteNode[];
+  @Output() breadCrumbSelected = new EventEmitter<RouteNode>()
+
+  isPageNode = isPageNode;
+
+  selectNode(node: RouteNode) {
+    this.breadCrumbSelected.emit(node);
+  }
 }

@@ -27,6 +27,13 @@ $divider-colors: theme.get-mode-colors-for($palette-type: foreground, $type: div
     --controls-width: 250px;
   }
 
+  .breadcrumbs {
+    margin-bottom: 20px;
+    &:empty {
+      display: none;
+    }
+  }
+
   .details {
     position: relative;
     padding: 10px 30px 15px;

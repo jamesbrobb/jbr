@@ -1,1 +1,11 @@
-<p>breadcrumbs works!</p>
+
+<ng-container *ngFor="let node of routeNodes">
+    <div class="breadcrumb">
+        <ng-container *ngIf="node| guardType:isPageNode as page; else label">
+            <a (click)="selectNode(node)">{{page.label}}</a>
+        </ng-container>
+    </div>
+    <ng-template #label>
+        <div>{{node.path}}</div>
+    </ng-template>
+</ng-container>

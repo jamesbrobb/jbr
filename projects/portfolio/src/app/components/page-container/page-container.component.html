@@ -1,4 +1,6 @@
 
+<jbr-breadcrumbs class="breadcrumbs" [routeNodes]="routeNodes" (breadCrumbSelected)="onRouteSelected($event)"></jbr-breadcrumbs>
+
 <section class="details" [style.display]="page?.demonstrates ? 'block' : 'none'">
 
   <jbr-markdown [uri]="page?.demonstrates"></jbr-markdown>
@@ -14,8 +16,8 @@
     <jbr-page-sections [sections]="sections"
       [section]="section"
       [info]="info"
-      (sectionSelected)="onSectionSelected($event)"
-      (infoSelected)="onInfoSelected($event)">
+      (sectionSelected)="onRouteSelected($event)"
+      (infoSelected)="onRouteSelected($event)">
     </jbr-page-sections>
 
   </section>
