@@ -35,34 +35,6 @@
 
     <mat-tab-group dynamicHeight #group [selectedIndex]="selectedInfoIndex" (selectedIndexChange)="onSelectedIndexChange($event)">
 
-      <!--<ng-container *ngIf="page?.usage as usage">
-        <mat-tab label="Usage">
-          <ng-template matTabContent>
-
-            <section class="controls" *ngIf="controls">
-
-              <ng-container controlsLoader
-                            [controls]="controls"
-                            (dataChange)="onControlDataChange($event)">
-              </ng-container>
-
-            </section>
-
-            <section class="example" *ngIf="examples">
-
-              <ng-container *ngFor="let example of examples">
-
-                <ng-container componentLoaderIO="{{example}}" [inputs]="controlData">
-                </ng-container>
-
-              </ng-container>
-
-            </section>
-
-          </ng-template>
-        </mat-tab>
-      </ng-container>-->
-
       <ng-container *ngFor="let info of section.info">
 
         <mat-tab [label]="info.name">
