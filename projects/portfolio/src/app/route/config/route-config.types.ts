@@ -1,4 +1,5 @@
 import {TypeGuard} from "@jbr/types";
+import {ControlGroup} from "../../config/controls/controls-config";
 
 
 export type RouteNode = RedirectNode | ParentNode | PageNode | SectionsNode | InfoNode
@@ -22,7 +23,7 @@ export type PageNode = {
   type: string
   isModule: boolean
   demonstrates?: string
-  usage?: string
+  controls?: ControlGroup[]
 } & RouteNodeBase
 
 export type PageNodeWithInfo = {
@@ -36,6 +37,7 @@ export type SectionsNode = {
 export type InfoNode = {
   name: string
   uri: string
+  isExample: boolean
 } & RouteNodeBase
 
 
