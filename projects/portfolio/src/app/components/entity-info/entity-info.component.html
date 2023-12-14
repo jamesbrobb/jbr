@@ -25,12 +25,6 @@
 
   </ng-container>
 
-  <ng-container *ngIf="page?.usage as usage">
-
-    <jbr-markdown [uri]="usage" type="description"></jbr-markdown>
-
-  </ng-container>
-
 </section>
 
 <ng-container *ngIf="!!page">
@@ -72,8 +66,30 @@
       <ng-container *ngFor="let info of section.info">
 
         <mat-tab [label]="info.name">
-          <jbr-markdown [uri]="info.uri" type="{{info.name}}"></jbr-markdown>
+          <ng-container *ngIf="!info.isExample; else exampleContent">
+            <jbr-markdown [uri]="info.uri" type="{{info.name}}"></jbr-markdown>
+          </ng-container>
         </mat-tab>
+
+        <ng-template #exampleContent>
+
+          <section class="controls" *ngIf="section.controls">
+
+            <ng-container controlsLoader
+                          [controls]="section.controls"
+                          (dataChange)="onControlDataChange($event)">
+            </ng-container>
+
+          </section>
+
+          <section class="example" *ngIf="info.uri">
+
+              <ng-container componentLoaderIO="{{info.uri}}" [inputs]="controlData">
+              </ng-container>
+
+          </section>
+
+        </ng-template>
 
         <!-- as it stands defered loading of each tab content is clunky. Needs investigation to get working smoothly-->
         <!--<mat-tab [label]="info.name">

@@ -56,8 +56,6 @@ export class EntityInfoComponent implements OnChanges {
   @Output() infoSelectionChange = new EventEmitter<InfoNode>();
 
   selectedInfoIndex: number = 0;
-  controls?: ControlGroup[];
-  examples?: string[];
   controlData: {[key: string]: any} = {};
 
   isPageNodeWithInfo = isPageNodeWithInfo;
@@ -69,8 +67,6 @@ export class EntityInfoComponent implements OnChanges {
     }
 
     this.controlData = {};
-    //this.controls = this.page?.controls;
-    //this.examples = this.page?.examples;
 
     if(!isPageNodeWithInfo(this.page) || !this.info) {
       return;
