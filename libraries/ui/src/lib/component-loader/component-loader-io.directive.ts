@@ -20,11 +20,14 @@ export class ComponentLoaderIODirective<T extends object> extends ComponentLoade
 
   #destroyRef = inject(DestroyRef);
 
+
   protected override setUpInstance(): void {
 
     if(!this.instance) {
       return;
     }
+
+    // loop through outputs to add handlers?
 
     /*this.instance.dataChange
       .pipe(
@@ -35,25 +38,18 @@ export class ComponentLoaderIODirective<T extends object> extends ComponentLoade
 
   protected updateInstanceInputs(changes: SimpleChanges): void {
 
-    console.log(changes);
-
-    if(!this.instance) {
-      return;
-    }
-
     Object.keys(this.inputs || {})
-      .forEach((key) => {
+        .forEach((key) => {
 
-        if(!this.instance || !this.inputs) {
-          return;
-        }
+          if(!this.instance || !this.inputs) {
+            return;
+          }
 
-        const k= key as keyof T,
-          value= this.inputs[k];
+          this.instance.setInput(key, this.inputs[key as keyof T]);
+        });
+  }
 
-        if(value) {
-          this.instance[k] = value;
-        }
-      });
+  protected cleanUpInstance(): void {
+
   }
 }

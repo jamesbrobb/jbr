@@ -19,14 +19,14 @@ import {ComponentLoaderService} from "./component-loader.service";
 export class ComponentLoaderDirective<T> implements OnChanges, OnDestroy {
 
   @Input('componentLoader') componentType?: string;
-  @Output() componentChanged = new EventEmitter<T>();
+  @Output() componentChanged = new EventEmitter<ComponentRef<T>>();
 
   #container = inject(ViewContainerRef);
   #injector = inject(Injector);
   #loaderService = inject(ComponentLoaderService);
 
   #currentComponentType?: string;
-  #currentComponent?: ComponentRef<unknown>;
+  #currentComponent?: ComponentRef<T>;
 
   ngOnChanges(): void {
     this.loadComponent();
@@ -68,11 +68,11 @@ export class ComponentLoaderDirective<T> implements OnChanges, OnDestroy {
       return;
     }
 
-    const {ngModuleRef, componentType} = await this.#loaderService.getComponent(type);
+    const {ngModuleRef, componentType} = await this.#loaderService.getComponent<T>(type);
 
-    this.#currentComponent = this.#container.createComponent(componentType, {injector:this.#injector, ngModuleRef:ngModuleRef});
+    this.#currentComponent = this.#container.createComponent<T>(componentType, {injector:this.#injector, ngModuleRef:ngModuleRef});
     this.#currentComponentType = type;
 
-    this.componentChanged.emit(this.#currentComponent?.instance as T);
+    this.componentChanged.emit(this.#currentComponent);
   }
 }

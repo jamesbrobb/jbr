@@ -1,4 +1,4 @@
-import {Directive, inject, OnChanges, SimpleChanges} from "@angular/core";
+import {ComponentRef, Directive, inject, OnChanges, SimpleChanges} from "@angular/core";
 import {ComponentLoaderDirective} from "./component-loader.directive";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {tap} from "rxjs";
@@ -14,9 +14,9 @@ export abstract class ComponentLoaderIOBase<T extends object> implements OnChang
 
   #loader = inject(ComponentLoaderDirective<T>);
 
-  #instance?: T;
+  #instance?: ComponentRef<T>;
 
-  protected get instance(): T | undefined {
+  protected get instance(): ComponentRef<T> | undefined {
     return this.#instance;
   }
 
@@ -25,41 +25,38 @@ export abstract class ComponentLoaderIOBase<T extends object> implements OnChang
       takeUntilDestroyed(),
       tap(instance => {
         this.#setInstance(instance);
-        this.setUpInstance();
-        this.updateInstanceInputs();
-        this.#triggerOnChanges();
       })
     ).subscribe();
   }
   ngOnChanges(changes: SimpleChanges) {
     this.updateInstanceInputs(changes);
-    this.#triggerOnChanges();
+    this.#detectChanges();
   }
 
   protected loadComponent(componentType: string): void {
     this.#loader.loadComponent(componentType);
   }
 
-  protected setUpInstance(): void {
-
+  #setInstance(instance: ComponentRef<T>): void {
+    this.cleanUpInstance();
+    this.#instance = instance;
+    this.setUpInstance();
+    this.updateInstanceInputs();
+    this.#detectChanges();
   }
+
+  protected abstract setUpInstance(): void;
 
   protected abstract updateInstanceInputs(changes?: SimpleChanges): void;
 
-  #setInstance(instance: T): void {
-    this.#instance = instance;
-  }
+  protected abstract cleanUpInstance(): void;
 
-  #triggerOnChanges(): void {
+  #detectChanges(): void {
 
-    if(!this.#isOnChanges(this.#instance)) {
+    if(!this.instance) {
       return;
     }
 
-    this.#instance.ngOnChanges({});
-  }
-
-  #isOnChanges(value: any): value is OnChanges {
-    return value && typeof value['ngOnChanges'] === 'function';
+    this.instance.changeDetectorRef.detectChanges();
   }
 }
