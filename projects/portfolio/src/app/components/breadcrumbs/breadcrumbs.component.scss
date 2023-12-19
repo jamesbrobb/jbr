@@ -23,14 +23,17 @@ $link-colors: theme.get-mode-colors-for($palette-type: primary, $type: default);
     }
 
     .label {
+      user-select: none;
       opacity: 0.5;
     }
 
-    a {
-      cursor: pointer;
-      &:hover {
-        color: var(--link-color);
-        opacity: 1;
+    &:not(:last-child) {
+      a {
+        cursor: pointer;
+        &:hover {
+          color: var(--link-color);
+          opacity: 1;
+        }
       }
     }
   }

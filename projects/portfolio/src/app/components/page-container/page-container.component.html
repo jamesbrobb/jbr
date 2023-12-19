@@ -1,7 +1,10 @@
 
-<jbr-breadcrumbs class="breadcrumbs" [routeNodes]="routeNodes" (breadCrumbSelected)="onRouteSelected($event)"></jbr-breadcrumbs>
+<ng-container *ngIf="routeNodes && routeNodes.length > 1">
 
-<mat-divider></mat-divider>
+  <jbr-breadcrumbs class="breadcrumbs" [routeNodes]="routeNodes" (breadCrumbSelected)="onRouteSelected($event)"></jbr-breadcrumbs>
+  <mat-divider></mat-divider>
+
+</ng-container>
 
 <section class="details" [style.display]="page?.demonstrates ? 'block' : 'none'">
 

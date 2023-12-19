@@ -1,13 +1,13 @@
 
 <section>
 
+  <ng-container *ngIf="page?.type as type">
+    <jbr-entity-type-label [type]="type"></jbr-entity-type-label>
+  </ng-container>
+
   <div class="header" responsiveContainer>
 
     <div class="left">
-
-      <ng-container *ngIf="page?.type as type">
-        <jbr-entity-type-label [type]="type"></jbr-entity-type-label>
-      </ng-container>
 
       <h1 class="title">{{page?.type ? (page?.path | classCase) : (page?.path | words)}}</h1>
 

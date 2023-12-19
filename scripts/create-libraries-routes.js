@@ -36,7 +36,7 @@ function parsePageData(node) {
 
   const isReadmeDir = node.name === '.README';
   const isChildOfReadmeDir = !isReadmeDir && node.path.includes('.README');
-  const readme = node.children.find(child => child.name === 'README.md');
+  const readme = node.children.find(child => child.name === '_README.md');
   const readmeDir = node.children.find(child => child.name === '.README');
 
   if (!isReadmeDir && !isChildOfReadmeDir && !readmeDir && !readme) {

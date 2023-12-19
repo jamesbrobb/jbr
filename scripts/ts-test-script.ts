@@ -1,20 +1,22 @@
 import * as ts from "typescript";
 
 import {
-  buildMaps,
-  CommonPathHandler, JBRPathHandler,
-  MapBuilderMaps,
-  NgPathHandler,
-  NodeModulesPathHandler,
-  RxjsPathHandler,
-  getParsedConfig,
-  createProgram,
-  getSourceFile,
-  createSourceFileMap,
-  createImportsMap,
-  convertPath,
-  ImportsMapElementExtended
-} from "../libraries/typescript/src/lib";
+    buildMaps,
+    CommonPathHandler, JBRPathHandler,
+    MapBuilderMaps,
+    NgPathHandler,
+    NodeModulesPathHandler,
+    RxjsPathHandler,
+    getParsedConfig,
+    createProgram,
+    getSourceFile,
+    createSourceFileMap,
+    createImportsMap,
+    convertPath,
+    createLocalMap,
+    ImportsMapElementExtended,
+    parseSourceFile, parseDeclaration
+} from "../libraries/typescript";
 
 
 const maps: MapBuilderMaps<[ts.SyntaxKind]> = buildMaps(
@@ -26,6 +28,8 @@ const maps: MapBuilderMaps<[ts.SyntaxKind]> = buildMaps(
 )
 
 const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/core/src/lib/analytics/analytics-service.ts';
+//const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/core/src/lib/commands/command/command.ts';
+//const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/ui/src/lib/common/overlay/color/color-overlay.component.ts';
 
 const config = getParsedConfig();
 
@@ -40,7 +44,7 @@ const sourceFileMap = createSourceFileMap(program, {
 });
 
 const importsMap = createImportsMap(sourceFile, {
-  debug: true,
+  debug: false,
   pathResolutionMap: maps.pathResolutionMap,
   // TODO - move this inside createImportsMap - add sourceFileMap and pathConversionMap to options?
   importsMapElementCreatorFn: (importName: string, importModule: string) => {
@@ -61,4 +65,11 @@ const importsMap = createImportsMap(sourceFile, {
   }
 });
 
-console.log(importsMap);
+const localMap = createLocalMap(program, sourceFile);
+
+const parsedSF = parseSourceFile(program, sourceFile, {
+    returnArray: false,
+    lazy: false,
+    debug: true,
+    nodeParseFn: parseDeclaration
+});
