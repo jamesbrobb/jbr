@@ -1,4 +1,4 @@
-import {PathHandler} from "./handlers/path-handler";
+import {PathHandler} from "./handlers";
 import {IgnorePathsMap, PathConversionMap} from "../maps";
 import {DuplicatePathPrecedenceMap, PathResolutionMap} from "./resolvers";
 

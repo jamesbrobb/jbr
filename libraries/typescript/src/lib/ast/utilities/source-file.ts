@@ -1,4 +1,6 @@
 import * as ts from 'typescript';
+import {ParseNodeOptions, walkNodeTree} from "./node";
+import {logResults} from "./log";
 
 
 export function getSourceFile(program: ts.Program, sourcePath: string): ts.SourceFile {
@@ -44,4 +46,17 @@ export function getExportedDeclarationsFromSource(
   return typeChecker.getExportsOfModule(symbol)
     .map(value => value.declarations?.[0])
     .filter((declaration): declaration is ts.Declaration => !!declaration);
+}
+
+
+export function parseSourceFile<R = ts.Node>(program: ts.Program, sourceFile: ts.SourceFile, options?: ParseNodeOptions<R>): any[] | {} {
+
+  const results = getExportedDeclarationsFromSource(program, sourceFile)
+      .map(declaration => walkNodeTree(declaration, sourceFile, options));
+
+  if(options?.debug) {
+    logResults(results);
+  }
+
+  return results
 }

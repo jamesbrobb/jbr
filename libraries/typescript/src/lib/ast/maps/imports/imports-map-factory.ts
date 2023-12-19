@@ -2,7 +2,7 @@ import * as ts from "typescript";
 import * as path from "path";
 
 import {PathResolutionMap, resolvePath} from "../../paths";
-import {Import, isImportDeclaration, parseDefinition} from "../../declarations";
+import {Import, isImportDeclaration, parseDeclaration} from "../../declarations";
 import {walkNodeTree} from "../../utilities";
 import {ImportsMap, ImportsMapElement, ImportsMapElementExtended, ImportsMapOptions} from "./imports-map";
 
@@ -18,7 +18,7 @@ export type ImportsMapFactoryOptions<R extends unknown[]> =
 export function createImportsMap<R extends unknown[] = []>(sourceFile: ts.SourceFile, options?: ImportsMapFactoryOptions<R>): ImportsMap<R> {
 
   if(options && !options.nodeParseFn) {
-    options.nodeParseFn = parseDefinition as any
+    options.nodeParseFn = parseDeclaration as any
   }
 
   // @ts-ignore

@@ -9,7 +9,7 @@ export function isParsedNodeResult<R>(result: any): result is ParsedNodeResult<R
 
 export type ParseNodeFunc<R> = (node: ts.Node, sourceFile: ts.SourceFile, debug?: boolean) => R | ParsedNodeResult<R>;
 
-export type Options<R> = {
+export type ParseNodeOptions<R> = {
   nodeParseFn?: ParseNodeFunc<R>,
   returnArray?: boolean,
   lazy?: boolean,
@@ -17,7 +17,7 @@ export type Options<R> = {
 }
 
 
-export function walkNodeTree<R = ts.Node>(node: ts.Node, sourceFile: ts.SourceFile, options?: Options<R>): any[] | Record<PropertyKey, unknown> {
+export function walkNodeTree<R = ts.Node>(node: ts.Node, sourceFile: ts.SourceFile, options?: ParseNodeOptions<R>): any[] | Record<PropertyKey, unknown> {
 
   const parseFn: ParseNodeFunc<R> = options?.nodeParseFn || ((node: ts.Node): R => node as R),
     children: any[] = [];

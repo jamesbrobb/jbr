@@ -1,5 +1,7 @@
 import * as ts from "typescript";
 import {getText} from "../../utilities";
+import {Declaration} from "../declaration-types";
+import {DeclarationKind} from "../declaration-kind";
 
 
 export type DecoratorMetadata = {
@@ -20,12 +22,12 @@ export type GetDecoratorMetadata<T extends {}> = {
 }
 
 export type DecoratorDef<T extends string, M extends DecoratorMetadata | string> = {
-  kind: 'decorator'
+  kind: DeclarationKind.DECORATOR
   type: T,
   metadata?: M,
   raw: string,
   signature: string
-}
+} & Declaration<DeclarationKind.DECORATOR>
 
 
 export function getDecorator<T extends Decorator>(node: ts.Decorator, sourceFile: ts.SourceFile): T {

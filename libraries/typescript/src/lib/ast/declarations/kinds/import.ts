@@ -6,14 +6,12 @@ import {DeclarationKind} from "../declaration-kind";
 
 
 export type Import = {
-  kind: DeclarationKind.IMPORT
   module: string
   raw: string
   children?: ImportClause[]
 } & Declaration<DeclarationKind.IMPORT> & Modifiers
 
 export type ImportClause = {
-  kind: DeclarationKind.IMPORT_CLAUSE
   name?: string
   isTypeOnly?: boolean
   raw: string
@@ -21,13 +19,11 @@ export type ImportClause = {
 } & Declaration<DeclarationKind.IMPORT_CLAUSE>
 
 export type NamedImports = {
-  kind: DeclarationKind.NAMED_IMPORTS
   raw: string
   children?: ImportSpecifier[]
 } & Declaration<DeclarationKind.NAMED_IMPORTS>
 
 export type ImportSpecifier = {
-  kind: DeclarationKind.IMPORT_SPECIFIER
   name: string
   propertyName?: string
   raw: string
@@ -40,7 +36,7 @@ export type NamespaceImport = {
 
 
 export function isImportDeclaration(result: any): result is Import {
-  return 'kind' in result && result.kind === 'import'
+  return 'kind' in result && result.kind === DeclarationKind.IMPORT
 }
 
 export function getImportDeclaration(node: ts.ImportDeclaration, sourceFile: ts.SourceFile): Import {

@@ -10,7 +10,7 @@ export type NoParseFunctionReturnType = {
 }
 
 
-export function parseDefinition<N extends ts.Node>(
+export function parseDeclaration<N extends ts.Node>(
   node: N,
   sourceFile: ts.SourceFile,
   debug?: boolean
