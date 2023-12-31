@@ -3,26 +3,26 @@ import {IgnorePathsMap, PathConversionMap} from "../maps";
 import {DuplicatePathPrecedenceMap, PathResolutionMap} from "./resolvers";
 
 
-export type MapBuilderMaps<E extends unknown[]> = {
-  ignoreMap: IgnorePathsMap
-  duplicatePrecedenceMap: DuplicatePathPrecedenceMap
+export type PathParserMaps<E extends unknown[]> = {
+  ignorePathsMap: IgnorePathsMap
+  duplicatePathPrecedenceMap: DuplicatePathPrecedenceMap
   pathResolutionMap: PathResolutionMap
   pathConversionMap: PathConversionMap<E>
 }
 
 
-export function buildMaps<E extends unknown[]>(...pathHandlers: PathHandler<E>[]): MapBuilderMaps<E> {
+export function buildPathMaps<E extends unknown[]>(...pathHandlers: PathHandler<E>[]): PathParserMaps<E> {
 
-  const maps: MapBuilderMaps<E> = {
-    ignoreMap: [],
-    duplicatePrecedenceMap: [],
+  const maps: PathParserMaps<E> = {
+    ignorePathsMap: [],
+    duplicatePathPrecedenceMap: [],
     pathResolutionMap: [],
     pathConversionMap: []
   }
 
   pathHandlers.forEach((handler) => {
-    maps.ignoreMap = maps.ignoreMap.concat(handler.getIgnorePathsMap())
-    maps.duplicatePrecedenceMap = maps.duplicatePrecedenceMap.concat(handler.getDuplicatePathPrecedenceMap())
+    maps.ignorePathsMap = maps.ignorePathsMap.concat(handler.getIgnorePathsMap())
+    maps.duplicatePathPrecedenceMap = maps.duplicatePathPrecedenceMap.concat(handler.getDuplicatePathPrecedenceMap())
     maps.pathResolutionMap = maps.pathResolutionMap.concat(handler.getPathResolutionMap())
     maps.pathConversionMap = maps.pathConversionMap.concat(handler.getPathConversionMap())
   })

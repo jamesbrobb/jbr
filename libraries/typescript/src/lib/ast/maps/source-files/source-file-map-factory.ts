@@ -12,7 +12,7 @@ export type SourceModuleCreatorFn<R extends unknown[]> = (
 ) => [...args: R];
 
 type Options = {
-  ignorePathsWith?: IgnorePathsMap,
+  ignorePathsMap?: IgnorePathsMap,
 } & SourceFileMapOptions
 
 
@@ -74,7 +74,7 @@ function isSourceFileEligible(program: ts.Program, sourceFile: ts.SourceFile, op
     return false;
   }
 
-  return !ignorePath(sourceFile.fileName, options?.ignorePathsWith || [], options?.debug)
+  return !ignorePath(sourceFile.fileName, options?.ignorePathsMap || [], options?.debug)
 }
 
 function getSymbolFromSource(program: ts.Program, sourceFile: ts.SourceFile): SymbolWithExports | undefined {

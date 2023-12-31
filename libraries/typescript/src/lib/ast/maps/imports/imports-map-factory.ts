@@ -28,15 +28,23 @@ export function createImportsMap<R extends unknown[] = []>(sourceFile: ts.Source
     // TODO - this code is coupled to my Import - need to decouple
     .filter(isImportDeclaration)
     .flatMap(imprt => getImportNames(imprt)
-      .map(name => [name, resolveModulePath(imprt.module, sourceFile, options?.pathResolutionMap)])
+      .map(name => [
+        name,
+        imprt.module,
+        resolveModulePath(
+          imprt.module,
+          sourceFile,
+          options?.pathResolutionMap || []
+        )
+      ])
     )
     ///////////////////////////
-    .map(([name, module]) => {
+    .map(([name, module, resolvedImportModule]) => {
         if (options && 'importsMapElementCreatorFn' in options) {
-          return options.importsMapElementCreatorFn(name, module)
+          return options.importsMapElementCreatorFn(name, module, resolvedImportModule)
         }
 
-        return [name, module]
+        return [name, module, resolvedImportModule];
       }
     );
 

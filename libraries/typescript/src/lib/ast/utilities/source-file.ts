@@ -1,6 +1,10 @@
 import * as ts from 'typescript';
+import * as path from "path";
+
 import {ParseNodeOptions, walkNodeTree} from "./node";
 import {logResults} from "./log";
+import {SourceFileDeclaration} from "../declarations/kinds/source-file";
+import {DeclarationKind} from "../declarations";
 
 
 export function getSourceFile(program: ts.Program, sourcePath: string): ts.SourceFile {
@@ -49,14 +53,41 @@ export function getExportedDeclarationsFromSource(
 }
 
 
-export function parseSourceFile<R = ts.Node>(program: ts.Program, sourceFile: ts.SourceFile, options?: ParseNodeOptions<R>): any[] | {} {
+export function parseSourceFile<R = ts.Node>(
+  program: ts.Program,
+  source: ts.SourceFile | string,
+  options?: ParseNodeOptions<R>
+): SourceFileDeclaration {
 
-  const results = getExportedDeclarationsFromSource(program, sourceFile)
+  const sourceFile: ts.SourceFile = typeof source === 'string' ? getSourceFile(program, source) : source;
+
+  const exports: any[] = getExportedDeclarationsFromSource(program, sourceFile)
       .map(declaration => walkNodeTree(declaration, sourceFile, options));
 
   if(options?.debug) {
-    logResults(results);
+    logResults(exports);
   }
 
-  return results
+  return {
+    kind: DeclarationKind.SOURCE_FILE,
+    fileName: path.basename(sourceFile.fileName),
+    path: path.dirname(sourceFile.fileName),
+    imports: [],
+    exports
+  }
+}
+
+export function parseSourceFiles<R = ts.Node>(
+  program: ts.Program,
+  entryPoint: string,
+  options?: ParseNodeOptions<R>
+) {
+  const basePath = path.dirname(entryPoint),
+    ignoreFiles = ['index.ts', 'public-api.ts', '.d.ts', '.spec.ts', '.mock.ts'];
+  return program.getSourceFiles()
+    .filter(sourceFile => sourceFile.fileName.startsWith(basePath))
+    .filter(sourceFile => {
+      return !ignoreFiles.some(ignoreFile => sourceFile.fileName.endsWith(ignoreFile));
+    })
+    .map(sourceFile => parseSourceFile(program, sourceFile, options));
 }

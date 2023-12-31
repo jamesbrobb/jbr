@@ -1,3 +1,3 @@
 export * from './resolvers';
 export * from './handlers';
-export * from './map-builder';
+export * from './path-map-builder';
