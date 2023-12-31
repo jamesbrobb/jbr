@@ -1,26 +1,10 @@
 import * as ts from 'typescript';
 import {DeclarationKind} from "./declaration-kind";
 import {
-  ClassDeclaration,
-  Constructor, Decorator,
-  EnumDeclaration,
-  EnumMemberDeclaration, ExpressionWithTypeArguments,
-  GetAccessor,
-  HeritageClause,
-  Import,
-  ImportClause,
-  ImportSpecifier, Interface,
-  Method,
-  NamedImports,
-  NamespaceImport,
-  Parameter,
-  PropertyDeclaration,
-  PropertySignature,
-  SetAccessor,
-  TupleDeclaration,
-  TypeAliasDeclaration,
-  TypeLiteral, TypeParameter, TypeReference,
-  VariableDeclaration
+  ClassDeclaration, Constructor, Decorator, EnumDeclaration, EnumMemberDeclaration, ExpressionWithTypeArguments,
+  GetAccessor, HeritageClause, Import, ImportClause, ImportSpecifier, Interface, Method, NamedImports,
+  NamespaceImport, Parameter, PropertyDeclaration, PropertySignature, SetAccessor, TupleDeclaration,
+  TypeAliasDeclaration, TypeLiteral, TypeParameter, TypeReference, VariableDeclaration
 } from "./kinds";
 
 

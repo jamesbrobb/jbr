@@ -1,5 +1,6 @@
 
 export enum DeclarationKind {
+  SOURCE_FILE = 'sourceFile',
   IMPORT = 'import',
   IMPORT_CLAUSE = 'importClause',
   NAMED_IMPORTS = 'namedImports',
