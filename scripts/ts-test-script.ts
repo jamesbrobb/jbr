@@ -67,8 +67,16 @@ const importsMap = createImportsMap(sourceFile, {
     }
     console.log(result);
     console.log('====================')
+
+    let convertedPath = '';
+
+    if(sourceModule) {
+      convertedPath = convertPath(importName, sourceModule[0], sourceModule[1], maps.pathConversionMap);
+    }
+
+    console.log('convertedPath', convertedPath);
     // TODO - this works in the previous version without any??? the mouse over signature for convertPath is different?
-    return convertPath(result as any, maps.pathConversionMap);
+    return result;
   }
 });
 

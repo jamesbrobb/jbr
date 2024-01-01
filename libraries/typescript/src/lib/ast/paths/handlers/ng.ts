@@ -3,7 +3,7 @@ import {IgnorePathsMap, PathConversionMap, PathConversionMapEntry} from "../../m
 import {BasePathHandler} from "./path-handler";
 
 
-export const NG_PATH_CONVERTOR: PathConversionMapEntry<[ts.SyntaxKind]> = [/^@angular\/(.*?)$/g, 'https://angular.io/api/$1/$importName']
+export const NG_PATH_CONVERTOR: PathConversionMapEntry<[ts.SyntaxKind]> = [/^@angular\/(.*?)$/g, 'https://angular.io/api/$1/$name']
 
 
 export class NgPathHandler extends BasePathHandler {
