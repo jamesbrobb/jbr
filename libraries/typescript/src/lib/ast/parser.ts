@@ -1,14 +1,11 @@
-import * as ts from "typescript";
-import * as path from "path";
-
 import {SourceFileDeclaration} from "./declarations/kinds/source-file";
 import {buildPathMaps, PathParserMaps, PathHandler} from "./paths";
-import {createProgram, getParsedTSConfig, getSourceFile, parseSourceFile, parseSourceFiles} from "./utilities";
-import {createSourceFileMap} from "./maps";
+import {createProgram, getParsedTSConfig, parseSourceFile, parseSourceFiles} from "./utilities";
+import {createDependencyMap} from "./maps";
 
 
 export type ParseOptions = {
-  pathHandlers?: PathHandler<any>[],
+  pathHandlers?: PathHandler[],
   sourcePath?: string,
   walk?: boolean,
   lazy?: boolean,
@@ -23,9 +20,9 @@ export function parse(options?: ParseOptions): SourceFileDeclaration[] | SourceF
     program = createProgram(entryFile, config.options);
 
   const pathHandlers = options?.pathHandlers || [],
-    pathMaps: PathParserMaps<[ts.SyntaxKind]> = buildPathMaps(...pathHandlers);
+    pathMaps: PathParserMaps= buildPathMaps(...pathHandlers);
 
-  const dependenciesMap = createSourceFileMap(program, {
+  const dependenciesMap = createDependencyMap(program, {
     debug: false,
     ...pathMaps
   });
