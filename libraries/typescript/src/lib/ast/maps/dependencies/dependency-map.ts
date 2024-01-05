@@ -3,8 +3,8 @@ import { log } from "../../utilities";
 import {DuplicatePathPrecedenceMap, PathResolutionMap, resolveDuplicatePath, resolvePath} from "../../paths";
 
 
-export type SourceFileMapElement<T extends unknown[]> = [path: string, kind: ts.SyntaxKind, ...rest: T]
-export type SourceModuleMap<E extends unknown[]> = Map<string, SourceFileMapElement<E>>
+export type DependenciesMapElement<T extends unknown[]> = [path: string, kind: ts.SyntaxKind, ...rest: T]
+export type SourceModuleMap<E extends unknown[]> = Map<string, DependenciesMapElement<E>>
 
 export type SourceFileMapOptions = {
   moduleKeyRegex?: RegExp,
@@ -16,7 +16,7 @@ export type SourceFileMapOptions = {
 export const sourceFileMapKeyRegex = /^((@.*?\/)*[^\/]*)/g;
 
 
-export class SourceFileMap<E extends unknown[]> {
+export class DependenciesMap<E extends unknown[]> {
 
   readonly #keyRegex: RegExp = sourceFileMapKeyRegex;
   readonly #pathResolutionMap: PathResolutionMap = [];
@@ -62,7 +62,7 @@ export class SourceFileMap<E extends unknown[]> {
     this.#map.set(key, moduleMap);
   }
 
-  get(modulePath: string, entityName: string): SourceFileMapElement<E> | undefined {
+  get(modulePath: string, entityName: string): DependenciesMapElement<E> | undefined {
 
     const key = modulePath.match(this.#keyRegex)?.[0] || '';
 

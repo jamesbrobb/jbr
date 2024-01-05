@@ -8,10 +8,12 @@ export type DecoratorMetadata = {
   [key: string]: string | string[]
 }
 
+export type DecoratorMetadataTypes = DecoratorMetadata | string | (DecoratorMetadata | string)[]
+
 export type Decorator = {
   kind: 'decorator'
   type: string,
-  metadata?: DecoratorMetadata | string,
+  metadata?: DecoratorMetadataTypes,
   raw: string,
   signature: string
 }
@@ -21,7 +23,7 @@ export type GetDecoratorMetadata<T extends {}> = {
   [K in keyof T]: T[K] extends infer K ? K extends Array<unknown> ? string[] : K extends undefined ? never : string : never
 }
 
-export type DecoratorDef<T extends string, M extends DecoratorMetadata | string> = {
+export type DecoratorDef<T extends string, M extends DecoratorMetadataTypes> = {
   kind: DeclarationKind.DECORATOR
   type: T,
   metadata?: M,
@@ -43,24 +45,28 @@ export function getDecorator<T extends Decorator>(node: ts.Decorator, sourceFile
   const type = node.expression.expression.getText(sourceFile),
     metadata = getDecoratorMetadata<T['metadata']>(node.expression, sourceFile);
 
-  return {
-    kind: 'decorator',
+  const decorator = {
+    kind: DeclarationKind.DECORATOR,
     type,
     metadata,
     signature: getDecoratorSignature(type, metadata),
     raw: node.getText(sourceFile)
-  } as any
+  }
+
+  return decorator as T;
 }
 
 
 function getDecoratorMetadata<T extends Decorator['metadata']>(node: ts.CallExpression, sourceFile: ts.SourceFile): T {
 
-  let metadata: any | string;
+  let metadata: any | string | (any | string)[] | undefined;
 
   node.arguments.forEach(arg => {
 
+    metadata = metadata || [];
+
     if (ts.isIdentifier(arg) || ts.isStringLiteral(arg)) {
-      metadata = getText(arg, sourceFile);
+      metadata.push(getText(arg, sourceFile));
       return;
     }
 
@@ -78,11 +84,21 @@ function getDecoratorMetadata<T extends Decorator['metadata']>(node: ts.CallExpr
 
         const key = prop.name.getText(sourceFile) as keyof T;
 
-        metadata = metadata || {};
-        metadata[key] = getText(prop.initializer, sourceFile);
+        let current = metadata[metadata.length - 1];
+
+        if(typeof current !== 'object') {
+          current = {};
+          metadata.push(current);
+        }
+
+        current[key] = getText(prop.initializer, sourceFile);
       });
     }
   });
+
+  if(metadata && Array.isArray(metadata) && metadata.length === 1) {
+    metadata = metadata[0];
+  }
 
   return metadata
 }
@@ -90,15 +106,28 @@ function getDecoratorMetadata<T extends Decorator['metadata']>(node: ts.CallExpr
 
 function getDecoratorSignature(type: string, metaData: Decorator['metadata']): string {
 
-  if (!metaData) {
-    return `@${type}()`;
+  switch(typeof metaData) {
+    case 'string':
+      return `@${type}('${metaData}')`;
+    case 'object':
+      if(Array.isArray(metaData)) {
+        return `@${type}(${
+          metaData.map(item => {
+            if (typeof item === 'string') {
+              return `'${item}'`;
+            }
+            return convertMetadataToString(item);
+          }).join(', ')
+        })`;
+      }
+      return `@${type}(${convertMetadataToString(metaData)})`;
+    default:
+      return `@${type}()`;
   }
+}
 
-  if(typeof metaData === 'string') {
-    return `@${type}('${metaData}')`;
-  }
-
-  const options = Reflect.ownKeys(metaData)
+function convertMetadataToString(metaData: {}): string {
+  return Reflect.ownKeys(metaData)
     .map(key => {
       const value = (metaData as any)[key];
       return [key, value];
@@ -112,6 +141,4 @@ function getDecoratorSignature(type: string, metaData: Decorator['metadata']): s
 
       return `${accumulator}${currentIndex === 0 || array[currentIndex - 1].length === 1 ? '{' : ''}${currentValue[0]}: ${currentValue[1]}${currentIndex === array.length - 1 ? '}' : ', '}`;
     }, '')
-
-  return `@${type}(${options})`;
 }

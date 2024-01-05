@@ -1,7 +1,7 @@
 import * as ts from "typescript";
 
 import {log, convertSourceFileToSymbol} from "../../utilities";
-import {SourceFileMap, SourceFileMapOptions} from "./source-file-map";
+import {DependenciesMap, SourceFileMapOptions} from "./dependencies-map";
 
 
 export type IgnorePathsMap = (string | RegExp)[];
@@ -23,9 +23,9 @@ export type SourceFileMapFactoryOptions<R extends unknown[] = []> =
 type SymbolWithExports = ts.Symbol & {exports: ts.SymbolTable};
 type SourceAndSymbolTuple = [sourceFile: ts.SourceFile, symbol: SymbolWithExports];
 
-export function createSourceFileMap<R extends unknown[] = []>(program: ts.Program, options?: SourceFileMapFactoryOptions<R>): SourceFileMap<R> {
+export function createSourceFileMap<R extends unknown[] = []>(program: ts.Program, options?: SourceFileMapFactoryOptions<R>): DependenciesMap<R> {
 
-  const sourceFilesMap = new SourceFileMap<R>(options);
+  const sourceFilesMap = new DependenciesMap<R>(options);
 
   program.getSourceFiles()
     .filter(sourceFile => isSourceFileEligible(program, sourceFile, options))
