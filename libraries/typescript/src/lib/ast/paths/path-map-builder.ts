@@ -3,17 +3,17 @@ import {IgnorePathsMap, PathConversionMap} from "../maps";
 import {DuplicatePathPrecedenceMap, PathResolutionMap} from "./resolvers";
 
 
-export type PathParserMaps<E extends unknown[]> = {
+export type PathParserMaps = {
   ignorePathsMap: IgnorePathsMap
   duplicatePathPrecedenceMap: DuplicatePathPrecedenceMap
   pathResolutionMap: PathResolutionMap
-  pathConversionMap: PathConversionMap<E>
+  pathConversionMap: PathConversionMap
 }
 
 
-export function buildPathMaps<E extends unknown[]>(...pathHandlers: PathHandler<E>[]): PathParserMaps<E> {
+export function buildPathMaps(...pathHandlers: PathHandler[]): PathParserMaps {
 
-  const maps: PathParserMaps<E> = {
+  const maps: PathParserMaps = {
     ignorePathsMap: [],
     duplicatePathPrecedenceMap: [],
     pathResolutionMap: [],
@@ -25,7 +25,7 @@ export function buildPathMaps<E extends unknown[]>(...pathHandlers: PathHandler<
     maps.duplicatePathPrecedenceMap = maps.duplicatePathPrecedenceMap.concat(handler.getDuplicatePathPrecedenceMap())
     maps.pathResolutionMap = maps.pathResolutionMap.concat(handler.getPathResolutionMap())
     maps.pathConversionMap = maps.pathConversionMap.concat(handler.getPathConversionMap())
-  })
+  });
 
   return maps;
 }

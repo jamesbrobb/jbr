@@ -18,7 +18,7 @@ export function getSourceFile(program: ts.Program, sourcePath: string): ts.Sourc
   return sourceFile;
 }
 
-export function convertSourceFileToSymbol(
+export function getSourceFileSymbol(
   program: ts.Program,
   sourceFile: ts.SourceFile,
   debug: boolean = false
@@ -40,7 +40,7 @@ export function getExportedDeclarationsFromSource(
   debug: boolean = false
 ): ts.Declaration[] {
 
-  const symbol = convertSourceFileToSymbol(program, sourceFile, debug),
+  const symbol = getSourceFileSymbol(program, sourceFile, debug),
     typeChecker = program.getTypeChecker();
 
   if(!symbol) {

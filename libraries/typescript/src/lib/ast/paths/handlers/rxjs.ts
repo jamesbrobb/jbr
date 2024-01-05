@@ -1,7 +1,7 @@
 import * as ts from "typescript";
 
 import {IgnorePathsMap, PathConversionMap, PathConversionMapEntry, PathReplacementFn} from "../../maps";
-import {DuplicatePathPrecedenceMap, PathResolutionMap} from "../resolvers";
+import {DuplicatePathPrecedenceMap} from "../resolvers";
 import {BasePathHandler} from "./path-handler";
 
 
@@ -15,13 +15,13 @@ const rxjsTypeMap: Record<string, string> = {
   [ts.SyntaxKind.VariableDeclaration]: 'const'
 }
 
-const rxjsPathReplaceFn: PathReplacementFn<[ts.SyntaxKind]> = (_importName, _importModule, kind) => {
+const rxjsPathReplaceFn: PathReplacementFn = (_importName, _importModule, kind) => {
   return `${RXJS_DOCS_URI}${rxjsTypeMap[kind || ''] || '' }/`;
 }
 
 const IGNORE_INTERNAL_TYPES = 'rxjs/dist/types/internal/types';
 
-const RXJS_PATH_CONVERTOR: PathConversionMapEntry<[ts.SyntaxKind]> = [/^rxjs(.*[\\\/])/g, rxjsPathReplaceFn];
+const RXJS_PATH_CONVERTOR: PathConversionMapEntry = [/^rxjs(.*[\\\/])/g, rxjsPathReplaceFn];
 
 const rxjsDuplicatePrecedenceMap: DuplicatePathPrecedenceMap = [
   ['rxjs/dist/types/internal/operators', 0],
@@ -29,7 +29,7 @@ const rxjsDuplicatePrecedenceMap: DuplicatePathPrecedenceMap = [
 ];
 
 
-export class RxjsPathHandler extends BasePathHandler<[ts.SyntaxKind]> {
+export class RxjsPathHandler extends BasePathHandler {
 
   override getIgnorePathsMap(): IgnorePathsMap {
     return [IGNORE_INTERNAL_TYPES]
@@ -39,7 +39,7 @@ export class RxjsPathHandler extends BasePathHandler<[ts.SyntaxKind]> {
     return rxjsDuplicatePrecedenceMap
   }
 
-  override getPathConversionMap(): PathConversionMap<[ts.SyntaxKind]> {
+  override getPathConversionMap(): PathConversionMap {
     return [RXJS_PATH_CONVERTOR]
   }
 }
