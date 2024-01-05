@@ -3,29 +3,29 @@ import { log } from "../../utilities";
 import {DuplicatePathPrecedenceMap, PathResolutionMap, resolveDuplicatePath, resolvePath} from "../../paths";
 
 
-export type DependenciesMapElement<T extends unknown[]> = [path: string, kind: ts.SyntaxKind, ...rest: T]
-export type SourceModuleMap<E extends unknown[]> = Map<string, DependenciesMapElement<E>>
+export type DependencyMapElement<T extends unknown[]> = [path: string, kind: ts.SyntaxKind, ...rest: T]
+export type DependencyModuleMap<E extends unknown[]> = Map<string, DependencyMapElement<E>>
 
-export type SourceFileMapOptions = {
+export type DependencyMapOptions = {
   moduleKeyRegex?: RegExp,
   pathResolutionMap?: PathResolutionMap,
   duplicatePathPrecedenceMap?: DuplicatePathPrecedenceMap,
   debug?: boolean
 }
 
-export const sourceFileMapKeyRegex = /^((@.*?\/)*[^\/]*)/g;
+export const dependencyMapKeyRegex = /^((@.*?\/)*[^\/]*)/g;
 
 
-export class DependenciesMap<E extends unknown[]> {
+export class DependencyMap<E extends unknown[]> {
 
-  readonly #keyRegex: RegExp = sourceFileMapKeyRegex;
+  readonly #keyRegex: RegExp = dependencyMapKeyRegex;
   readonly #pathResolutionMap: PathResolutionMap = [];
   readonly #duplicatePathPrecedenceMap: DuplicatePathPrecedenceMap = [];
   readonly #debug: boolean = false;
 
-  #map = new Map<string, SourceModuleMap<E>>();
+  #map = new Map<string, DependencyModuleMap<E>>();
 
-  constructor(options?: SourceFileMapOptions) {
+  constructor(options?: DependencyMapOptions) {
     this.#keyRegex = options?.moduleKeyRegex || this.#keyRegex;
     this.#pathResolutionMap = options?.pathResolutionMap || this.#pathResolutionMap;
     this.#duplicatePathPrecedenceMap = options?.duplicatePathPrecedenceMap || this.#duplicatePathPrecedenceMap;
@@ -43,7 +43,7 @@ export class DependenciesMap<E extends unknown[]> {
       return;
     }
 
-    const moduleMap: SourceModuleMap<E> = this.#map.get(key) || new Map(),
+    const moduleMap: DependencyModuleMap<E> = this.#map.get(key) || new Map(),
       existingElement = moduleMap.get(entityName);
 
     if(existingElement) {
@@ -62,7 +62,7 @@ export class DependenciesMap<E extends unknown[]> {
     this.#map.set(key, moduleMap);
   }
 
-  get(modulePath: string, entityName: string): DependenciesMapElement<E> | undefined {
+  get(modulePath: string, entityName: string): DependencyMapElement<E> | undefined {
 
     const key = modulePath.match(this.#keyRegex)?.[0] || '';
 

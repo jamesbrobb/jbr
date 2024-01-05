@@ -1,4 +1,4 @@
 export * from './imports';
 export * from './local/local-map';
-export * from './source-files/source-file-map-factory';
-export * from './source-files/source-file-map';
+export * from './dependencies/dependency-map-factory';
+export * from './dependencies/dependency-map';

@@ -1,7 +1,15 @@
 import * as ts from "typescript";
 
-import {log, convertSourceFileToSymbol} from "../../utilities";
-import {DependenciesMap, SourceFileMapOptions} from "./dependencies-map";
+import {log, getSourceFileSymbol} from "../../utilities";
+import {DependencyMap, DependencyMapOptions} from "./dependency-map";
+
+
+type _SymbolWithExports = ts.Symbol & {exports: ts.SymbolTable};
+type _SourceAndSymbolTuple = [sourceFile: ts.SourceFile, symbol: _SymbolWithExports];
+
+type _Options = {
+  ignorePathsMap?: IgnorePathsMap,
+} & DependencyMapOptions
 
 
 export type IgnorePathsMap = (string | RegExp)[];
@@ -11,31 +19,23 @@ export type SourceModuleCreatorFn<R extends unknown[]> = (
   debug?: boolean
 ) => [...args: R];
 
-type Options = {
-  ignorePathsMap?: IgnorePathsMap,
-} & SourceFileMapOptions
+export type DependencyMapFactoryOptions<R extends unknown[] = []> =
+  R['length'] extends 0 ? _Options : _Options & { sourceModuleCreatorFn: SourceModuleCreatorFn<R> }
 
 
-export type SourceFileMapFactoryOptions<R extends unknown[] = []> =
-  R['length'] extends 0 ? Options : Options & { sourceModuleCreatorFn: SourceModuleCreatorFn<R> }
+export function createDependencyMap<R extends unknown[] = []>(program: ts.Program, options?: DependencyMapFactoryOptions<R>): DependencyMap<R> {
 
-
-type SymbolWithExports = ts.Symbol & {exports: ts.SymbolTable};
-type SourceAndSymbolTuple = [sourceFile: ts.SourceFile, symbol: SymbolWithExports];
-
-export function createSourceFileMap<R extends unknown[] = []>(program: ts.Program, options?: SourceFileMapFactoryOptions<R>): DependenciesMap<R> {
-
-  const sourceFilesMap = new DependenciesMap<R>(options);
+  const dependencyMap = new DependencyMap<R>(options);
 
   program.getSourceFiles()
     .filter(sourceFile => isSourceFileEligible(program, sourceFile, options))
     .map(sourceFile => [sourceFile, getSymbolFromSource(program, sourceFile)])
-    .filter((arg): arg is SourceAndSymbolTuple => !!arg[1])
+    .filter((arg): arg is _SourceAndSymbolTuple => !!arg[1])
     .forEach(([sourceFile, symbol]) => {
 
       symbol.exports.forEach((value, key) => {
 
-        if (['__export', '__exportStar'].includes(value.name) || value.name.includes('ɵ')) {
+        if (['__export', '__exportStar'].includes(value.name) || value.name.startsWith('ɵ')) {
           return;
         }
 
@@ -51,18 +51,18 @@ export function createSourceFileMap<R extends unknown[] = []>(program: ts.Progra
           extras = options.sourceModuleCreatorFn(declaration, sourceFile, options.debug);
         }
 
-        sourceFilesMap.set(symbol.name, key.toString(), declaration.kind, ...(extras || []) as any);
+        dependencyMap.set(symbol.name, value.name, declaration.kind, ...(extras || []) as any);
       });
     });
 
   if(options?.debug) {
-    log(sourceFilesMap.toString(), 'SOURCE FILES MAP');
+    log(dependencyMap.toString(), 'SOURCE FILES MAP');
   }
 
-  return sourceFilesMap;
+  return dependencyMap;
 }
 
-function isSourceFileEligible(program: ts.Program, sourceFile: ts.SourceFile, options?: SourceFileMapFactoryOptions): boolean {
+function isSourceFileEligible(program: ts.Program, sourceFile: ts.SourceFile, options?: DependencyMapFactoryOptions): boolean {
 
   const baseUrl = program.getCompilerOptions().baseUrl || '';
 
@@ -77,18 +77,14 @@ function isSourceFileEligible(program: ts.Program, sourceFile: ts.SourceFile, op
   return !ignorePath(sourceFile.fileName, options?.ignorePathsMap || [], options?.debug)
 }
 
-function getSymbolFromSource(program: ts.Program, sourceFile: ts.SourceFile): SymbolWithExports | undefined {
+function getSymbolFromSource(program: ts.Program, sourceFile: ts.SourceFile): _SymbolWithExports | undefined {
 
-  const symbol = convertSourceFileToSymbol(program, sourceFile);
+  const symbol = getSourceFileSymbol(program, sourceFile);
 
-  if(isSymbolWithExports(symbol)) {
-    return symbol;
-  }
-
-  return undefined;
+  return isSymbolWithExports(symbol) ? symbol : undefined;
 }
 
-function isSymbolWithExports(symbol?: ts.Symbol): symbol is SymbolWithExports {
+function isSymbolWithExports(symbol?: ts.Symbol): symbol is _SymbolWithExports {
   return !!symbol?.exports?.size;
 }
 
