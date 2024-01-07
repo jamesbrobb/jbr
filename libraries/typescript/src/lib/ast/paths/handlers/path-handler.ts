@@ -1,5 +1,5 @@
-import {DuplicatePathPrecedenceMap, PathResolutionMap} from "../resolvers";
-import {IgnorePathsMap, PathConversionMap} from "../../maps";
+import {DuplicatePathPrecedenceMap, PathResolutionMap, PathConversionMap} from "../resolvers";
+import {IgnorePathsMap} from "../../maps";
 
 
 export interface PathHandler {

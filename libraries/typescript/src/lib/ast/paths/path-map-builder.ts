@@ -1,6 +1,6 @@
 import {PathHandler} from "./handlers";
-import {IgnorePathsMap, PathConversionMap} from "../maps";
-import {DuplicatePathPrecedenceMap, PathResolutionMap} from "./resolvers";
+import {IgnorePathsMap} from "../maps";
+import {DuplicatePathPrecedenceMap, PathResolutionMap, PathConversionMap} from "./resolvers";
 
 
 export type PathParserMaps = {

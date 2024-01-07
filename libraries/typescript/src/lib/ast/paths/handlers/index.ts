@@ -1,3 +1,4 @@
+export * from './angular-material';
 export * from './ng';
 export * from './jbr';
 export * from './rxjs';

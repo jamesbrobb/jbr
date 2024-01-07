@@ -4,6 +4,6 @@ import {IgnorePathsMap} from "../../maps";
 
 export class CommonPathHandler extends BasePathHandler {
   override getIgnorePathsMap(): IgnorePathsMap {
-    return ['tslib', 'public-api',]
+    return ['tslib', 'public-api', '.spec.ts', '.mock.ts']
   }
 }

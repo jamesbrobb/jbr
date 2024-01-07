@@ -1,5 +1,4 @@
-import {PathConversionMap, PathConversionMapEntry} from "../../maps";
-import {PathResolutionMap, PathResolutionMapEntry} from "../resolvers";
+import {PathResolutionMap, PathResolutionMapEntry, PathConversionMap, PathConversionMapEntry} from "../resolvers";
 import {BasePathHandler} from "./path-handler";
 
 

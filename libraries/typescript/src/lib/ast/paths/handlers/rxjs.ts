@@ -1,7 +1,7 @@
 import * as ts from "typescript";
 
-import {IgnorePathsMap, PathConversionMap, PathConversionMapEntry, PathReplacementFn} from "../../maps";
-import {DuplicatePathPrecedenceMap} from "../resolvers";
+import {IgnorePathsMap} from "../../maps";
+import {DuplicatePathPrecedenceMap, PathConversionMap, PathConversionMapEntry, PathReplacementFn} from "../resolvers";
 import {BasePathHandler} from "./path-handler";
 
 
