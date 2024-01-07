@@ -13,9 +13,20 @@ export function convertPath(name: string, modulePath: string, kind: ts.SyntaxKin
   pathConversionMap.forEach((value) => {
     let [pathMatch, replacement] = value;
 
+    if(typeof pathMatch === 'string') {
+      pathMatch = new RegExp(pathMatch);
+    }
+
+    if(!pathMatch.test(modulePath)) {
+      pathMatch.lastIndex = 0;
+      return;
+    }
+
     if(typeof replacement === 'function') {
       replacement = replacement(name, modulePath, kind);
     }
+
+    pathMatch.lastIndex = 0;
 
     convertedPath = convertedPath.replace(pathMatch, replacement)
       .replace('$name', name);
