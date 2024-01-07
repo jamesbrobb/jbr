@@ -1,77 +1,93 @@
 import * as ts from "typescript";
 import { log } from "../../utilities";
-import {DuplicatePathPrecedenceMap, PathResolutionMap, resolveDuplicatePath, resolvePath} from "../../paths";
+import {
+  convertPath,
+  DuplicatePathPrecedenceMap,
+  PathConversionMap, PathParserMaps,
+  PathResolutionMap,
+  resolveDuplicatePath,
+  resolvePath
+} from "../../paths";
 
 
-export type DependencyMapElement<T extends unknown[]> = [path: string, kind: ts.SyntaxKind, ...rest: T]
-export type DependencyModuleMap<E extends unknown[]> = Map<string, DependencyMapElement<E>>
+export type DependencyMapAdditionalProps = {[key: PropertyKey]: unknown}
+
+export type DependencyMapElement<O extends DependencyMapAdditionalProps = {}> = {
+  module: string
+  name: string
+  path: string
+  resolvedPath: string
+  convertedPath?: string
+  kind: ts.SyntaxKind
+} & O
+
+export type DependencyModuleMap<O extends DependencyMapAdditionalProps = {}> = Map<string, DependencyMapElement<O>>
 
 export type DependencyMapOptions = {
-  moduleKeyRegex?: RegExp,
-  pathResolutionMap?: PathResolutionMap,
-  duplicatePathPrecedenceMap?: DuplicatePathPrecedenceMap,
+  moduleKeyRegex?: RegExp
   debug?: boolean
-}
+} & Partial<Omit<PathParserMaps, 'ignorePathsMap'>>
 
 export const dependencyMapKeyRegex = /^((@.*?\/)*[^\/]*)/g;
 
 
-export class DependencyMap<E extends unknown[]> {
+export class DependencyMap<O extends DependencyMapAdditionalProps = {}> {
 
   readonly #keyRegex: RegExp = dependencyMapKeyRegex;
   readonly #pathResolutionMap: PathResolutionMap = [];
-  readonly #duplicatePathPrecedenceMap: DuplicatePathPrecedenceMap = [];
   readonly #debug: boolean = false;
 
-  #map = new Map<string, DependencyModuleMap<E>>();
+  readonly #duplicatePathPrecedenceMap?: DuplicatePathPrecedenceMap;
+  readonly #pathConversionMap?: PathConversionMap;
+
+  #map = new Map<string, DependencyModuleMap<O>>();
 
   constructor(options?: DependencyMapOptions) {
     this.#keyRegex = options?.moduleKeyRegex || this.#keyRegex;
     this.#pathResolutionMap = options?.pathResolutionMap || this.#pathResolutionMap;
-    this.#duplicatePathPrecedenceMap = options?.duplicatePathPrecedenceMap || this.#duplicatePathPrecedenceMap;
-    this.#debug = options?.debug || this.#debug;
+    this.#debug = options?.debug ?? this.#debug;
+
+    this.#duplicatePathPrecedenceMap = options?.duplicatePathPrecedenceMap;
+    this.#pathConversionMap = options?.pathConversionMap;
   }
 
-  set(modulePath: string, entityName: string, kind: ts.SyntaxKind, ...extras: E): void {
+  set(modulePath: string, entityName: string, kind: ts.SyntaxKind, additional?: O): void {
 
-    modulePath = resolvePath(modulePath, this.#pathResolutionMap);
-
-    const key = modulePath.match(this.#keyRegex)?.[0] || '';
+    const resolvedPath = resolvePath(modulePath, this.#pathResolutionMap),
+      key = resolvedPath.match(this.#keyRegex)?.[0] || '';
 
     if(!key && this.#debug) {
-      log(`${entityName} skipped for ${modulePath}`, 'NO KEY FOUND');
+      log(`${entityName} skipped for ${resolvedPath}`, 'NO KEY FOUND');
       return;
     }
 
-    const moduleMap: DependencyModuleMap<E> = this.#map.get(key) || new Map(),
-      existingElement = moduleMap.get(entityName);
+    const moduleMap: DependencyModuleMap<O> = this.#map.get(key) || new Map();
 
-    if(existingElement) {
+    let props: DependencyMapElement<O> = {
+      module: key,
+      name: entityName,
+      path: modulePath,
+      resolvedPath,
+      kind,
+      ...(additional ?? {} as O)
+    };
 
-      const resolution = resolveDuplicatePath(existingElement[0], modulePath, this.#duplicatePathPrecedenceMap);
-      modulePath = resolution === 1 ? modulePath : existingElement[0];
+    props = this.#handleDuplicatePath(props, moduleMap);
+    props = this.#handlePathConversion(props);
 
-      if(resolution === 0 && this.#debug) {
-        log(`Name: ${entityName}\nStored path: ${moduleMap.get(entityName)}\nDuplicate path: ${modulePath}`, 'DUPLICATE NAME FOUND');
-        return;
-      }
-    }
-
-    moduleMap.set(entityName, [modulePath, kind, ...extras]);
+    moduleMap.set(entityName, props);
 
     this.#map.set(key, moduleMap);
   }
 
-  get(modulePath: string, entityName: string): DependencyMapElement<E> | undefined {
+  get(modulePath: string, entityName: string): DependencyMapElement<O> | undefined {
 
     const key = modulePath.match(this.#keyRegex)?.[0] || '';
 
     if(!key) {
-
       if(this.#debug) {
         log(`${entityName} skipped for ${modulePath}`, 'NO KEY FOUND');
       }
-
       return;
     }
 
@@ -92,6 +108,49 @@ export class DependencyMap<E extends unknown[]> {
   toString(): string {
     console.log(this.#map);
     return '';
+  }
+
+  #handleDuplicatePath(props: DependencyMapElement<O>, moduleMap: DependencyModuleMap<O>): DependencyMapElement<O> {
+
+    if(!this.#duplicatePathPrecedenceMap) {
+      return props;
+    }
+
+    const entityName = props.name,
+      modulePath = props.resolvedPath,
+      existingElement = moduleMap.get(entityName);
+
+    if(existingElement) {
+
+      const resolution = resolveDuplicatePath(existingElement.resolvedPath, modulePath, this.#duplicatePathPrecedenceMap);
+
+      if(resolution === 0) {
+        if(this.#debug) {
+          log(`Name: ${entityName}\nStored path: ${existingElement.path}\nDuplicate path: ${modulePath}`, 'DUPLICATE PATH FOUND');
+        }
+        return existingElement;
+      }
+    }
+
+    return props;
+  }
+
+  #handlePathConversion(props: DependencyMapElement<O>): DependencyMapElement<O> {
+
+    if(!this.#pathConversionMap) {
+      return props;
+    }
+
+    const convertedPath = convertPath(props.name, props.resolvedPath, props.kind, this.#pathConversionMap);
+
+    if(convertedPath === props.resolvedPath) {
+      return props;
+    }
+
+    return {
+      ...props,
+      convertedPath
+    }
   }
 }
 

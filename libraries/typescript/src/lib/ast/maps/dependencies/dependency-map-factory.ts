@@ -1,7 +1,7 @@
 import * as ts from "typescript";
 
-import {log, getSourceFileSymbol} from "../../utilities";
-import {DependencyMap, DependencyMapOptions} from "./dependency-map";
+import {log, getSourceFileSymbol, stripQuotes} from "../../utilities";
+import {DependencyMap, DependencyMapOptions, DependencyMapAdditionalProps} from "./dependency-map";
 
 
 type _SymbolWithExports = ts.Symbol & {exports: ts.SymbolTable};
@@ -13,19 +13,22 @@ type _Options = {
 
 
 export type IgnorePathsMap = (string | RegExp)[];
-export type SourceModuleCreatorFn<R extends unknown[]> = (
+export type SourceModuleCreatorFn<O extends DependencyMapAdditionalProps = {}> = (
   node: ts.Node,
   sourceFile: ts.SourceFile,
   debug?: boolean
-) => [...args: R];
+) => O;
 
-export type DependencyMapFactoryOptions<R extends unknown[] = []> =
-  R['length'] extends 0 ? _Options : _Options & { sourceModuleCreatorFn: SourceModuleCreatorFn<R> }
+export type DependencyMapFactoryOptions<O extends DependencyMapAdditionalProps = {}> =
+  keyof O extends never ? _Options : _Options & { sourceModuleCreatorFn: SourceModuleCreatorFn<O> }
 
 
-export function createDependencyMap<R extends unknown[] = []>(program: ts.Program, options?: DependencyMapFactoryOptions<R>): DependencyMap<R> {
+export function createDependencyMap<O extends DependencyMapAdditionalProps = {}>(
+  program: ts.Program,
+  options?: DependencyMapFactoryOptions<O>
+): DependencyMap<O> {
 
-  const dependencyMap = new DependencyMap<R>(options);
+  const dependencyMap = new DependencyMap<O>(options);
 
   program.getSourceFiles()
     .filter(sourceFile => isSourceFileEligible(program, sourceFile, options))
@@ -45,13 +48,13 @@ export function createDependencyMap<R extends unknown[] = []>(program: ts.Progra
           return;
         }
 
-        let extras: R | undefined;
+        let additional: O = {} as O;
 
         if(options && 'sourceModuleCreatorFn' in options) {
-          extras = options.sourceModuleCreatorFn(declaration, sourceFile, options.debug);
+          additional = options.sourceModuleCreatorFn(declaration, sourceFile, options.debug);
         }
 
-        dependencyMap.set(symbol.name, value.name, declaration.kind, ...(extras || []) as any);
+        dependencyMap.set(stripQuotes(symbol.name), value.name, declaration.kind, additional);
       });
     });
 
