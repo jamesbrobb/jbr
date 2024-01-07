@@ -10,27 +10,30 @@ import {
   getParsedTSConfig,
   createProgram,
   getSourceFile,
-  createSourceFileMap,
+  createDependencyMap,
   createImportsMap,
   convertPath,
   createLocalMap,
   ImportsMapElementExtended,
   parseSourceFile,
-  parseDeclaration, parseSourceFiles
+  parseDeclaration,
+  parseSourceFiles, AngularMaterialPathHandler
 } from "../libraries/typescript";
 
 
-const maps: PathParserMaps<[ts.SyntaxKind]> = buildPathMaps(
+const maps: PathParserMaps = buildPathMaps(
   new CommonPathHandler(),
   new NodeModulesPathHandler(),
+  new AngularMaterialPathHandler(),
   new NgPathHandler(),
   new RxjsPathHandler(),
   new JBRPathHandler()
 )
 
-const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/core/src/lib/analytics/analytics-service.ts';
+//const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/core/src/lib/analytics/analytics-service.ts';
 //const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/core/src/lib/commands/command/command.ts';
-//const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/ui/src/lib/common/overlay/color/color-overlay.component.ts';
+const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/ui/src/lib/common/overlay/color/color-overlay.component.ts';
+//const sourcePath = '/Users/James/WebstormProjects/jbr/libraries/ui/src/lib/forms/codemirror/codemirror.component.ts';
 
 const config = getParsedTSConfig(),
   entryFile = config.fileNames[0];
@@ -38,24 +41,21 @@ const config = getParsedTSConfig(),
 const program = createProgram(entryFile, config.options),
   sourceFile = getSourceFile(program, sourcePath);
 
-const sourceFileMap = createSourceFileMap(program, {
+const sourceFileMap = createDependencyMap(program, {
   debug: false,
-  ignorePathsMap: maps.ignorePathsMap,
-  pathResolutionMap: maps.pathResolutionMap,
-  duplicatePathPrecedenceMap: maps.duplicatePathPrecedenceMap
+  ...maps
 });
+
+/*
 
 const importsMap = createImportsMap(sourceFile, {
   debug: false,
   pathResolutionMap: maps.pathResolutionMap,
   // TODO - move this inside createImportsMap - add sourceFileMap and pathConversionMap to options?
   importsMapElementCreatorFn: (importName: string, importModule: string, resolvedImportModule: string) => {
-    console.log('importName', importName);
-    console.log('importModule', importModule);
     console.log('resolvedImportModule', resolvedImportModule);
     const sourceModule = sourceFileMap.get(resolvedImportModule, importName);
     console.log('sourceModule', sourceModule);
-
     let result: ImportsMapElementExtended<[kind?: ts.SyntaxKind]> = [importName, importModule, resolvedImportModule];
 
     if(!sourceModule) {
@@ -65,8 +65,6 @@ const importsMap = createImportsMap(sourceFile, {
     if (sourceModule) {
       result = [importName, importModule, sourceModule[0], sourceModule[1]];
     }
-    console.log(result);
-    console.log('====================')
 
     let convertedPath = '';
 
@@ -93,3 +91,4 @@ const parsedSF = parseSourceFile(program, sourceFile, sfParseOptions);
 const parsedSFs = parseSourceFiles(program, entryFile, sfParseOptions);
 
 //console.log(parsedSFs);
+*/

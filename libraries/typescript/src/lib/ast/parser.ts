@@ -20,7 +20,7 @@ export function parse(options?: ParseOptions): SourceFileDeclaration[] | SourceF
     program = createProgram(entryFile, config.options);
 
   const pathHandlers = options?.pathHandlers || [],
-    pathMaps: PathParserMaps= buildPathMaps(...pathHandlers);
+    pathMaps: PathParserMaps = buildPathMaps(...pathHandlers);
 
   const dependenciesMap = createDependencyMap(program, {
     debug: false,
