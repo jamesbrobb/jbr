@@ -1,14 +1,11 @@
-import {ParseNodeFunc} from "../../utilities";
-import {PathResolutionMap} from "../../paths";
-import {Import} from "../../declarations";
 
+export type ImportsMapMapAdditionalProps = {[key: PropertyKey]: unknown}
 
-export type ImportsMapElement = [importName: string, importModule: string, resolvedImportModule: string]
-export type ImportsMapElementExtended<R extends unknown[] = []> = [...args: ImportsMapElement, ...rest: R]
-export type ImportsMap<E extends unknown[]> = ImportsMapElementExtended<E>[]
+export type ImportsMapElement<O extends ImportsMapMapAdditionalProps = {}> = {
+  name: string
+  module: string
+  resolvedModulePath: string
+  convertedModulePath?: string
+} & O
 
-export type ImportsMapOptions = {
-  debug?: boolean
-  nodeParseFn?: ParseNodeFunc<Import>,
-  pathResolutionMap?: PathResolutionMap
-}
+export type ImportsMap<O extends ImportsMapMapAdditionalProps = {}> = ImportsMapElement<O>[]

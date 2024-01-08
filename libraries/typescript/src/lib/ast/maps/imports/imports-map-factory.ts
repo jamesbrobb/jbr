@@ -2,57 +2,136 @@ import * as ts from "typescript";
 import * as path from "path";
 
 import {PathResolutionMap, resolvePath} from "../../paths";
-import {Import, isImportDeclaration, parseDeclaration} from "../../declarations";
+import {Import, parseDeclaration} from "../../declarations";
 import {walkNodeTree} from "../../utilities";
-import {ImportsMap, ImportsMapElement, ImportsMapElementExtended, ImportsMapOptions} from "./imports-map";
+import {ImportsMap, ImportsMapElement, ImportsMapMapAdditionalProps} from "./imports-map";
+import {DependencyMap} from "../dependencies/dependency-map";
 
 
-export type ImportsMapElementCreatorFn<R extends unknown[]> = (...args: ImportsMapElement) => ImportsMapElementExtended<R>;
+type _Options = {
+  debug?: boolean
+  pathResolutionMap?: PathResolutionMap,
+  dependencyMap?: DependencyMap
+}
 
-export type ImportsMapFactoryOptions<R extends unknown[]> =
-  R['length'] extends 0 ?
-    ImportsMapOptions : ImportsMapOptions & { importsMapElementCreatorFn: ImportsMapElementCreatorFn<R> }
+
+export type ImportsMapFactoryOptions<O extends ImportsMapMapAdditionalProps = {}> =
+  keyof O extends never ?
+    _Options :
+    _Options & { importsMapElementCreatorFn: ImportsMapElementCreatorFn<O> }
+
+export type ImportsMapElementCreatorFnParams<O extends ImportsMapMapAdditionalProps = {}> = {
+  sourceFile: ts.SourceFile,
+  importDec: ts.ImportDeclaration,
+  imprt: Import,
+  element: ImportsMapElement,
+  options?: ImportsMapFactoryOptions<O>
+}
+
+export type ImportsMapElementCreatorFn<O extends ImportsMapMapAdditionalProps = {}> = (
+  params: ImportsMapElementCreatorFnParams<O>
+) => O;
 
 
+export function createImportsMap<O extends ImportsMapMapAdditionalProps = {}>(
+  sourceFile: ts.SourceFile,
+  options?: ImportsMapFactoryOptions<O>
+): ImportsMap<O> {
 
-export function createImportsMap<R extends unknown[] = []>(sourceFile: ts.SourceFile, options?: ImportsMapFactoryOptions<R>): ImportsMap<R> {
-
-  if(options && !options.nodeParseFn) {
-    options.nodeParseFn = parseDeclaration as any
-  }
-
-  // @ts-ignore
-  const map: ImportsMap<R> = sourceFile.statements
-    .filter(ts.isImportDeclaration)
-    .map(impt => walkNodeTree(impt, sourceFile, options))
-    // TODO - this code is coupled to my Import - need to decouple
-    .filter(isImportDeclaration)
-    .flatMap(imprt => getImportNames(imprt)
-      .map(name => [
-        name,
-        imprt.module,
-        resolveModulePath(
-          imprt.module,
-          sourceFile,
-          options?.pathResolutionMap || []
-        )
-      ])
-    )
-    ///////////////////////////
-    .map(([name, module, resolvedImportModule]) => {
-        if (options && 'importsMapElementCreatorFn' in options) {
-          return options.importsMapElementCreatorFn(name, module, resolvedImportModule)
-        }
-
-        return [name, module, resolvedImportModule];
-      }
-    );
+  const map = getImportDeclarations(sourceFile, options)
+    .flatMap(([importDec, imprt]) =>
+      createImportMapElements(importDec, imprt, sourceFile, options))
+    .map(([importDec, imprt, element]) =>
+      addAdditionalPropsToImportMapElement(sourceFile, importDec, imprt, element, options));
 
   if(options?.debug) {
     console.log(map);
   }
 
   return map;
+}
+
+
+
+function getImportDeclarations(sourceFile: ts.SourceFile, options?: ImportsMapFactoryOptions): [ts.ImportDeclaration, Import][] {
+  return sourceFile.statements.filter(ts.isImportDeclaration)
+    .map((importDec) => {
+
+      const imprt = walkNodeTree(importDec, sourceFile, {
+        ...options,
+        nodeParseFn: parseDeclaration
+      }) as Import;
+
+      return [importDec, imprt]
+    });
+}
+
+
+function createImportMapElements(
+  importDec: ts.ImportDeclaration,
+  imprt: Import,
+  sourceFile: ts.SourceFile,
+  options?: ImportsMapFactoryOptions
+): [ts.ImportDeclaration, Import, ImportsMapElement][] {
+  return parseImportToImportMapElement(imprt, sourceFile, options)
+    .map(element => [importDec, imprt, element])
+}
+
+function addAdditionalPropsToImportMapElement<O extends ImportsMapMapAdditionalProps = {}>(
+  sourceFile: ts.SourceFile,
+  importDec: ts.ImportDeclaration,
+  imprt: Import,
+  element: ImportsMapElement,
+  options?: ImportsMapFactoryOptions<O>
+): ImportsMapElement<O> {
+  let additional: O = {} as O;
+
+  if(options && 'importsMapElementCreatorFn' in options) {
+    additional = options.importsMapElementCreatorFn({
+      sourceFile,
+      importDec,
+      imprt,
+      element,
+      options
+    });
+  }
+
+  return {
+    ...element,
+    ...additional
+  };
+}
+
+
+function parseImportToImportMapElement (
+  imprt: Import,
+  sourceFile: ts.SourceFile,
+  options?: ImportsMapFactoryOptions
+): ImportsMap {
+
+  return getImportNames(imprt)
+    .map<ImportsMapElement>(name => {
+
+      let props: ImportsMapElement ={
+        name,
+        module: imprt.module,
+        resolvedModulePath: resolveModulePath(
+          imprt.module,
+          sourceFile,
+          options?.pathResolutionMap || []
+        )
+      }
+
+      if(options?.dependencyMap) {
+        const dep = options.dependencyMap.get(props.resolvedModulePath, name);
+        if(dep?.convertedPath) {
+          props.convertedModulePath = dep.convertedPath;
+        }
+      }
+
+      return props;
+    }
+  )
 }
 
 
@@ -78,4 +157,3 @@ function getImportNames(imprt: Import): string[] {
     .map(importSpecifier => importSpecifier?.name)
     .filter((name): name is string => !!name);
 }
-
