@@ -20,7 +20,9 @@ export type SourceModuleCreatorFn<O extends DependencyMapAdditionalProps = {}> =
 ) => O;
 
 export type DependencyMapFactoryOptions<O extends DependencyMapAdditionalProps = {}> =
-  keyof O extends never ? _Options : _Options & { sourceModuleCreatorFn: SourceModuleCreatorFn<O> }
+  keyof O extends never ?
+    _Options :
+    _Options & { sourceModuleCreatorFn: SourceModuleCreatorFn<O> }
 
 
 export function createDependencyMap<O extends DependencyMapAdditionalProps = {}>(

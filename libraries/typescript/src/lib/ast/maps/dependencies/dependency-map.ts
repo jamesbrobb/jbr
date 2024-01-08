@@ -94,11 +94,9 @@ export class DependencyMap<O extends DependencyMapAdditionalProps = {}> {
     const moduleMap = this.#map.get(key);
 
     if(!moduleMap) {
-
       if(this.#debug) {
         console.log(`No source module map found for ${key}`);
       }
-
       return;
     }
 
