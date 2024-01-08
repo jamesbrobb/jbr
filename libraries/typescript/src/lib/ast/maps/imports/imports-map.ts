@@ -1,11 +1,10 @@
+import {AdditionalMapProps} from "../common";
 
-export type ImportsMapMapAdditionalProps = {[key: PropertyKey]: unknown}
-
-export type ImportsMapElement<O extends ImportsMapMapAdditionalProps = {}> = {
+export type ImportsMapElement<O extends AdditionalMapProps = {}> = {
   name: string
   module: string
   resolvedModulePath: string
   convertedModulePath?: string
 } & O
 
-export type ImportsMap<O extends ImportsMapMapAdditionalProps = {}> = ImportsMapElement<O>[]
+export type ImportsMap<O extends AdditionalMapProps = {}> = ImportsMapElement<O>[]

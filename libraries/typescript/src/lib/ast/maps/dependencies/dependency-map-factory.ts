@@ -1,7 +1,8 @@
 import * as ts from "typescript";
 
 import {log, getSourceFileSymbol, stripQuotes} from "../../utilities";
-import {DependencyMap, DependencyMapOptions, DependencyMapAdditionalProps} from "./dependency-map";
+import {DependencyMap, DependencyMapOptions} from "./dependency-map";
+import {AdditionalMapProps} from "../common";
 
 
 type _SymbolWithExports = ts.Symbol & {exports: ts.SymbolTable};
@@ -13,19 +14,19 @@ type _Options = {
 
 
 export type IgnorePathsMap = (string | RegExp)[];
-export type SourceModuleCreatorFn<O extends DependencyMapAdditionalProps = {}> = (
+export type SourceModuleCreatorFn<O extends AdditionalMapProps = {}> = (
   node: ts.Node,
   sourceFile: ts.SourceFile,
   debug?: boolean
 ) => O;
 
-export type DependencyMapFactoryOptions<O extends DependencyMapAdditionalProps = {}> =
+export type DependencyMapFactoryOptions<O extends AdditionalMapProps = {}> =
   keyof O extends never ?
     _Options :
     _Options & { sourceModuleCreatorFn: SourceModuleCreatorFn<O> }
 
 
-export function createDependencyMap<O extends DependencyMapAdditionalProps = {}>(
+export function createDependencyMap<O extends AdditionalMapProps = {}>(
   program: ts.Program,
   options?: DependencyMapFactoryOptions<O>
 ): DependencyMap<O> {

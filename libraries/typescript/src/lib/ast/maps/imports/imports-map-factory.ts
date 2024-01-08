@@ -4,8 +4,9 @@ import * as path from "path";
 import {PathResolutionMap, resolvePath} from "../../paths";
 import {Import, parseDeclaration} from "../../declarations";
 import {walkNodeTree} from "../../utilities";
-import {ImportsMap, ImportsMapElement, ImportsMapMapAdditionalProps} from "./imports-map";
+import {ImportsMap, ImportsMapElement} from "./imports-map";
 import {DependencyMap} from "../dependencies/dependency-map";
+import {AdditionalMapProps} from "../common";
 
 
 type _Options = {
@@ -15,12 +16,12 @@ type _Options = {
 }
 
 
-export type ImportsMapFactoryOptions<O extends ImportsMapMapAdditionalProps = {}> =
+export type ImportsMapFactoryOptions<O extends AdditionalMapProps = {}> =
   keyof O extends never ?
     _Options :
     _Options & { importsMapElementCreatorFn: ImportsMapElementCreatorFn<O> }
 
-export type ImportsMapElementCreatorFnParams<O extends ImportsMapMapAdditionalProps = {}> = {
+export type ImportsMapElementCreatorFnParams<O extends AdditionalMapProps = {}> = {
   sourceFile: ts.SourceFile,
   importDec: ts.ImportDeclaration,
   imprt: Import,
@@ -28,12 +29,12 @@ export type ImportsMapElementCreatorFnParams<O extends ImportsMapMapAdditionalPr
   options?: ImportsMapFactoryOptions<O>
 }
 
-export type ImportsMapElementCreatorFn<O extends ImportsMapMapAdditionalProps = {}> = (
+export type ImportsMapElementCreatorFn<O extends AdditionalMapProps = {}> = (
   params: ImportsMapElementCreatorFnParams<O>
 ) => O;
 
 
-export function createImportsMap<O extends ImportsMapMapAdditionalProps = {}>(
+export function createImportsMap<O extends AdditionalMapProps = {}>(
   sourceFile: ts.SourceFile,
   options?: ImportsMapFactoryOptions<O>
 ): ImportsMap<O> {
@@ -42,7 +43,7 @@ export function createImportsMap<O extends ImportsMapMapAdditionalProps = {}>(
     .flatMap(([importDec, imprt]) =>
       createImportMapElements(importDec, imprt, sourceFile, options))
     .map(([importDec, imprt, element]) =>
-      addAdditionalPropsToImportMapElement(sourceFile, importDec, imprt, element, options));
+      addAdditionalPropsToImportMapElement({sourceFile, importDec, imprt, element, options}));
 
   if(options?.debug) {
     console.log(map);
@@ -77,27 +78,20 @@ function createImportMapElements(
     .map(element => [importDec, imprt, element])
 }
 
-function addAdditionalPropsToImportMapElement<O extends ImportsMapMapAdditionalProps = {}>(
-  sourceFile: ts.SourceFile,
-  importDec: ts.ImportDeclaration,
-  imprt: Import,
-  element: ImportsMapElement,
-  options?: ImportsMapFactoryOptions<O>
+
+function addAdditionalPropsToImportMapElement<O extends AdditionalMapProps = {}>(
+  params: ImportsMapElementCreatorFnParams<O>
 ): ImportsMapElement<O> {
+
   let additional: O = {} as O;
+  const options = params.options;
 
   if(options && 'importsMapElementCreatorFn' in options) {
-    additional = options.importsMapElementCreatorFn({
-      sourceFile,
-      importDec,
-      imprt,
-      element,
-      options
-    });
+    additional = options.importsMapElementCreatorFn(params);
   }
 
   return {
-    ...element,
+    ...params.element,
     ...additional
   };
 }

@@ -1,19 +1,17 @@
 import {SourceFileDeclaration} from "./declarations/kinds/source-file";
 import {buildPathMaps, PathParserMaps, PathHandler} from "./paths";
-import {createProgram, getParsedTSConfig, parseSourceFile, parseSourceFiles} from "./utilities";
+import {createProgram, getParsedTSConfig, ParseNodeOptions, parseSourceFile, parseSourceFiles} from "./utilities";
 import {createDependencyMap} from "./maps";
 
 
-export type ParseOptions = {
+export type ParseOptions<R> = {
   pathHandlers?: PathHandler[],
   sourcePath?: string,
-  walk?: boolean,
-  lazy?: boolean,
-  debug?: boolean
-}
+  walk?: boolean
+} & ParseNodeOptions<R>
 
 
-export function parse(options?: ParseOptions): SourceFileDeclaration[] | SourceFileDeclaration {
+export function parse<R>(options?: ParseOptions<R>): SourceFileDeclaration[] | SourceFileDeclaration {
 
   const config = getParsedTSConfig(),
     entryFile = config.fileNames[0],
@@ -26,12 +24,11 @@ export function parse(options?: ParseOptions): SourceFileDeclaration[] | SourceF
     debug: false,
     ...pathMaps
   });
-
-  // Import map needs to be created in parse source file?
-
+  console.log(dependenciesMap);
   const sfParseOptions = {
-    debug: options?.debug,
-    lazy: options?.lazy
+    ...options,
+    ...pathMaps,
+    dependenciesMap
   }
 
   if(options?.sourcePath && !options?.walk) {

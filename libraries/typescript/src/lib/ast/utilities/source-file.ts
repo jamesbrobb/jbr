@@ -1,8 +1,9 @@
 import * as ts from 'typescript';
 import * as path from "path";
 
-import {ParseNodeOptions, walkNodeTree} from "./node";
 import {logResults} from "./log";
+import {ParseNodeOptions, walkNodeTree} from "./node";
+import {AdditionalMapProps, createImportsMap, ImportsMapFactoryOptions} from "../maps";
 import {SourceFileDeclaration} from "../declarations/kinds/source-file";
 import {DeclarationKind} from "../declarations";
 
@@ -53,10 +54,14 @@ export function getExportedDeclarationsFromSource(
 }
 
 
-export function parseSourceFile<R = ts.Node>(
+export type ParseSourceFileOptions<R, O extends AdditionalMapProps = {}> =
+  ParseNodeOptions<R> & ImportsMapFactoryOptions<O>
+
+
+export function parseSourceFile<R, O extends AdditionalMapProps = {}>(
   program: ts.Program,
   source: ts.SourceFile | string,
-  options?: ParseNodeOptions<R>
+  options?: ParseSourceFileOptions<R, O>
 ): SourceFileDeclaration {
 
   const sourceFile: ts.SourceFile = typeof source === 'string' ? getSourceFile(program, source) : source;
@@ -68,11 +73,13 @@ export function parseSourceFile<R = ts.Node>(
     logResults(exports);
   }
 
+  const imports = createImportsMap(sourceFile, options);
+
   return {
     kind: DeclarationKind.SOURCE_FILE,
     fileName: path.basename(sourceFile.fileName),
     path: path.dirname(sourceFile.fileName),
-    imports: [],
+    imports,
     exports
   }
 }

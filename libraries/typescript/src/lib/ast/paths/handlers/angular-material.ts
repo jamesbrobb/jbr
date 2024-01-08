@@ -6,7 +6,7 @@ import {IgnorePathsMap} from "../../maps";
 
 
 const matPathReplaceFn = (importName: string, importModule: string, kind: ts.SyntaxKind) => {
-  console.log(importName, importModule, kind);
+  //console.log(importName, importModule, kind);
   return 'https://material.angular.io/cdk/$name';
 }
 

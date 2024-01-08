@@ -1,5 +1,6 @@
 import * as ts from "typescript";
 import { log } from "../../utilities";
+import {AdditionalMapProps} from "../common";
 import {
   convertPath,
   DuplicatePathPrecedenceMap,
@@ -10,9 +11,7 @@ import {
 } from "../../paths";
 
 
-export type DependencyMapAdditionalProps = {[key: PropertyKey]: unknown}
-
-export type DependencyMapElement<O extends DependencyMapAdditionalProps = {}> = {
+export type DependencyMapElement<O extends AdditionalMapProps = {}> = {
   module: string
   name: string
   path: string
@@ -21,7 +20,7 @@ export type DependencyMapElement<O extends DependencyMapAdditionalProps = {}> = 
   kind: ts.SyntaxKind
 } & O
 
-export type DependencyModuleMap<O extends DependencyMapAdditionalProps = {}> = Map<string, DependencyMapElement<O>>
+export type DependencyModuleMap<O extends AdditionalMapProps = {}> = Map<string, DependencyMapElement<O>>
 
 export type DependencyMapOptions = {
   moduleKeyRegex?: RegExp
@@ -31,7 +30,7 @@ export type DependencyMapOptions = {
 export const dependencyMapKeyRegex = /^((@.*?\/)*[^\/]*)/g;
 
 
-export class DependencyMap<O extends DependencyMapAdditionalProps = {}> {
+export class DependencyMap<O extends AdditionalMapProps = {}> {
 
   readonly #keyRegex: RegExp = dependencyMapKeyRegex;
   readonly #pathResolutionMap: PathResolutionMap = [];
