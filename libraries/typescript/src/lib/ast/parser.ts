@@ -1,6 +1,13 @@
 import {SourceFileDeclaration} from "./declarations/kinds/source-file";
 import {buildPathMaps, PathParserMaps, PathHandler} from "./paths";
-import {createProgram, getParsedTSConfig, ParseNodeOptions, parseSourceFile, parseSourceFiles} from "./utilities";
+import {
+  createProgram,
+  getParsedTSConfig,
+  ParseNodeOptions,
+  parseSourceFile,
+  ParseSourceFileOptions,
+  parseSourceFiles
+} from "./utilities";
 import {createDependencyMap} from "./maps";
 
 
@@ -20,15 +27,15 @@ export function parse<R>(options?: ParseOptions<R>): SourceFileDeclaration[] | S
   const pathHandlers = options?.pathHandlers || [],
     pathMaps: PathParserMaps = buildPathMaps(...pathHandlers);
 
-  const dependenciesMap = createDependencyMap(program, {
+  const dependencyMap = createDependencyMap(program, {
     debug: false,
     ...pathMaps
   });
-  console.log(dependenciesMap);
-  const sfParseOptions = {
+
+  const sfParseOptions: ParseSourceFileOptions<R> = {
     ...options,
     ...pathMaps,
-    dependenciesMap
+    dependencyMap
   }
 
   if(options?.sourcePath && !options?.walk) {
