@@ -14,7 +14,7 @@ $link-colors: theme.get-mode-colors-for($palette-type: primary, $type: default);
 
   .breadcrumb {
     display: inline-flex;
-    font-size: 0.8em;
+    font-size: 0.9em;
 
     &:not(:first-child)::before {
       content: '>';

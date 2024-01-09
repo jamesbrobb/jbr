@@ -36,6 +36,7 @@ $divider-colors: theme.get-mode-colors-for($palette-type: foreground, $type: div
 
   .details {
     position: relative;
+    margin-top: 30px;
     padding: 10px 30px 15px;
     border: var(--details-border-color) solid 1px;
     margin-bottom: 30px;
