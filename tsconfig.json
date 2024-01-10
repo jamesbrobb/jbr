@@ -38,8 +38,8 @@
       "@jbr/ui": [
         "dist/libraries/@jbr/ui"
       ],
-      "@jbr/typescript": [
-        "dist/libraries/@jbr/typescript"
+      "@jbr/ts": [
+        "dist/libraries/@jbr/ts"
       ]
     },
     "lib": [

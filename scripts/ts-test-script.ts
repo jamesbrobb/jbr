@@ -8,7 +8,7 @@ import {
   AngularMaterialPathHandler,
   parseDeclaration,
   parse
-} from "../libraries/typescript";
+} from "../libraries/ts";
 
 
 const pathHandlers = [
