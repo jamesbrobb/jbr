@@ -1,24 +1,9 @@
-# Typescript
+A library containing utilities for working directly with Typescript.
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+## Installing
 
-## Code scaffolding
+For the latest stable version:
 
-Run `ng generate component component-name --project typescript` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project typescript`.
-> Note: Don't forget to add `--project typescript` or else it will be added to the default project in your `angular.json` file. 
-
-## Build
-
-Run `ng build typescript` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build typescript`, go to the dist folder `cd dist/typescript` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test typescript` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm -i @jamesbenrobb/ts
+```

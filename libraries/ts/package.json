@@ -1,8 +1,8 @@
 {
   "name": "@jamesbenrobb/ts",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "James Robb",
-  "description": "library containing utilities for working directly with the ts library",
+  "description": "library containing utilities for working directly with Typescript",
   "repository": {
     "type": "git",
     "url": "https://github.com/jamesbrobb/jbr.git"

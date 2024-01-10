@@ -1,0 +1,19 @@
+{
+  "name": "@jamesbenrobb/styles",
+  "version": "1.0.0",
+  "description": "Reusuable styles, mixins and functions",
+  "main": "_index.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesbrobb/jbr.git"
+  },
+  "author": "James Robb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesbrobb/jbr/issues"
+  },
+  "homepage": "https://github.com/jamesbrobb/jbr#readme"
+}
