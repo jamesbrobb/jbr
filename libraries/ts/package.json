@@ -1,6 +1,12 @@
 {
-  "name": "@jbr/ts",
+  "name": "@jamesbenrobb/ts",
   "version": "0.0.1",
+  "author": "James Robb",
+  "description": "library containing utilities for working directly with the ts library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesbrobb/jbr.git"
+  },
   "peerDependencies": {
 
   },

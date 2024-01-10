@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {MarkdownModule} from "ngx-markdown";
-import {AnalyticsHrefListenerDirective} from "@jbr/ng";
+import {AnalyticsHrefListenerDirective} from "@jamesbenrobb/ng";
 import {HrefListenerDirective} from "../../route/directives/route.directives";
 import {NgIf} from "@angular/common";
 

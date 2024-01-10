@@ -2,8 +2,8 @@ import {PathResolutionMap, PathResolutionMapEntry, PathConversionMap, PathConver
 import {BasePathHandler} from "./path-handler";
 
 
-const JBR_PATH_RESOLVER: PathResolutionMapEntry = [/^.*?\/jbr\/(?:dist\/)?libraries\/(?:@jbr\/)?(.*?)$/g, '@jbr/$1']
-const JBR_PATH_CONVERTOR: PathConversionMapEntry = [/^@jbr\/([^\/]*)(?:\/src)?\/lib/g, 'libraries/$1']
+const JBR_PATH_RESOLVER: PathResolutionMapEntry = [/^.*?\/jbr\/(?:dist\/)?libraries\/(?:@jamesbenrobb\/)?(.*?)$/g, '@jamesbenrobb/$1']
+const JBR_PATH_CONVERTOR: PathConversionMapEntry = [/^@jamesbenrobb\/([^\/]*)(?:\/src)?\/lib/g, 'libraries/$1']
 
 
 export class JBRPathHandler extends BasePathHandler {

@@ -1,5 +1,5 @@
 import {createNgModule, Injector, NgModuleRef, Type} from "@angular/core";
-import {StringUtils} from "@jbr/core";
+import {StringUtils} from "@jamesbenrobb/core";
 
 
 type ComponentImportFunc = () => Promise<any>

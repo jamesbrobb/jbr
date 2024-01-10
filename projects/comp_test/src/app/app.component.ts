@@ -7,7 +7,7 @@ import {
   StandardTableColumn,
   StandardTableRendererComponent,
   ComponentLoaderDirective
-} from "@jbr/ui";
+} from "@jamesbenrobb/ui";
 
 
 

@@ -2,7 +2,7 @@ import {APP_BOOTSTRAP_LISTENER, ComponentRef, Provider} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {NavigationEnd, Router, RouterEvent} from "@angular/router";
 import {filter} from "rxjs/operators";
-import {AnalyticsService, AnalyticsTrackingTypes} from "@jbr/core";
+import {AnalyticsService, AnalyticsTrackingTypes} from "@jamesbenrobb/core";
 
 
 

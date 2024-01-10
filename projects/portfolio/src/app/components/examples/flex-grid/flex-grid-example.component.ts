@@ -1,6 +1,6 @@
 import {Component, Input, NgModule, OnChanges} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ResponsiveContainerDirectiveModule} from "@jbr/ui";
+import {ResponsiveContainerDirectiveModule} from "@jamesbenrobb/ui";
 
 
 @Component({

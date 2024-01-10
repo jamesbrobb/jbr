@@ -9,7 +9,7 @@ import {
 import {MatMenu} from "@angular/material/menu";
 
 
-import {DateUtils} from "@jbr/core/utils";
+import {DateUtils} from "@jamesbenrobb/core/utils";
 import {LessonPlanSummaryDs} from "../../../core/lesson-plan/summary/lesson-plan-summary.ds";
 
 

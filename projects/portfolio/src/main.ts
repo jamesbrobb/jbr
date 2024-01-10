@@ -3,8 +3,8 @@ import {importProvidersFrom} from "@angular/core";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {provideRouter} from "@angular/router";
-import {provideAnalytics, AnalyticsTracker} from "@jbr/ng";
-import {getComponentLoaderProviders} from "@jbr/ui";
+import {provideAnalytics, AnalyticsTracker} from "@jamesbenrobb/ng";
+import {getComponentLoaderProviders} from "@jamesbenrobb/ui";
 
 import {AppComponent} from "./app/app.component";
 import {APP_ROUTES} from "./app/route";

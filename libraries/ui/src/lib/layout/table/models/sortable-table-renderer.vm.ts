@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { StandardTableColumn, TableRowData } from './standard-table-renderer.vm';
-import {SortOrder} from "@jbr/core";
+import {SortOrder} from "@jamesbenrobb/core";
 
 export interface ExternalSortParams<T extends TableRowData, K extends keyof T> {
   direction: SortOrder;

@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {TypeGuard} from "@jbr/types";
+import {TypeGuard} from "@jamesbenrobb/types";
 
 
 

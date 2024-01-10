@@ -6,7 +6,7 @@ import {LessonPlanDTO} from "../lesson-plan.dto";
 import {LessonPlanDS} from "../lesson-plan.ds";
 
 import {TagParser} from "../../tag/parser/tag-parser";
-import {ObjectUtils} from "@jbr/core/utils";
+import {ObjectUtils} from "@jamesbenrobb/core/utils";
 
 
 

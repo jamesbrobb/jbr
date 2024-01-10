@@ -5,7 +5,7 @@ import {
   AnalyticsAdaptor,
   GaAnalyticsAdaptor,
   GaAnalyticsConfig
-} from "@jbr/core";
+} from "@jamesbenrobb/core";
 
 
 export const GAConfigService = new InjectionToken<GaAnalyticsConfig>('GAConfigService');

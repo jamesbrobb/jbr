@@ -1,5 +1,5 @@
 import {NgModule, Component} from '@angular/core';
-import {ResponsiveContainerDirectiveModule} from "@jbr/ui";
+import {ResponsiveContainerDirectiveModule} from "@jamesbenrobb/ui";
 
 
 

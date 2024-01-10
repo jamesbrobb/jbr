@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, inject, Input} from '@angular/core';
 import {GithubConfig, githubConfigService} from "../../config/github/github-config";
 import {MatButtonModule} from "@angular/material/button";
 import {NgIf} from "@angular/common";
-import {AnalyticsEventDirective} from "@jbr/ng";
+import {AnalyticsEventDirective} from "@jamesbenrobb/ng";
 import {MatIconModule} from "@angular/material/icon";
 
 

@@ -9,8 +9,8 @@ import {
   AnalyticsService,
   AnalyticsAdaptor,
   AnalyticsHook
-} from "@jbr/core";
-import {CommandGroup, CommandProcessor} from "@jbr/core";
+} from "@jamesbenrobb/core";
+import {CommandGroup, CommandProcessor} from "@jamesbenrobb/core";
 import {ANALYTICS_ROUTER_PROVIDER} from "./router/analytics-router.provider";
 import {AnalyticsTracker, getAnalyticsTrackerProvider} from "./trackers";
 

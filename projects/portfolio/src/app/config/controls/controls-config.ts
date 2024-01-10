@@ -1,4 +1,4 @@
-import {RequiredLiteralKeys, TypeGuard} from "@jbr/types";
+import {RequiredLiteralKeys, TypeGuard} from "@jamesbenrobb/types";
 
 
 export enum ControlTypes {

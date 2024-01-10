@@ -1,4 +1,4 @@
-import {GetPropNamesByType, TypeGuard} from "@jbr/types";
+import {GetPropNamesByType, TypeGuard} from "@jamesbenrobb/types";
 
 
 export function walk<T, C extends T>(

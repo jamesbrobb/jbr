@@ -1,5 +1,5 @@
 import {Directive, HostListener, Input} from '@angular/core';
-import {AnalyticsEvent, AnalyticsService} from "@jbr/core";
+import {AnalyticsEvent, AnalyticsService} from "@jamesbenrobb/core";
 
 
 

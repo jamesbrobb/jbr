@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {StringUtils} from "@jbr/core";
+import {StringUtils} from "@jamesbenrobb/core";
 
 @Pipe({
   name: 'classCase',

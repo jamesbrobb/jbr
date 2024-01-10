@@ -1,5 +1,5 @@
 import {NgModule, Component, Input, OnChanges} from '@angular/core';
-import {GridLayoutComponentModule} from "@jbr/ui";
+import {GridLayoutComponentModule} from "@jamesbenrobb/ui";
 
 
 

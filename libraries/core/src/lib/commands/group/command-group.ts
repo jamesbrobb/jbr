@@ -5,7 +5,7 @@ import {
     Equals,
     TupleToUnion,
     TupleElementComparison, Not, Invalid,
-} from "@jbr/types";
+} from "@jamesbenrobb/types";
 
 import {
     Command,

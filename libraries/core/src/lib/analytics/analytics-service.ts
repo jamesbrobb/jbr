@@ -4,7 +4,7 @@ import {ObjectUtils} from "../utils";
 import {AnalyticsAdaptor} from './analytics-adaptor';
 import {AnalyticsHook} from './analytics-hook';
 import {CommandGroup, CommandProcessor} from "../commands";
-import {IfElse, Equals} from "@jbr/types";
+import {IfElse, Equals} from "@jamesbenrobb/types";
 
 
 type PropertyValueMapType = {[propertyKey: string]: unknown};

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {SortOrder} from "@jbr/core";
+import {SortOrder} from "@jamesbenrobb/core";
 
 @Component({
   selector: 'sortable-header',

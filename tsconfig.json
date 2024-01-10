@@ -20,26 +20,26 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@jbr/animation": [
-        "dist/libraries/@jbr/animation"
+      "@jamesbenrobb/animation": [
+        "dist/libraries/@jamesbenrobb/animation"
       ],
-      "@jbr/core": [
-        "dist/libraries/@jbr/core"
+      "@jamesbenrobb/core": [
+        "dist/libraries/@jamesbenrobb/core"
       ],
-      "@jbr/ng": [
-        "dist/libraries/@jbr/ng"
+      "@jamesbenrobb/ng": [
+        "dist/libraries/@jamesbenrobb/ng"
       ],
-      "@jbr/product": [
-        "dist/libraries/@jbr/product"
+      "@jamesbenrobb/product": [
+        "dist/libraries/@jamesbenrobb/product"
       ],
-      "@jbr/types": [
-        "dist/libraries/@jbr/types"
+      "@jamesbenrobb/types": [
+        "dist/libraries/@jamesbenrobb/types"
       ],
-      "@jbr/ui": [
-        "dist/libraries/@jbr/ui"
+      "@jamesbenrobb/ui": [
+        "dist/libraries/@jamesbenrobb/ui"
       ],
-      "@jbr/ts": [
-        "dist/libraries/@jbr/ts"
+      "@jamesbenrobb/ts": [
+        "dist/libraries/@jamesbenrobb/ts"
       ]
     },
     "lib": [

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {isPageNode, RouteNode} from "../../route";
 import {NgForOf, NgIf} from "@angular/common";
-import {GuardTypePipe} from "@jbr/ui";
+import {GuardTypePipe} from "@jamesbenrobb/ui";
 
 
 @Component({

@@ -1,11 +1,11 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
-import {OVERLAY_COLORS} from "@jbr/ui";
+import {OVERLAY_COLORS} from "@jamesbenrobb/ui";
 
 
-import {PageHeaderComponentModule} from "@jbr/product";
-import {FALLBACK_COLORS} from "@jbr/product";
+import {PageHeaderComponentModule} from "@jamesbenrobb/product";
+import {FALLBACK_COLORS} from "@jamesbenrobb/product";
 
 
 @Component({

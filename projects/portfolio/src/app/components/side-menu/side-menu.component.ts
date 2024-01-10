@@ -13,7 +13,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {NavigationEnd, Router, RouterEvent, RouterLink} from "@angular/router";
 
-import {openClose, rotate} from "@jbr/ui";
+import {openClose, rotate} from "@jamesbenrobb/ui";
 
 import {MenuConfig, MenuConfigService, MenuItemNode} from "../../config/menu/menu-config";
 

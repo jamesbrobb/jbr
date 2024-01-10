@@ -4,7 +4,7 @@ import { TagParser } from '../../tag/parser/tag-parser';
 import { WordSenseParser } from '../../word-sense/parser/word-sense-parser';
 import { ASSET_TYPE } from '../../asset/asset-type';
 import { AssetService } from '../../asset/service/asset.service';
-import {ObjectUtils} from "@jbr/core/utils";
+import {ObjectUtils} from "@jamesbenrobb/core/utils";
 
 
 

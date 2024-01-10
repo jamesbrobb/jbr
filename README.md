@@ -30,7 +30,7 @@ tsx ../../scripts/ts-test-script.ts
 ```
 create readme
 ```
-ng generate @jbr/schematics:tsc-test <path to file>
+ng generate @jamesbenrobb/schematics:tsc-test <path to file>
 ```
 
 gitdown

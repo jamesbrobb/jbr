@@ -12,7 +12,7 @@ import {
   HttpError,
   HttpRequest,
   HttpResponse
-} from "@jbr/core";
+} from "@jamesbenrobb/core";
 
 
 

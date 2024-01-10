@@ -1,4 +1,4 @@
-import {AddParameterToTuple} from "@jbr/types";
+import {AddParameterToTuple} from "@jamesbenrobb/types";
 import {Observable, of} from "rxjs";
 import {mergeMap} from "rxjs/operators";
 import {Command, ObservableCommand} from "../command/command";

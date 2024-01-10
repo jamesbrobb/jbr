@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {EntityInfoComponent} from "../entity-info/entity-info.component";
 import {EntityTypeLabelComponent} from "../entity-type-label/entity-type-label.component";
 import {MatExpansionModule} from "@angular/material/expansion";
-import {toClassCasePipe} from "@jbr/ui";
+import {toClassCasePipe} from "@jamesbenrobb/ui";
 import {InfoNode, PageNode} from "../../route";
 
 @Component({

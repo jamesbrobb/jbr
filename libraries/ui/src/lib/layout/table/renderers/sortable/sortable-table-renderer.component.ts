@@ -10,7 +10,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import {comparer, SortOrder} from "@jbr/core";
+import {comparer, SortOrder} from "@jamesbenrobb/core";
 import {
   TableCellRendererMap,
   TableRowData

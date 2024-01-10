@@ -7,7 +7,7 @@ import {
     HttpRequestHook,
     HttpResponseHook,
     HttpErrorHook
-} from "@jbr/core";
+} from "@jamesbenrobb/core";
 
 import {NgHttpAdaptor} from "./adaptor/ng-http-adaptor";
 

@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Outp
 
 import {MatButtonModule} from "@angular/material/button";
 import {MatTabsModule} from "@angular/material/tabs";
-import {AnalyticsEventDirective, AnalyticsHrefListenerDirective} from "@jbr/ng";
+import {AnalyticsEventDirective, AnalyticsHrefListenerDirective} from "@jamesbenrobb/ng";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {MarkdownModule} from "ngx-markdown";
 import {
@@ -11,7 +11,7 @@ import {
   ResponsiveContainerDirectiveModule,
   toClassCasePipe,
   toWordsPipe
-} from "@jbr/ui";
+} from "@jamesbenrobb/ui";
 import {ControlsLoaderDirective} from "../controls/controls-loader.directive";
 import {ControlGroup} from "../../config/controls/controls-config";
 import {MatIconModule} from "@angular/material/icon";

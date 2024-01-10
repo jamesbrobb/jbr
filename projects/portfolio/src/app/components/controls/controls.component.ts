@@ -26,7 +26,7 @@ import {
   isSelectControl
 } from "../../config/controls/controls-config";
 
-import {GuardTypePipe, JsonEditorComponent, JsonEditorControlValueAccessor} from "@jbr/ui";
+import {GuardTypePipe, JsonEditorComponent, JsonEditorControlValueAccessor} from "@jamesbenrobb/ui";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ControlsConfigParser} from "../../config/controls/controls-config.parser";
 

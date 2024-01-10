@@ -5,8 +5,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
 
 import {MarkdownModule} from "ngx-markdown";
 
-import {rotate, openClose, toClassCasePipe} from "@jbr/ui";
-import {AnalyticsHrefListenerDirective, AnalyticsEventDirective} from "@jbr/ng";
+import {rotate, openClose, toClassCasePipe} from "@jamesbenrobb/ui";
+import {AnalyticsHrefListenerDirective, AnalyticsEventDirective} from "@jamesbenrobb/ng";
 
 import {EntityInfoComponent} from "../entity-info/entity-info.component";
 import {MarkdownComponent} from "../markdown/markdown.component";

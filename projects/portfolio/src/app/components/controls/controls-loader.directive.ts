@@ -11,7 +11,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 import {tap} from "rxjs";
 
-import {ComponentLoaderMapService, ComponentLoaderIOBase, ComponentLoaderDirective} from "@jbr/ui";
+import {ComponentLoaderMapService, ComponentLoaderIOBase, ComponentLoaderDirective} from "@jamesbenrobb/ui";
 import {ControlComponentIO} from "./controls.component";
 import {ControlGroup} from "../../config/controls/controls-config";
 

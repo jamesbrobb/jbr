@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 
-import {BaseDynamicModule} from "@jbr/ui";
+import {BaseDynamicModule} from "@jamesbenrobb/ui";
 import {FallbackImageComponent, FallbackImageComponentModule} from "./fallback-image.component";
 
 

@@ -1,7 +1,7 @@
 import {EnvironmentProviders, makeEnvironmentProviders} from "@angular/core";
-import {AnalyticsActionsService, GAConfigService} from "@jbr/ng";
+import {AnalyticsActionsService, GAConfigService} from "@jamesbenrobb/ng";
 import {Config} from "../config";
-import {AnalyticsActions, GaAnalyticsConfig} from "@jbr/core";
+import {AnalyticsActions, GaAnalyticsConfig} from "@jamesbenrobb/core";
 import {AppConfig} from "../app-config";
 
 

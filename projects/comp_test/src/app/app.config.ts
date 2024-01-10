@@ -2,7 +2,7 @@ import { ApplicationConfig } from '@angular/core';
 import {
   getComponentLoaderProviders,
   ComponentLoaderMapService
-} from "@jbr/ui";
+} from "@jamesbenrobb/ui";
 
 
 export const appConfig: ApplicationConfig = {

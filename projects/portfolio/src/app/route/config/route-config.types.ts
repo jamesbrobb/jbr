@@ -1,4 +1,4 @@
-import {TypeGuard} from "@jbr/types";
+import {TypeGuard} from "@jamesbenrobb/types";
 import {ControlGroup} from "../../config/controls/controls-config";
 
 
