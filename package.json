@@ -9,17 +9,20 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve portfolio",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "publish": "npm run build-all-libraries && cd dist/libraries/@jamesbenrobb && npm publish ./core && npm publish ./ng && npm publish ./ts && npm publish ./types && npm publish ./ui",
     "types-tsd": "npx tsd libraries/types -f=src",
     "core-tsd": "npx tsd libraries/core -f=src",
     "create-libraries-routes": "node scripts/create-libraries-routes.js -p ./libraries",
     "readme": "cd $INIT_CWD && npx gitdown ./.README/README.tpl.md --output-file ./README.md",
-    "ts-test-script": "ng build typescript && tsx ./scripts/ts-test-script.ts",
-    "build-all-libraries": "ng build types && ng build ts && ng build core && ng build ng && ng build ui",
-    "build-portfolio": "npm run build-all-libraries && ng build portfolio"
+    "ts-test-script": "ng build ts --configuration production && tsx ./scripts/ts-test-script.ts",
+    "build-all-libraries-dev": "ng build types && ng build ts && ng build core && ng build ng && ng build ui",
+    "serve-portfolio": "npm run build-all-libraries-dev && ng serve portfolio",
+    "build-all-libraries": "ng build types --configuration production && ng build ts --configuration production && ng build core --configuration production && ng build ng --configuration production && ng build ui --configuration production",
+    "build-portfolio": "npm run build-all-libraries && ng build portfolio --configuration production"
   },
   "private": true,
   "dependencies": {

@@ -267,6 +267,14 @@
           "isModule": true
         },
         {
+          "path": "ts",
+          "description": "libraries/ts/README.md",
+          "label": "ts",
+          "type": "",
+          "githubLink": "libraries/ts",
+          "isModule": true
+        },
+        {
           "path": "types",
           "description": "libraries/types/README.md",
           "label": "types",
@@ -275,37 +283,11 @@
           "isModule": true
         },
         {
-          "path": "typescript",
-          "description": "libraries/typescript/README.md",
-          "label": "typescript",
-          "type": "",
-          "githubLink": "libraries/typescript",
-          "isModule": true
-        },
-        {
           "path": "ui",
           "children": [
             {
               "path": "common",
               "children": [
-                {
-                  "path": "icons",
-                  "children": [
-                    {
-                      "path": "icon",
-                      "description": "libraries/ui/src/lib/common/icons/icon/README.md",
-                      "label": "icon",
-                      "type": "",
-                      "githubLink": "libraries/ui/src/lib/common/icons/icon",
-                      "isModule": true
-                    }
-                  ],
-                  "description": "libraries/ui/src/lib/common/icons/README.md",
-                  "label": "icons",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/common/icons",
-                  "isModule": true
-                },
                 {
                   "path": "overlay",
                   "children": [
@@ -335,8 +317,7 @@
                           "optionsId": "OVERLAY_COLORS",
                           "key": "color",
                           "label": "Color",
-                          "value": "OVERLAY_COLORS.BLUE",
-                          "defaultValue": "OVERLAY_COLORS.BLUE"
+                          "value": "OVERLAY_COLORS.BLUE"
                         },
                         {
                           "controlType": "input",
@@ -346,19 +327,6 @@
                           "value": "true"
                         }
                       ]
-                    }
-                  ]
-                },
-                {
-                  "path": "renderers",
-                  "children": [
-                    {
-                      "path": "html-renderer",
-                      "description": "libraries/ui/src/lib/common/renderers/html-renderer/README.md",
-                      "label": "html renderer",
-                      "type": "",
-                      "githubLink": "libraries/ui/src/lib/common/renderers/html-renderer",
-                      "isModule": true
                     }
                   ]
                 },
@@ -457,43 +425,6 @@
                     }
                   ],
                   "description": "libraries/ui/src/lib/component-loader/.README/component-loader.service/DESCRIPTION.md"
-                }
-              ]
-            },
-            {
-              "path": "dynamic",
-              "label": "dynamic",
-              "type": "",
-              "githubLink": "libraries/ui/src/lib/dynamic",
-              "isModule": true,
-              "description": "libraries/ui/src/lib/dynamic/.README/DESCRIPTION.md",
-              "info": [
-                {
-                  "name": "EXAMPLE",
-                  "path": "example",
-                  "uri": "libraries/ui/src/lib/dynamic/.README/EXAMPLE.md",
-                  "isExample": true
-                }
-              ]
-            },
-            {
-              "path": "forms",
-              "children": [
-                {
-                  "path": "codemirror",
-                  "description": "libraries/ui/src/lib/forms/codemirror/README.md",
-                  "label": "codemirror",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/forms/codemirror",
-                  "isModule": true
-                },
-                {
-                  "path": "json-editor",
-                  "description": "libraries/ui/src/lib/forms/json-editor/README.md",
-                  "label": "json editor",
-                  "type": "",
-                  "githubLink": "libraries/ui/src/lib/forms/json-editor",
-                  "isModule": true
                 }
               ]
             },
