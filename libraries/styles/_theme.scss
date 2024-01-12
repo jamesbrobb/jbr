@@ -34,8 +34,9 @@ $jbr-dark-theme: mat.define-dark-theme((
 
 @mixin set-themes($light-theme, $dark-theme) {
   @include mat.core();
-  @include mat.typography-hierarchy($jbr-typography);
   @include mat.core-theme($light-theme);
+  @include mat.typography-hierarchy($jbr-typography);
+
   @include mat.sidenav-theme($light-theme);
   @include mat.tree-theme($light-theme);
   @include mat.toolbar-theme($light-theme);
@@ -57,6 +58,24 @@ $jbr-dark-theme: mat.define-dark-theme((
     @include mat.badge-color($dark-theme);
     @include mat.expansion-color($dark-theme);
     @include mat.divider-color($dark-theme);
+  }
+}
+
+@mixin set-form-themes($light-theme, $dark-theme) {
+  @include mat.input-theme($light-theme);
+  @include mat.select-theme($light-theme);
+  @include mat.stepper-theme($light-theme);
+  @include mat.radio-theme($light-theme);
+  @include mat.checkbox-theme($light-theme);
+  @include mat.form-field-theme($light-theme);
+
+  @media (prefers-color-scheme: dark) {
+    @include mat.input-color($dark-theme);
+    @include mat.select-color($dark-theme);
+    @include mat.stepper-color($dark-theme);
+    @include mat.radio-color($dark-theme);
+    @include mat.checkbox-color($dark-theme);
+    @include mat.form-field-color($dark-theme);
   }
 }
 
