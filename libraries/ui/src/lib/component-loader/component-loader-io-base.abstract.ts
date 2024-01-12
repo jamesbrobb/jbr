@@ -6,9 +6,10 @@ import {tap} from "rxjs";
 
 @Directive({
   selector: '[abstractComponentLoaderIOBase]',
-  hostDirectives: [
+  // extenders of class must provide this
+  /*hostDirectives: [
     ComponentLoaderDirective
-  ]
+  ]*/
 })
 export abstract class ComponentLoaderIOBase<T extends object> implements OnChanges {
 
