@@ -35,5 +35,5 @@ const source = parse({
   pathHandlers
 });
 
-console.log(source);
+console.log(JSON.stringify(source));
 
