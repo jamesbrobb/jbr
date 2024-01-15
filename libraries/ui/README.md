@@ -1,9 +1,9 @@
-Angular specific UI components.
+Angular specific reusable UI components.
 
 ## Installing
 
 For the latest stable version:
 
 ```bash
-npm -i @jamesbenrobb/ui
+npm install @jamesbenrobb/ui
 ```

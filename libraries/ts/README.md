@@ -5,5 +5,5 @@ A library containing utilities for working directly with Typescript.
 For the latest stable version:
 
 ```bash
-npm -i @jamesbenrobb/ts
+npm install @jamesbenrobb/ts
 ```

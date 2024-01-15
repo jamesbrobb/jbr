@@ -1,43 +1,11 @@
-# jbr
+## @jamesbenrobb/* libraries
 
-serve portfolio
-``` 
-ng serve portfolio
-```
+- @jamesbenrobb/[core](https://github.com/jamesbrobb/jbr/tree/main/libraries/core)
+- @jamesbenrobb/[ng](https://github.com/jamesbrobb/jbr/tree/main/libraries/ng)
+- @jamesbenrobb/[product](https://github.com/jamesbrobb/jbr/tree/main/libraries/product)
+- @jamesbenrobb/[styles](https://github.com/jamesbrobb/jbr/tree/main/libraries/styles)
+- @jamesbenrobb/[ts](https://github.com/jamesbrobb/jbr/tree/main/libraries/ts)
+- @jamesbenrobb/[types](https://github.com/jamesbrobb/jbr/tree/main/libraries/types)
+- @jamesbenrobb/[ui](https://github.com/jamesbrobb/jbr/tree/main/libraries/ui)
 
-build
-```
-ng build <project or lib name>
-```
-
-create library routes
-```
- npm run create-libraries-routes
-```
-
-run ts test script
-```
-cd libraries/<library>
-```
-or
-```
-cd projects/<project>
-```
-Then run with tsx relative to execution.
-So for either of the above
-```
-tsx ../../scripts/ts-test-script.ts
-```
-create readme
-```
-ng generate @jamesbenrobb/schematics:tsc-test <path to file>
-```
-
-gitdown
-```
-npx gitdown ./EXAMPLE.tpl.md --output-file ./EXAMPLE.md && npx gitdown ./README.tpl.md --output-file ./README.md
-```
-
-
-
-
+published npm [packages](https://www.npmjs.com/settings/jamesbenrobb/packages)

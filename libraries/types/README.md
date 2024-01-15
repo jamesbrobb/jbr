@@ -5,5 +5,5 @@ A library containing reusable type definitions and utility functions.
 For the latest stable version:
 
 ```bash
-npm -i @jamesbenrobb/types
+npm install @jamesbenrobb/types
 ```

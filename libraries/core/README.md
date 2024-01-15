@@ -5,5 +5,5 @@ Library containing framework-agnostic components and utilities.
 For the latest stable version:
 
 ```bash
-npm -i @jamesbenrobb/core
+npm install @jamesbenrobb/core
 ```
