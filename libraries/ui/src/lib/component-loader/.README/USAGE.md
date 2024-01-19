@@ -1,11 +1,9 @@
 
 To use the component loader directive do the following:
 
-1) Provide a value for the `ComponentLoaderMapService` injection token
-2) Provide the `ComponentLoaderService` in the root of your application
-3) Add either the `componentLoader` or `componentLoaderIO` directive on an `ng-container` within your markup and add the directive to your `imports` metadata
-
 # 1.
+
+**Provide a value for the `ComponentLoaderMapService` injection token**
 
 Define a [ContentLoaderMap](https://github.com/jamesbrobb/jbr/blob/main/libraries/ui/src/lib/component-loader/component-loader.service.ts#L16) for the `ComponentLoaderMapService` provider.
 
@@ -69,6 +67,8 @@ The map defines a key value pair for each component with a value of type [Compon
 
 # 2.
 
+**Provide the `ComponentLoaderService` in the root of your application**
+
 ```ts
 [{
   provide: ComponentLoaderService,
@@ -84,6 +84,8 @@ The map defines a key value pair for each component with a value of type [Compon
 
 
 # 3.
+
+**Add either the `componentLoader` or `componentLoaderIO` directive on an `ng-container` within your markup and add the directive to your `imports` metadata**
 
 To use the standard component loader directive:
 

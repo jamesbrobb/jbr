@@ -1,13 +1,9 @@
 
 To use analytics do the following:
 
-1) Define the analytics config
-2) Instantiate a third party analytics adaptor that implements the `AnalyticsAdaptor`
-3) Instantiate the `AnalyticsService` passing in the config and the adaptor
-4) Create and send a tracking event, supplying a property value map with the required values
-
-
 # 1.
+
+**Define the analytics config**
 
 ```json
 {
@@ -35,6 +31,12 @@ To use analytics do the following:
 
 # 2. and 3.
 
+**Instantiate a third party analytics adaptor that implements the `AnalyticsAdaptor` interface**
+
+and
+
+**Instantiate the `AnalyticsService` passing in the config and the adaptor**
+
 ```ts
 import {CommandGroup} from "./command-group";
 import {AnalyticsHook} from "./analytics-hook";
@@ -52,6 +54,8 @@ hookGroup.addCommand(new SomeThirdPartyAnalyticsHook());
 const service = new AnalyticsService(config, adaptor, hookGroup, processor);
 ```
 # 4.
+
+**Create and send a tracking event, supplying a property value map with the required values**
 
 ```ts
 
