@@ -2,7 +2,7 @@
 
 
 
-### Inputs
+#### Inputs
 
 ```
 @Input()
@@ -18,7 +18,7 @@ outputs?: Partial<T>
 
 
 
-### Outputs
+#### Outputs
 
 ```
 @Output()

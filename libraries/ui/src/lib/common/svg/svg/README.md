@@ -1,6 +1,4 @@
 
-# SVG Component
-
 Renders a configured svg.
 Wraps [MatIconComponent](https://material.angular.io/components/icon/overview).
 

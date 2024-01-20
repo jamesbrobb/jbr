@@ -1,4 +1,4 @@
-Library containing reusuable styles, mixins and functions.
+Library containing reusable styles, mixins and functions.
 
 ## Installing
 

@@ -6,7 +6,7 @@ Renders a ColorOverlay.
 
 ---
 
-### Selector
+#### Selector
 
 `color-overlay`
 
@@ -17,6 +17,6 @@ Renders a ColorOverlay.
 
 
 
-### Implements
+#### Implements
 <p><code><a href="https://angular.io/api/core/OnChanges">OnChanges</a></code></p>
 

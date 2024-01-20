@@ -1,7 +1,6 @@
-# Command processor
 
 The `CommandProcessor` has a single asynchronous `execute` method. This is an overloaded method with 4 signatures, but has a single implementation using conditional types to determine which arguments are required at the call site.
-<br/><br/>
+
 
 ```ts
 import {Observable} from "rxjs";
@@ -16,7 +15,7 @@ export class CommandProcessor {
     }
 }
 ```
-<br/>
+
 The first two arguments are always required:
 
  - `commandGroup: CommandGroup`
@@ -26,12 +25,12 @@ Any other required arguments are determined by inspecting the supplied `CommandG
 
  - `extraArgs` - required if the `CommandGroup` specifies an `ExtraArgsType`. Its type is a predetermined length tuple exposing element labels and types. 
  - `bypassCondition: CommandProcessorBypassCondition` - this is required if the `CommandGroup` specifies an `AdditionalOutputType`. It's a type guard function that is executed to test the current return type, bypassing the remaining commands if it's found to be the same type as the groups `AdditionalOutputType`.
-<br/><br/>
+
 
 ## Usage
 
 A simple command with string input and output
-<br/><br/>
+
 
 ```ts
 import {take} from 'rxjs/operators'
@@ -53,9 +52,9 @@ processor.execute(group, 'test')
     });
 ```
 
-<br/>
+
 A command with an additional output type.
-<br/><br/>
+
 
 ```ts
 import {take} from 'rxjs/operators'
@@ -87,9 +86,9 @@ processor.execute(group, 3, bypassCondition)
     });
 ```
 
-<br/>
+
 A command with extra arguments.
-<br/><br/>
+
 
 ```ts
 import {take} from 'rxjs/operators'

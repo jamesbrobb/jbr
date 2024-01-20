@@ -1,32 +1,19 @@
-## API 
 
----
-
-### Inputs
+#### Inputs
 
 ```
 @Input()
 dataProvider?: unknown[]
 ```
 
-
-
-
-
-
----
-### Properties
+#### Properties
 
 ```
 @ContentChild('TemplateRef', {static: true})
  itemTemplate: TemplateRef<any> | null = null
 ```
 
-
-
-
----
-### Methods
+#### Methods
 
 ```
  trackById(index: number, item: any): string

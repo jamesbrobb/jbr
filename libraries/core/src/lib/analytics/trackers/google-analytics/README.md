@@ -1,3 +1,2 @@
-# Google Analytics (gtag)
 
-An `AnalyticsAdaptor` implemented for Google analytics 
+An `AnalyticsAdaptor` implementation for Google analytics 

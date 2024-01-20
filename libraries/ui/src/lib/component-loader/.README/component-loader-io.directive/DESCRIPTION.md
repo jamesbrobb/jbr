@@ -6,12 +6,12 @@ Renders a ComponentLoaderIO.
 
 ---
 
-### Selector
+#### Selector
 
 ```[componentLoaderIO]```
 
 
-### Standalone
+#### Standalone
 
 ```true```
 
@@ -19,7 +19,7 @@ Renders a ComponentLoaderIO.
 
 
 
-### Extends
+#### Extends
 
 ```ComponentLoaderIOBase<T>```
 

@@ -1,5 +1,3 @@
-# Command group
-
 A collection of commands that can safely execute sequentially.
 
 ## Command Compatibility within a group
@@ -10,9 +8,9 @@ The following types are calculated from the command type assigned to the group:
 - an additional output type - this is determined by excluding the IO type from the output type
 - any additional argument types in its `execute` method - i.e `execute(input: string, arg1: number, arg2: Function): string // [arg1:number, arg2:Function]`
 
-<br/>
+
 When attempting to add a command to the group the corresponding types are inferred from the command to test its compatibility.
-<br/><br/>
+
 
 A command's common **IO type** is compatible if:
 
@@ -32,12 +30,12 @@ A command's **Extra arguments** are compatible if:
 - they're an exact match with the group
 - it has fewer than the group, but the types match sequentially
 
-<br/>
+
 
 ## Usage
 
 A command type must be specified for the first type parameter of the `CommandGroup` on creation. If not an error occurs when attempting to add commands to the group.
-<br/><br/>
+
 
 ```ts
 const badGroup = new CommandGroup();
@@ -45,11 +43,10 @@ badGroup.addCommand(new StringInStringOutCommand()); // Error - A type is requir
 
 const goodGroup = new CommandGroup<Command<string>>();
 goodGroup.addCommand(new StringInStringOutCommand()); // ok
-
 ```
-<br/>
+
 The supplied command type must have a common input and output type to ensure commands can be safely executed sequentially.
-<br/><br/>
+
 
 ```ts
 const badGroup = new CommandGroup<Command<string, number>>();
@@ -57,11 +54,10 @@ badGroup.addCommand(new StringInStringOutCommand()); // Error - The CommandGroup
 
 const goodGroup = new CommandGroup<StringInStringOutCommand>();
 goodGroup.addCommand(new StringInStringOutCommand()); // ok - string
-
 ```
-<br/>
+
 If the supplied command has a common IO type but also an additional output type, it must be explicitly flagged that this is allowed 
-<br/><br/>
+
 
 ```ts
 const badGroup = new CommandGroup<Command<number, number|string>>();
@@ -71,7 +67,7 @@ const goodGroup = new CommandGroup<Command<number, number|string>, true>();
 goodGroup.addCommand(new NumberInNumberOrStringOutCommand()); // ok - string | number
 
 ```
-<br/>
+
 Once a command type is set on a group any attempt to add a non-compatible command will result in one of the following errors:
 
 - IO type of `CommandGroup` and supplied command do not match
@@ -79,7 +75,7 @@ Once a command type is set on a group any attempt to add a non-compatible comman
 - `CommandGroup` and supplied commands additional output type do not match
 - `CommandGroup` and supplied commands extra arguments do not match
 
-<br/>
+
 
 ```ts
 

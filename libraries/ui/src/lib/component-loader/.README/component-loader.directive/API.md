@@ -2,7 +2,7 @@
 
 
 
-### Inputs
+#### Inputs
 
 <pre><code>@<a href="https://angular.io/api/core/Input">Input</a>('componentLoader')
 componentType?: string</code></pre>
@@ -11,7 +11,7 @@ componentType?: string</code></pre>
 
 
 
-### Outputs
+#### Outputs
 
 <pre><code>@<a href="https://angular.io/api/core/Output">Output</a>()
 componentChanged = new <a href="https://angular.io/api/core/EventEmitter">EventEmitter</a>&lt;T&gt;()</code></pre>
@@ -24,7 +24,7 @@ componentChanged = new <a href="https://angular.io/api/core/EventEmitter">EventE
 
 
 
-### Methods
+#### Methods
 
 <pre><code>ngOnChanges(): void</code></pre>
 

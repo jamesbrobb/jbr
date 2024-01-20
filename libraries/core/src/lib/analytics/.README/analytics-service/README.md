@@ -29,7 +29,7 @@
 
 <a name="user-content-analytics-api-methods"></a>
 <a name="analytics-api-methods"></a>
-### Methods
+#### Methods
 
 ```
  addHook(hook: AnalyticsHook): void
@@ -46,7 +46,7 @@
 
 <a name="user-content-analytics-usage"></a>
 <a name="analytics-usage"></a>
-## Usage
+### Usage
 
 
 ```html

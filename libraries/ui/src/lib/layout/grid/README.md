@@ -18,7 +18,7 @@ Content projection is used to render the supplied UI component repeatedly within
 
 <a name="user-content-grid-layout-api-tabset-tabset-fade-tabset-pills-tabset-underline-tabset-primary-tabset-lg-inputs"></a>
 <a name="grid-layout-api-tabset-tabset-fade-tabset-pills-tabset-underline-tabset-primary-tabset-lg-inputs"></a>
-### Inputs
+#### Inputs
 
 ```
 @Input()
@@ -33,7 +33,7 @@ dataProvider?: unknown[]
 ---
 <a name="user-content-grid-layout-api-tabset-tabset-fade-tabset-pills-tabset-underline-tabset-primary-tabset-lg-properties"></a>
 <a name="grid-layout-api-tabset-tabset-fade-tabset-pills-tabset-underline-tabset-primary-tabset-lg-properties"></a>
-### Properties
+#### Properties
 
 ```
 @ContentChild('TemplateRef', {static: true})
@@ -46,7 +46,7 @@ dataProvider?: unknown[]
 ---
 <a name="user-content-grid-layout-api-tabset-tabset-fade-tabset-pills-tabset-underline-tabset-primary-tabset-lg-methods"></a>
 <a name="grid-layout-api-tabset-tabset-fade-tabset-pills-tabset-underline-tabset-primary-tabset-lg-methods"></a>
-### Methods
+#### Methods
 
 ```
  trackById(index: number, item: any): string

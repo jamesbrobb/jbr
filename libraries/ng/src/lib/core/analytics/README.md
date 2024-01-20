@@ -1,4 +1,3 @@
-# Analytics NgModule
 
 A module that exposes:
 
@@ -11,7 +10,6 @@ It has 3 injection tokens, 2 required and one optional
 - AnalyticsAdaptorService: `AnalyticsAdaptor` - to supply a tracking library specific adaptor
 - AnalyticsHooksService: `AnalyticsHook[]` - Optional - enables a way to supply/configure pre-hooks which execute before the supplied tracking event is sent
 
-<br/>
 
 ## Usage
 
@@ -50,9 +48,9 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-<br/>
+
 Switching to another analytics tracking service is as simple as removing the `GoogleAnalyticsModule` from imports and creating another 3rd party analytics service adaptor. 
-<br/><br/>
+
 
 ```ts
 import { NgModule } from '@angular/core';

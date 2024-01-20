@@ -5,7 +5,7 @@
 
 
 
-### Methods
+#### Methods
 
 ```
  addHook(hook: AnalyticsHook): void

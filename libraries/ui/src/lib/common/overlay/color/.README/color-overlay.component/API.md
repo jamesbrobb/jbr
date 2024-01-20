@@ -2,7 +2,7 @@
 
 
 
-### Inputs
+#### Inputs
 
 <pre><code>@<a href="https://angular.io/api/core/Input">Input</a>()
 color?: OVERLAY_COLORS = OVERLAY_COLORS.BLUE</code></pre>
@@ -18,7 +18,7 @@ allowTransition: boolean = true</code></pre>
 
 
 
-### Properties
+#### Properties
 
 <pre><code> overlayColor?: OVERLAY_COLORS</code></pre>
 
@@ -26,7 +26,7 @@ allowTransition: boolean = true</code></pre>
 
 
 
-### Methods
+#### Methods
 
 <pre><code> ngOnChanges(): void</code></pre>
 

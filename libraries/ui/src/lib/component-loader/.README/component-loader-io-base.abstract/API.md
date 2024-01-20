@@ -5,7 +5,7 @@
 
 
 
-### Methods
+#### Methods
 
 ```
 ngOnChanges(changes: SimpleChanges): void
