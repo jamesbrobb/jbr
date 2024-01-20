@@ -6,8 +6,14 @@ A configurable analytics management implementation, that's both framework and tr
 
 ---
 
-
 To use analytics do the following:
+
+
+1) [Define the analytics config](#1)
+2) [Instantiate an AnalyticsService](#2)
+3) [Create and send a tracking event](#3)
+
+---
 
 # 1.
 
@@ -37,13 +43,15 @@ To use analytics do the following:
 }
 ```
 
-# 2. and 3.
+# 2.
 
-**Instantiate a third party analytics adaptor that implements the `AnalyticsAdaptor` interface**
+**Instantiate an AnalyticsService**
 
-and
+Instantiate a third party analytics adaptor that implements the `AnalyticsAdaptor` interface
 
-**Instantiate the `AnalyticsService` passing in the config and the adaptor**
+then
+
+Instantiate the `AnalyticsService` passing in the config and the adaptor
 
 ```ts
 import {CommandGroup} from "./command-group";
