@@ -69,7 +69,7 @@ hookGroup.addCommand(new SomeThirdPartyAnalyticsHook());
 
 const service = new AnalyticsService(config, adaptor, hookGroup, processor);
 ```
-# 4.
+# 3.
 
 **Create and send a tracking event, supplying a property value map with the required values**
 

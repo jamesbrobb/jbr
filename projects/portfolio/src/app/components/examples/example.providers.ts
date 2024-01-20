@@ -1,8 +1,5 @@
 import {EnvironmentProviders, makeEnvironmentProviders} from "@angular/core";
 import {ComponentLoaderMapService} from "@jamesbenrobb/ui";
-import {
-  ColorOverlayComponentModule
-} from "../../../../../../libraries/ui/src/lib/common/overlay/color/color-overlay.component";
 
 export function getExampleProvider(): EnvironmentProviders {
 

@@ -1,9 +1,18 @@
+<!-- THIS IS A GENERATED FILE - DO NOT EDIT -->
+# HTTP
 
 A framework agnostic, configurable http solution.
 
-## Endpoints Config
+---
+1) [Create endpoints config](#1)
+2) [Instantiate endpoint factory](#2)
+3) [Using a factory to create an endpoint](#3)
+4) [Using an endpoint to make a request](#4)
+---
 
-`config.json`
+# 1.
+
+**Create endpoints config**
 
 ```json
 {
@@ -47,7 +56,9 @@ A framework agnostic, configurable http solution.
 }
 ```
 
-## Factory Instantiation
+# 2.
+
+**Instantiate endpoint factory**
 
 ```ts
 import {HttpEndpointHooks, HttpEndpointsConfig} from "./http-endpoint-factory";
@@ -75,7 +86,9 @@ const factory = new HttpEndpointFactory({adaptor, config, hooks});
 
 ```
 
-## Factory Usage
+# 3.
+
+**Using a factory**
 
 ```ts
 /*
@@ -86,7 +99,9 @@ import {HttpEndpoint} from "./http-endpoint";
 const userEndpoint: HttpEndpoint = factory.createByType('user');
 ```
 
-## Endpoint Usage
+# 4.
+
+**Using an endpoint to make a request**
 
 ```ts
 import {HttpResponse} from "./http-response";

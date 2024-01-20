@@ -8,7 +8,8 @@
   $vertical-gap:10px,
   $horizontal-gap:10px,
   $row-height:fit-content,
-  $column-count:4) {
+  $column-count:4
+) {
 
   .#{$grid_class_name} {
     --flex-grid-vertical-gap: var(--grid-vertical-gap, #{$vertical-gap});

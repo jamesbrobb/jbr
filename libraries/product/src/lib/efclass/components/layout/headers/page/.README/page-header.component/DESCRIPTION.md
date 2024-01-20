@@ -1,0 +1,1 @@
+Renders a page header.

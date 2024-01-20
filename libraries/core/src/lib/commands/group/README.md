@@ -1,6 +1,17 @@
+<!-- THIS IS A GENERATED FILE - DO NOT EDIT -->
+# CommandGroup
+
 A collection of commands that can safely execute sequentially.
 
-## Command Compatibility within a group
+---
+1) [Command Compatibility within a CommandGroup](#1)
+2) [Instantiating a CommandGroup](#2)
+3) [Adding Commands to a CommandGroup](#3)
+---
+
+# 1.
+
+**Command Compatibility within a group**
 
 The following types are calculated from the command type assigned to the group:
 
@@ -32,10 +43,11 @@ A command's **Extra arguments** are compatible if:
 
 
 
-## Usage
+# 2.
+
+**Instantiating a CommandGroup**
 
 A command type must be specified for the first type parameter of the `CommandGroup` on creation. If not an error occurs when attempting to add commands to the group.
-
 
 ```ts
 const badGroup = new CommandGroup();
@@ -68,14 +80,16 @@ goodGroup.addCommand(new NumberInNumberOrStringOutCommand()); // ok - string | n
 
 ```
 
+# 3.
+
+**Adding Commands to a CommandGroup**
+
 Once a command type is set on a group any attempt to add a non-compatible command will result in one of the following errors:
 
 - IO type of `CommandGroup` and supplied command do not match
 - `CommandGroup` additional output type is `never` but the supplied commands additional output type has a type set
 - `CommandGroup` and supplied commands additional output type do not match
 - `CommandGroup` and supplied commands extra arguments do not match
-
-
 
 ```ts
 

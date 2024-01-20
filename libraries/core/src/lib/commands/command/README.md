@@ -1,5 +1,7 @@
+<!-- THIS IS A GENERATED FILE - DO NOT EDIT -->
+# Command
+
 A simple interface that defines an input and output type, and optional additional arguments.
-<br/><br/>
 
 ```ts
 

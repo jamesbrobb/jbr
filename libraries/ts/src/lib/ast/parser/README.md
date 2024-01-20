@@ -1,4 +1,19 @@
-Example usage of `./parser.ts`:
+<!-- THIS IS A GENERATED FILE - DO NOT EDIT -->
+# AST Parser
+
+A parser that converts `.ts` files into human readable objects.  
+
+---
+Example usage of `parse` function from `./parser.ts`:
+
+1) [Example file to parse](#1)
+2) [Calling the `parse` function](#2)
+3) [Example output from `parse`](#3)
+---
+
+# 1.
+
+**Example file to parse.**
 
 Given the following file `path/to/my-component.ts`
 
@@ -32,6 +47,10 @@ class MyComponent {
   }
 }
 ```
+
+# 2.
+
+**Calling the `parse` function**
 
 ```ts
 import {
@@ -68,7 +87,11 @@ const source = parse({
 
 console.log(source);
 ```
-Outputs:
+
+# 3.
+
+**Example output from `parse`**
+
 ```json
 {
   "kind": "sourceFile",
