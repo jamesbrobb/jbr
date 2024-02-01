@@ -1,0 +1,44 @@
+
+<div class="lesson-plan-info" responsiveContainer>
+
+    <div class="section top">
+
+        <lesson-plan-brief
+            [dataProvider]="lessonPlan">
+        </lesson-plan-brief>
+
+        <lesson-plan-credits *ngIf="lessonPlan?.isPublishedByUser"
+            [isPublishedByUser]="lessonPlan?.isPublishedByUser">
+        </lesson-plan-credits>
+
+    </div>
+
+    <div class="section bottom">
+
+        <dl>
+
+            <dt>Lesson Objectives</dt>
+
+            <dd>
+                <html-renderer
+                    [html]="objectives || 'No lesson objectives specified'">
+                </html-renderer>
+            </dd>
+
+        </dl>
+
+        <dl>
+
+            <dt>Covered Requirements</dt>
+
+            <dd>
+                <html-renderer
+                    [html]="coveredRequirements || 'No covered curriculum requirements specified'">
+                </html-renderer>
+            </dd>
+
+        </dl>
+
+    </div>
+
+</div>

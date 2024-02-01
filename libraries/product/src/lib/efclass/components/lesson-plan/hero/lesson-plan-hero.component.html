@@ -1,0 +1,26 @@
+<div class="lesson-plan-hero" responsiveContainer>
+
+    <image-component class="image"
+        [url]="backgroundImageUrl"
+        [fallbackSeed]="id"
+        [size]="'2048w'">
+    </image-component>
+
+    <div class="info">
+
+        <div class="tags">
+
+            <div *ngFor="let skill of skills"
+                 class="tag">
+                {{skill}}
+            </div>
+
+            <div *ngIf="cefr" class="tag">{{cefr}}</div>
+
+        </div>
+
+        <div class="title">{{title}}</div>
+
+    </div>
+
+</div>

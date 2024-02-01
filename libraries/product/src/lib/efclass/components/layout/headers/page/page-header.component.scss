@@ -1,4 +1,7 @@
-@import "/src/app/libs/styles/styles";
+@use "palette" as *;
+@use "measurements" as *;
+@use "text" as *;
+@use "elements" as *;
 
 :host {
     display: block;

@@ -1,0 +1,92 @@
+@use "palette" as *;
+@use "measurements" as *;
+@use "text" as *;
+
+
+:host {
+    display: block;
+    width: 100%;
+
+    .lesson-plan-hero {
+        --LG: 560px;
+
+        --lesson-plan-hero-height: 180px;
+        --lesson-plan-hero-info-padding: #{$gap-l};
+        --lesson-plan-hero-tags-margin-bottom: #{$gap-m};
+        --lesson-plan-hero-title-font-size: 18px;
+
+        color: $palette-white;
+        position: relative;
+        height: var(--lesson-plan-hero-height);
+        border-radius: $border-radius-m;
+        overflow: hidden;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+
+        &.LG {
+            --lesson-plan-hero-height: 240px;
+            --lesson-plan-hero-info-padding: #{$gap-xxl};
+            --lesson-plan-hero-tags-margin-bottom: #{$gap-l};
+            --lesson-plan-hero-title-font-size: 22.6px;
+        }
+
+        > .image {
+            display: block;
+
+            &:after {
+                content: ' ';
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 30%;
+                width: inherit;
+                height: 70%;
+                background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+            }
+        }
+
+        .info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: var(--lesson-plan-hero-info-padding);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            .tags {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: flex-end;
+                margin-bottom: var(--lesson-plan-hero-tags-margin-bottom);
+
+                .tag {
+                    color: $palette-grey-900;
+                    font-size: 11.3px;
+                    line-height: 1.45;
+                    opacity: 0.9;
+                    border-radius: $border-radius-s;
+                    background-color: $palette-white;
+                    padding: 2px 5px;
+                    margin-top: $gap-s;
+
+                    &:not(:last-child) {
+                        margin-right: $gap-s;
+                    }
+                }
+            }
+
+            .title {
+                font-size: var(--lesson-plan-hero-title-font-size);
+                font-weight: 600;
+                line-height: 1.2;
+
+                @include prevent-text-break-out;
+                @include multi-line-ellipsis(3);
+            }
+        }
+    }
+}

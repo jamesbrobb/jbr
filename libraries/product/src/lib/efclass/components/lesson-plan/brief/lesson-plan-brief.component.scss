@@ -1,0 +1,15 @@
+@use "palette" as *;
+
+:host {
+    display: flex;
+    flex-direction: column;
+    color: $palette-white;
+
+    .published-info {
+        padding-bottom: 10px;
+
+        span {
+            font-weight: 700;
+        }
+    }
+}

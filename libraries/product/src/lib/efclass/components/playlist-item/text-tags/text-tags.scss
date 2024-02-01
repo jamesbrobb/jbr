@@ -1,0 +1,72 @@
+@use "palette" as *;
+
+
+:host {
+
+    ul, li, span {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    .tags {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .tag {
+            display: flex;
+            flex: 0 0 auto;
+            justify-content: center;
+            align-items: center;
+
+            height: 20px;
+            margin: 4px 20px 4px 0;
+            padding-right: 20px;
+
+            border-right: 1px solid ;
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+
+        .no-tags {
+            font-size: 16px;
+            color: $palette-white;
+            margin: 4px 0;
+        }
+    }
+}
+
+::ng-deep .mat-tooltip-panel .mat-tooltip.tag-tooltip {
+
+    padding: 10px;
+    margin: 5px;
+    font-size: 14px;
+    line-height: 30px;
+    color: $palette-dark-blue-700;
+    background-color: $palette-yellow-50;
+    border-radius: 15px;
+
+    &:after {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+
+        border: solid transparent;
+
+        height: 0;
+        width: 0;
+
+        margin-left: -5px;
+
+        border-width: 5px;
+        border-color: transparent;
+        border-top-color: $palette-yellow-50;
+
+        pointer-events: none;
+        content: " ";
+    }
+}

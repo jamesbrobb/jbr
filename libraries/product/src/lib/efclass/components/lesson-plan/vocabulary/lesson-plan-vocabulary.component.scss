@@ -1,0 +1,85 @@
+@use "palette" as *;
+@use "measurements" as *;
+@use "text" as *;
+@use "elements" as *;
+
+
+:host {
+    display: block;
+    width: 100%;
+
+    .lesson-plan-vocabulary {
+        --lesson-plan-vocabulary-button-transform: rotateX(0);
+
+        background-color: $palette-white;
+        color: $palette-slate-900;
+        border-radius: 2px;
+
+        &.expanded {
+            --lesson-plan-vocabulary-button-transform: rotateX(180deg);
+        }
+
+        .bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 60px;
+            padding: 0 $gap-xl;
+
+            .title-container {
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: $gap-xl;
+                font-size: 16px;
+
+                .title {
+                    font-weight: 700;
+                    margin-right: 4px;
+                }
+            }
+
+            button {
+                @include button_reset;
+
+                color: $palette-slate-900;
+
+                transform: var(--lesson-plan-vocabulary-button-transform);
+                transition: transform 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+            }
+        }
+
+        .vocab-list-container {
+            display: block;
+            overflow: hidden;
+        }
+
+        .vocab-list {
+            display: block;
+            padding: $gap-xl;
+            border-top: 2px solid $palette-slate-20;
+
+            .grid {
+                --grid-vertical-gap: 20px;
+                --grid-horizontal-gap: 20px;
+                --grid-min-column-width: 200px;
+
+                overflow: auto;
+
+                .word-sense {
+                    font-size: 16px;
+
+                    .title {
+                        font-weight: 700;
+                    }
+
+                    .type {
+                        font-weight: 400;
+                        color: $palette-grey-500;
+                    }
+                }
+            }
+        }
+    }
+}

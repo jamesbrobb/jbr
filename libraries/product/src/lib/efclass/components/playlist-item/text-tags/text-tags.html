@@ -1,0 +1,16 @@
+
+<ul class="tags">
+
+    <li class="tag" *ngFor="let tag of tags">
+
+        <span [matTooltip]="tag.familyLabel"
+              [matTooltipPosition]="'above'"
+              [matTooltipClass]="'tag-tooltip'">
+            {{tag.label}}
+        </span>
+
+    </li>
+
+    <div *ngIf="noTags" class="no-tags">No tags specified</div>
+
+</ul>

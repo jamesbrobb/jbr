@@ -1,16 +1,19 @@
 import {
   Component,
-  Input,
+  Input, NgModule,
   OnChanges,
   SimpleChanges,
-  TemplateRef
 } from '@angular/core';
 
-import {MatMenu} from "@angular/material/menu";
+import {CommonModule} from "@angular/common";
+import {MatMenu, MatMenuModule} from "@angular/material/menu";
 
+import {DateUtils} from "@jamesbenrobb/core";
 
-import {DateUtils} from "@jamesbenrobb/core/utils";
 import {LessonPlanSummaryDs} from "../../../core/lesson-plan/summary/lesson-plan-summary.ds";
+import {ImageComponentModule} from "../../media";
+import {IconsModule} from "../../common";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -51,3 +54,15 @@ export class MyLibraryLessonPlanCardComponent implements OnChanges {
         event.stopImmediatePropagation();
     }
 }
+
+@NgModule({
+  imports: [
+    CommonModule,
+    ImageComponentModule,
+    MatMenuModule,
+    IconsModule
+  ],
+  declarations: [MyLibraryLessonPlanCardComponent],
+  exports: [MyLibraryLessonPlanCardComponent]
+})
+export class MyLibraryLessonPlanCardComponentModule {}
