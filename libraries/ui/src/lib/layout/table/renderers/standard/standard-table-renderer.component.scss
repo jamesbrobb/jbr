@@ -3,20 +3,32 @@
   display: block;
   font-family: 'Open Sans', sans-serif;
 
+  --border-color: var(--jbr-table-border-color, #0000001f);
+  --border-thickness: var(--jbr-table-border-thickness, 1px);
+  --background-color: var(--jbr-table-background-color, #ffffff);
+
+  --table-padding: var(--jbr-table-padding, 10px);
+  --header-padding: var(--jbr-table-header-padding, var(--table-padding));
+  --cell-padding: var(--jbr-table-cell-padding, var(--table-padding));
+
+  --table-row-height: var(--jbr-table-row-height, min-content);
+  --header-height: var(--jbr-table-header-height, var(--table-row-height));
+
+
   table {
     min-width: 100%;
     table-layout: auto;
     white-space: normal;
     border: 0;
     border-spacing: 0;
-    background: white;
+    background: var(--background-color);
 
     thead {
       background: inherit;
 
       tr {
         background: inherit;
-        height: 56px;
+        height: var(--header-height);
 
         th {
           background: inherit;
@@ -25,10 +37,12 @@
           overflow: hidden;
           outline: none;
           text-align: left;
-          padding: 0 16px 0 16px;
-          border-bottom-width: 1px;
-          border-bottom-style: solid;
-          border-bottom-color: #0000001f;
+          padding: var(--header-padding);
+          border: var(--border-thickness) solid var(--border-color);
+
+          &:not(:last-of-type) {
+            border-right: none;
+          }
         }
       }
     }
@@ -38,7 +52,7 @@
 
       tr {
         background: inherit;
-        height: 52px;
+        height: var(--table-row-height);
 
         td {
           background: inherit;
@@ -46,11 +60,13 @@
           overflow: hidden;
           text-align: left;
           text-overflow: ellipsis;
-          padding: 0 16px 0 16px;
-          border-bottom-width: 1px;
-          border-bottom-style: solid;
-          color: #000000de;
-          border-bottom-color: #0000001f;
+          padding: var(--cell-padding);
+          border: var(--border-thickness) solid var(--border-color);
+          border-top: none;
+
+          &:not(:last-of-type) {
+            border-right: none;
+          }
         }
       }
     }

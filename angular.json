@@ -367,11 +367,22 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/comp_test/src/favicon.ico",
-              "projects/comp_test/src/assets"
+              "projects/comp_test/src/assets",
+              {
+                "glob": "**/*.*",
+                "input": "dist/libraries/@jamesbenrobb/product/assets/",
+                "output": "/assets"
+              }
             ],
             "styles": [
               "projects/comp_test/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libraries/styles",
+                "libraries/product/src/styles"
+              ]
+            },
             "scripts": [],
             "allowedCommonJsDependencies": [
               "codemirror",

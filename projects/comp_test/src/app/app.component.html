@@ -4,19 +4,17 @@
   [columns]="standardColumns"
   [rows]="rows"
   [cellRenderers]="{a, d}"
-  data-test-id="table-renderer"
-></div>
+></div>-->
 
 
-<div
+<!--<div
   sortable-table-renderer
   [caption]="label"
   [columns]="sortableColumns"
   [rows]="rows"
   [cellRenderers]="{a, d}"
   (sortRequest)="sortRequest($event)"
-  data-test-id="table-renderer"
-></div>
+></div>-->
 
 
 <ng-template #a let-cellData="cellData" let-rowData="rowData" let-columnKey="columnKey">
@@ -29,14 +27,6 @@
   <div style="width:100%;height:100%;" [ngStyle]="!!cellData ? {'background-color': 'red'} : {'background-color': 'green'}">
     {{cellData}}
   </div>
-</ng-template>-->
+</ng-template>
 
-
-<button (click)="loadComponent('scam')">{{'scam'}}</button>
-<button (click)="loadComponent('scam-default')">{{'scam-default'}}</button>
-<button (click)="loadComponent('standalone')">{{'standalone'}}</button>
-<button (click)="updateTitle()">Update component title</button>
-
-<ng-container [dynamicComponent]="componentType" [inputs]="inputs"></ng-container>
-
-
+<lesson-plan-grid [dataProvider]="data"> </lesson-plan-grid>

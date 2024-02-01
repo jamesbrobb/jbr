@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@use "normalize.css";
+@use '@angular/material' as mat;
+@use "theme" as theme;
+@use "mat-design";
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@include theme.set-themes(theme.$jbr-theme);

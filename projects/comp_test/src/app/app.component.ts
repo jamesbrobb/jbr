@@ -6,8 +6,11 @@ import {
   ExternalSortParams,
   StandardTableColumn,
   StandardTableRendererComponent,
-  ComponentLoaderDirective
 } from "@jamesbenrobb/ui";
+import {
+  LessonPlanGridComponentModule
+} from "@jamesbenrobb/product";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -29,7 +32,8 @@ type blah = Record<keyof Data, unknown>
     CommonModule,
     StandardTableRendererComponent,
     SortableTableRendererComponent,
-    ComponentLoaderDirective
+    MatMenuModule,
+    LessonPlanGridComponentModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
@@ -80,29 +84,370 @@ export class AppComponent {
     console.log(params);
   }
 
-
-  componentType?: string;
-  inputs?: {title: string};
-
-  async loadComponent(type: string) {
-    this.componentType = type;
-  }
-
-  updateTitle(): void {
-    this.inputs = {
-      title: this.#makeid(Math.random() * 10)
+  data: any = [
+    {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ5",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ6",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ6",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ7",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ7",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ7",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ8",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ8",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ8",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ8",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ9",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ9",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ9",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ9",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
+    }, {
+      "id":"3DJIVvfEeINpIyGiNmsXPfve-AkwaZRjB8eMgm",
+      "course":{
+        "id":"J90ia9CZnuLlf9QIKX-88xl1B7gJjbvy",
+        "title":"Featured lessons",
+        "revision":"ef7a6d6e-bd21-11e8-8857-060e7357503a"
+      },
+      "thumbnailAssetPath":"/assets/media-examples/sample.png",
+      "skills":[
+        "Grammar ",
+        "Reading ",
+        "Listening "
+      ],
+      "cefr": [
+        "B1 ",
+        "B2 "
+      ],
+      "title":"Future Perfect",
+      "description": "This is the lesson plan description. This is the lesson plan description. This is the lesson plan description",
+      "unit":{
+        "id":"aEpS7BIm9fY7-VByvoVrjOPNQ9",
+        "title":"18 August 2017",
+        "revision":"ef7c7e38-bd21-11e8-8857-060e7357503a"
+      }
     }
-  }
+  ]
 
-  #makeid(length: number) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      counter += 1;
-    }
-    return result;
-  }
+
+
 }

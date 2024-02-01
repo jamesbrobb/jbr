@@ -1,4 +1,3 @@
-export * from './common';
 export * from './animation';
 export * from './component-loader';
 export * from './forms';

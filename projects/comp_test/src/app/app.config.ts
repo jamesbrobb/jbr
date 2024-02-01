@@ -1,28 +1,14 @@
-import { ApplicationConfig } from '@angular/core';
-import {
-  getComponentLoaderProviders,
-  ComponentLoaderMapService
-} from "@jamesbenrobb/ui";
+import {ApplicationConfig, importProvidersFrom} from '@angular/core';
+import {IconsModule, SvgModule, iconConfig, svgConfig} from "@jamesbenrobb/product";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    getComponentLoaderProviders(),
-    {
-      provide: ComponentLoaderMapService,
-      useValue: {
-        scam: {
-          import: () => import('./components/scam.component'),
-          standalone: false
-        },
-        'scam-default':{
-          import: () => import('./components/scam-default.component'),
-          standalone: false,
-          isDefaultExport: true
-        },
-        standalone: () => import('./components/standalone.component')
-      },
-      multi: true
-    }
+    importProvidersFrom(
+      IconsModule.forRoot(iconConfig),
+      SvgModule.forRoot(svgConfig),
+      BrowserAnimationsModule
+    )
   ]
 };
