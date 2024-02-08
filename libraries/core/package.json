@@ -1,6 +1,6 @@
 {
   "name": "@jamesbenrobb/core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "James Robb",
   "description": "Core library containing framework agnostic components and utilities",
   "repository": {
