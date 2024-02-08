@@ -1,0 +1,27 @@
+:host {
+  display: block;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    .title {
+      margin: 0;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .content-container {
+    overflow: hidden;
+    .content {
+      padding-top: 20px;
+    }
+  }
+}
