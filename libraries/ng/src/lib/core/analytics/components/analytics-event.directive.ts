@@ -1,4 +1,4 @@
-import {Directive, HostListener, Input} from '@angular/core';
+import {Directive, HostListener, inject, Input, Optional} from '@angular/core';
 import {AnalyticsEvent, AnalyticsService} from "@jamesbenrobb/core";
 
 
@@ -9,30 +9,20 @@ import {AnalyticsEvent, AnalyticsService} from "@jamesbenrobb/core";
 })
 export class AnalyticsEventDirective {
 
-    @Input() analyticsEvent: AnalyticsEvent | undefined;
+  @Input() analyticsEvent?: AnalyticsEvent;
 
-    @HostListener('click')
-    onClick() {
-      this._send();
+  @HostListener('click')
+  onClick() {this.#send();}
+
+  readonly #service = inject(AnalyticsService, {optional: true});
+
+  #send(): void {
+    if (!this.#service || !this.analyticsEvent) {
+        return;
     }
-
-    private _service: AnalyticsService;
-
-    constructor(service: AnalyticsService) {
-        this._service = service;
-    }
-
-    private _send = (): void => {
-
-        if (!this.analyticsEvent) {
-            return;
-        }
-
-        this._service.track(this.analyticsEvent);
-    }
+    this.#service.track(this.analyticsEvent);
+  }
 }
-
-
 
 
 @Directive({
@@ -41,39 +31,34 @@ export class AnalyticsEventDirective {
 })
 export class AnalyticsHrefListenerDirective {
 
-    @Input() analyticsHrefListener: string | undefined;
+  @Input() analyticsHrefListener: string | undefined;
 
-    private _service: AnalyticsService;
+  readonly #service = inject(AnalyticsService, {optional: true});
 
-    constructor(service: AnalyticsService) {
+  @HostListener('click', ['$event'])
+  onClick(event: Event): void {
 
-        this._service = service;
-    }
+      if(!(event.target instanceof HTMLAnchorElement)) {
+          return;
+      }
 
-    @HostListener('click', ['$event'])
-    onClick(event: Event): void {
+      const target: HTMLAnchorElement = event.target;
 
-        if(!(event.target instanceof HTMLAnchorElement)) {
-            return;
-        }
+      event.preventDefault();
+      event.stopImmediatePropagation();
 
-        const target: HTMLAnchorElement = event.target;
+      if(!this.#service || !this.analyticsHrefListener) {
+          return;
+      }
 
-        event.preventDefault();
-        event.stopImmediatePropagation();
+      const aEvt: AnalyticsEvent = {
+          actionId: this.analyticsHrefListener,
+          propertyValueMap: {
+              link: target.href
+          }
+      }
 
-        if (!this.analyticsHrefListener) {
-            return;
-        }
-
-        const aEvt: AnalyticsEvent = {
-            actionId: this.analyticsHrefListener,
-            propertyValueMap: {
-                link: target.href
-            }
-        }
-
-        this._service.track(aEvt);
-    }
+      this.#service.track(aEvt);
+  }
 }
 
