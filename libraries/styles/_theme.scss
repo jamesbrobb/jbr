@@ -2,40 +2,40 @@
 @use '@angular/material' as mat;
 
 
-$jbr-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900, 100);
-$jbr-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900, 100);
-$jbr-warn: mat.define-palette(mat.$red-palette, 500, 100, 900, 100);
+$_jbr-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900, 100);
+$_jbr-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900, 100);
+$_jbr-warn: mat.define-palette(mat.$red-palette, 500, 100, 900, 100);
 
-$jbr-typography: mat.define-typography-config();
+$_jbr-default-typography: mat.define-typography-config();
 
-$jbr-theme: mat.define-light-theme((
+$_jbr-default-light-theme: mat.define-light-theme((
   color: (
-    primary: $jbr-primary,
-    accent: $jbr-accent,
-    warn: $jbr-warn,
+    primary: $_jbr-primary,
+    accent: $_jbr-accent,
+    warn: $_jbr-warn,
   ),
-  typography: $jbr-typography
+  typography: $_jbr-default-typography
 ));
 
 
-$jbr-dark-primary: mat.define-palette(mat.$amber-palette, 500, 100, 900);
-$jbr-dark-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900);
-$jbr-dark-warn: mat.define-palette(mat.$red-palette, 500, 100, 900);
+$_jbr-dark-primary: mat.define-palette(mat.$amber-palette, 500, 100, 900);
+$_jbr-dark-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900);
+$_jbr-dark-warn: mat.define-palette(mat.$red-palette, 500, 100, 900);
 
-$jbr-dark-theme: mat.define-dark-theme((
+$_jbr-default-dark-theme: mat.define-dark-theme((
   color: (
-    primary: $jbr-dark-primary,
-    accent: $jbr-dark-accent,
-    warn: $jbr-dark-warn,
+    primary: $_jbr-dark-primary,
+    accent: $_jbr-dark-accent,
+    warn: $_jbr-dark-warn,
   ),
-  typography: $jbr-typography
+  typography: $_jbr-default-typography
 ));
 
 
-@mixin set-themes($light-theme, $dark-theme: null) {
+@mixin set-themes($light-theme, $dark-theme: null, $typography: $_jbr-default-typography) {
   @include mat.core();
   @include mat.core-theme($light-theme);
-  @include mat.typography-hierarchy($jbr-typography);
+  @include mat.typography-hierarchy($typography);
 
   @include mat.sidenav-theme($light-theme);
   @include mat.tree-theme($light-theme);
@@ -91,4 +91,49 @@ $jbr-dark-theme: mat.define-dark-theme((
 @function get-color-from-theme($theme, $palette-type, $type) {
   $palette: get-palette-from-theme($theme, $palette-type);
   @return map.get($palette, $type);
+}
+
+@function get-mode-palettes-for($palette-type, $light-theme, $dark-theme: null) {
+
+  $light-palette: get-palette-from-theme($light-theme, $palette-type);
+  $dark-palette: null;
+
+  @if $dark-theme {
+    $dark-palette: get-palette-from-theme($dark-theme, $palette-type);
+  }
+
+  @return $light-palette, $dark-palette;
+}
+
+@function get-mode-colors-for($palette-type, $type, $light-theme, $dark-theme: null) {
+
+  $light-color: get-color-from-theme($light-theme, $palette-type, $type);
+  $dark-color: null;
+
+  @if $dark-theme {
+    $dark-color: get-color-from-theme($dark-theme, $palette-type, $type);
+  }
+
+  @return $light-color, $dark-color;
+}
+
+
+@mixin set-default-themes() {
+  @include set-themes($_jbr-default-light-theme, $_jbr-default-dark-theme);
+}
+
+@mixin set-default-form-themes() {
+  @include set-form-themes($_jbr-default-light-theme, $_jbr-default-dark-theme);
+}
+
+@function get-default-themes() {
+  @return $_jbr-default-light-theme, $_jbr-default-dark-theme, $_jbr-default-typography;
+}
+
+@function get-default-mode-palettes-for($palette-type) {
+  @return get-mode-palettes-for($palette-type, $_jbr-default-light-theme, $_jbr-default-dark-theme);
+}
+
+@function get-default-mode-colors-for($palette-type, $type) {
+  @return get-mode-colors-for($palette-type, $type, $_jbr-default-light-theme, $_jbr-default-dark-theme);
 }
