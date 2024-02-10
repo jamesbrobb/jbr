@@ -19,6 +19,11 @@ import {openClose, rotate} from "../../animation";
 export class ContentHideComponent {
 
   @Input({required: true}) title?: string;
+  @Input() startOpen: boolean = false;
 
   isOpen = false;
+
+  ngOnInit(): void {
+    this.isOpen = this.startOpen;
+  }
 }
