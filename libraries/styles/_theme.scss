@@ -93,6 +93,10 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
   @return map.get($palette, $type);
 }
 
+@function get-color-from-palette($palette, $type) {
+  @return map.get($palette, $type);
+}
+
 @function get-mode-palettes-for($palette-type, $light-theme, $dark-theme: null) {
 
   $light-palette: get-palette-from-theme($light-theme, $palette-type);

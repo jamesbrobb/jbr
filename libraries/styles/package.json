@@ -1,6 +1,6 @@
 {
   "name": "@jamesbenrobb/styles",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Reusuable styles, mixins and functions",
   "main": "_index.scss",
   "scripts": {
