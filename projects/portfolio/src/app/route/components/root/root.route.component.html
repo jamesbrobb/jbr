@@ -1,9 +1,0 @@
-
-<ng-container *ngIf="!routeNodes; else pageView">
-  <div>404</div>
-</ng-container>
-
-<ng-template #pageView>
-  <page-container [routeNodes]="routeNodes" (routeSelected)="onRouteSelected($event)">
-  </page-container>
-</ng-template>
