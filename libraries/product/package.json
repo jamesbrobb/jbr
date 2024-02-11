@@ -1,6 +1,12 @@
 {
   "name": "@jamesbenrobb/product",
-  "version": "1.0.0",
+  "version": "1.0.5",
+  "author": "James Robb",
+  "description": "Angular specific product UI components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesbrobb/jbr.git"
+  },
   "peerDependencies": {
     "@angular/common": "^16.1.0",
     "@angular/core": "^16.1.0"

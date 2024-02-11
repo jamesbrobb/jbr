@@ -1,3 +1,6 @@
+export {AssetServiceConfiguration, AssetService} from "./asset/service/asset.service";
+export {TagParser} from "./tag/parser/tag-parser";
+export {LessonPlanParser} from "./lesson-plan/parser/lesson-plan-parser";
 export {LessonPlanSummaryDto} from "./lesson-plan/summary/lesson-plan-summary.dto";
 export {LessonPlanSummaryDs} from "./lesson-plan/summary/lesson-plan-summary.ds";
 export {WordSenseDTO} from "./word-sense/word-sense.dto";
@@ -8,3 +11,4 @@ export {LessonPlanDTO} from "./lesson-plan/lesson-plan.dto";
 export {LessonPlanDS} from "./lesson-plan/lesson-plan.ds";
 export {WordSenseDS} from "./word-sense/word-sense.ds";
 export {WORD_SENSE_TYPE} from "./word-sense/word-sense-type.enum";
+export {WordSenseParser} from "./word-sense/parser/word-sense-parser";

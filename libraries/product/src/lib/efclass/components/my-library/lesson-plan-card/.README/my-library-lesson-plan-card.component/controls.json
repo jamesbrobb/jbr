@@ -1,0 +1,9 @@
+{
+  "controls" :[{
+    "controlType": "input",
+    "type": "checkbox",
+    "key": "displayMenu",
+    "label": "DisplayMenu",
+    "value": "false"
+  }]
+}

@@ -1,27 +1,15 @@
-
 {
-    "controls": [
-
-        {
-  "controlType": "select",
-  "optionsId": "OVERLAY_COLORS",
-  "key": "color",
-  "label": "Color",
-  "value": "OVERLAY_COLORS.BLUE"
+  "controls": [{
+    "controlType": "select",
+    "optionsId": "OVERLAY_COLORS",
+    "key": "color",
+    "label": "Color",
+    "value": "OVERLAY_COLORS.BLUE"
+  }, {
+    "controlType": "input",
+    "type": "checkbox",
+    "key": "allowTransition",
+    "label": "Allow transition",
+    "value": "true"
+  }]
 }
-
-        ,
-
-
-        {
-  "controlType": "input",
-  "type": "checkbox",
-  "key": "allowTransition",
-  "label": "Allow transition",
-  "value": "true"
-}
-
-
-    ]
-}
-

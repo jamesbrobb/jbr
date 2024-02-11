@@ -1,0 +1,33 @@
+{
+  "controls": [{
+    "controlType": "input",
+    "key": "header",
+    "label": "Header",
+    "type": "text",
+    "value": "Header"
+  },{
+    "controlType": "input",
+    "key": "title",
+    "label": "Title",
+    "type": "text",
+    "value": "Title"
+  }, {
+    "controlType": "input",
+    "type": "checkbox",
+    "key": "showHero",
+    "label": "Show Hero",
+    "value": "false"
+  }, {
+    "controlType": "input",
+    "type": "checkbox",
+    "key": "showMyLibraryCard",
+    "label": "Show My Library Card",
+    "value": "false"
+  }, {
+    "controlType": "input",
+    "type": "checkbox",
+    "key": "fancyLayout",
+    "label": "Fancy Layout",
+    "value": "false"
+  }]
+}

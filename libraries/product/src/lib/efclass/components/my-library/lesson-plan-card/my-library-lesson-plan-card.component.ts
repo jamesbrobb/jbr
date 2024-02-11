@@ -10,11 +10,9 @@ import {MatMenu, MatMenuModule} from "@angular/material/menu";
 
 import {DateUtils} from "@jamesbenrobb/core";
 
-import {LessonPlanSummaryDs} from "../../../core/lesson-plan/summary/lesson-plan-summary.ds";
+import {LessonPlanSummaryDs} from "../../../core";
 import {ImageComponentModule} from "../../media";
 import {IconsModule} from "../../common";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
 
 
 @Component({

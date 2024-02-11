@@ -4,7 +4,7 @@ import * as wordSenseDTOCollectionMock from './word-sense.dto.collection.mock.js
 import * as wordSenseDSMock from './word-sense.ds.mock.json';
 
 export {
-    wordSenseDTOMock,
-    wordSenseDTOCollectionMock,
-    wordSenseDSMock
-};
+  wordSenseDTOMock,
+  wordSenseDTOCollectionMock,
+  wordSenseDSMock
+}
