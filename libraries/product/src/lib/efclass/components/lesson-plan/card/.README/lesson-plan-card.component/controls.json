@@ -1,9 +1,12 @@
 {
   "controls": [{
-    "controlType": "input",
-    "type": "checkbox",
-    "key": "isLarge",
-    "label": "Large",
-    "value": "true"
+    "header": "Inputs",
+    "controls": [{
+      "controlType": "input",
+      "type": "checkbox",
+      "key": "isLarge",
+      "label": "Large",
+      "value": "true"
+    }]
   }]
 }

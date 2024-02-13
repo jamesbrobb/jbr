@@ -1,6 +1,7 @@
 {
-  "controls": [
-    {
+  "controls": [{
+    "header": "Inputs",
+    "controls": [{
       "controlType": "input",
       "key": "seed",
       "label": "Seed",
@@ -14,6 +15,6 @@
       "label": "Color",
       "defaultValue": "blue",
       "optionsId": "FALLBACK_COLORS"
-    }
-  ]
+    }]
+  }]
 }
