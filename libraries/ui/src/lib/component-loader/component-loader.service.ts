@@ -25,17 +25,22 @@ export type ComponentLoaderReturnType<T> = {
 
 export class ComponentLoaderService {
 
-  readonly #componentMap: ComponentLoaderMap[];
+  readonly #componentMap?: ComponentLoaderMap[];
   readonly #injector: Injector;
 
-  constructor(injector: Injector, componentMap: ComponentLoaderMap) {
+  constructor(injector: Injector, componentMap?: ComponentLoaderMap) {
     this.#injector = injector;
-    this.#componentMap = Array.isArray(componentMap) ? componentMap : [componentMap];
+    this.#componentMap = componentMap ? Array.isArray(componentMap) ? componentMap : [componentMap] : undefined;
   }
 
-  async getComponent<T = unknown>(type: string): Promise<ComponentLoaderReturnType<T>> {
+  async getComponent<T = unknown>(type: string): Promise<ComponentLoaderReturnType<T> | undefined> {
 
     let compDef: (() => any) | ComponentLoaderConfig | undefined;
+
+    if(!this.#componentMap) {
+      console.warn('no component map provided');
+      return;
+    }
 
     this.#componentMap.forEach((map) => {
 
@@ -47,7 +52,8 @@ export class ComponentLoaderService {
     });
 
     if(!compDef) {
-      throw new Error(`no component registered for the selector ${type}`);
+      console.warn(`no component registered for the selector ${type}`);
+      return;
     }
 
     let config: Required<ComponentLoaderConfig> = {

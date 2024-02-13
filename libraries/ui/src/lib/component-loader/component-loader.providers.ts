@@ -1,4 +1,4 @@
-import {EnvironmentProviders, InjectionToken, Injector, makeEnvironmentProviders} from "@angular/core";
+import {EnvironmentProviders, InjectionToken, Injector, makeEnvironmentProviders, Optional} from "@angular/core";
 import {
   ComponentLoaderMap,
   ComponentLoaderService
@@ -14,7 +14,7 @@ export const COMPONENT_LOADER_SERVICE_PROVIDER = {
   },
   deps: [
     Injector,
-    ComponentLoaderMapService
+    [new Optional(), ComponentLoaderMapService]
   ]
 }
 

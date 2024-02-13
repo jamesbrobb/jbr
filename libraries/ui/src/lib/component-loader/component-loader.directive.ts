@@ -68,7 +68,13 @@ export class ComponentLoaderDirective<T> implements OnChanges, OnDestroy {
       return;
     }
 
-    const {ngModuleRef, componentType} = await this.#loaderService.getComponent<T>(type);
+    const result = await this.#loaderService.getComponent<T>(type);
+
+    if(!result) {
+      return;
+    }
+
+    const {componentType, ngModuleRef} = result;
 
     this.#currentComponent = this.#container.createComponent<T>(componentType, {injector:this.#injector, ngModuleRef:ngModuleRef});
     this.#currentComponentType = type;

@@ -1,14 +1,12 @@
-
 {
-    "controls": [
-    
-        {
-  "controlType": "input",
-  "type": "text",
-  "key": "componentLoader",
-  "label": "Component type"
-}
-    
-    ]
+  "controls": [{
+    "header": "Inputs",
+    "controls": [{
+      "controlType": "input",
+      "type": "text",
+      "key": "componentLoader",
+      "label": "Component type"
+    }]
+  }]
 }
 
