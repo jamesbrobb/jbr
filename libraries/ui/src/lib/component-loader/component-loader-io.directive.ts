@@ -8,7 +8,8 @@ import {ComponentLoaderIOBase} from "./component-loader-io-base.abstract";
   standalone: true,
   hostDirectives: [{
     directive: ComponentLoaderDirective,
-    inputs: ['componentLoader:componentLoaderIO']
+    inputs: ['componentLoader:componentLoaderIO'],
+    outputs: ['componentLoaded', 'componentChanged']
   }]
 })
 export class ComponentLoaderIODirective<T extends object> extends ComponentLoaderIOBase<T> {
@@ -19,7 +20,6 @@ export class ComponentLoaderIODirective<T extends object> extends ComponentLoade
   @Output() outputChange = new EventEmitter();
 
   #destroyRef = inject(DestroyRef);
-
 
   protected override setUpInstance(): void {
 

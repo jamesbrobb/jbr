@@ -38,7 +38,7 @@ export class ComponentLoaderService {
     let compDef: (() => any) | ComponentLoaderConfig | undefined;
 
     if(!this.#componentMap) {
-      console.warn('no component map provided');
+      console.warn('no ComponentLoaderMap provided');
       return;
     }
 

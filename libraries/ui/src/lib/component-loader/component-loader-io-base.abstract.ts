@@ -13,7 +13,7 @@ import {tap} from "rxjs";
 })
 export abstract class ComponentLoaderIOBase<T extends object> implements OnChanges {
 
-  #loader = inject(ComponentLoaderDirective<T>);
+  protected loader = inject(ComponentLoaderDirective<T>);
 
   #instance?: ComponentRef<T>;
 
@@ -22,20 +22,21 @@ export abstract class ComponentLoaderIOBase<T extends object> implements OnChang
   }
 
   constructor() {
-    this.#loader.componentChanged.pipe(
+    this.loader.componentChanged.pipe(
       takeUntilDestroyed(),
       tap(instance => {
         this.#setInstance(instance);
       })
     ).subscribe();
   }
+
+  loadComponent(componentType: string): void {
+    this.loader.loadComponent(componentType);
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     this.updateInstanceInputs(changes);
     this.#detectChanges();
-  }
-
-  protected loadComponent(componentType: string): void {
-    this.#loader.loadComponent(componentType);
   }
 
   #setInstance(instance: ComponentRef<T>): void {

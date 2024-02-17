@@ -19,6 +19,8 @@ import {ComponentLoaderService} from "./component-loader.service";
 export class ComponentLoaderDirective<T> implements OnChanges, OnDestroy {
 
   @Input('componentLoader') componentType?: string;
+
+  @Output() componentLoaded = new EventEmitter<{success: boolean, type: string}>();
   @Output() componentChanged = new EventEmitter<ComponentRef<T>>();
 
   #container = inject(ViewContainerRef);
@@ -32,22 +34,32 @@ export class ComponentLoaderDirective<T> implements OnChanges, OnDestroy {
     this.loadComponent();
   }
 
-  loadComponent(componentType?: string): void {
+  async loadComponent(componentType?: string): Promise<boolean> {
 
     if(componentType) {
       this.componentType = componentType;
     }
 
-    if (this.componentType === this.#currentComponentType) {
-      return;
-    }
+    const success = await this.#load();
 
-    this.#cleanUp();
-    this.#createComponent(this.componentType);
+    this.componentLoaded.emit({success, type: this.componentType!});
+
+    return success;
   }
 
   ngOnDestroy() {
     this.#cleanUp();
+  }
+
+  async #load(): Promise<boolean> {
+
+    if(!this.componentType || this.componentType === this.#currentComponentType) {
+      return false;
+    }
+
+    this.#cleanUp();
+
+    return this.#createComponent(this.componentType);
   }
 
   #cleanUp() {
@@ -62,16 +74,12 @@ export class ComponentLoaderDirective<T> implements OnChanges, OnDestroy {
     this.#currentComponentType = undefined;
   }
 
-  async #createComponent(type: string | undefined): Promise<void> {
-
-    if(!type) {
-      return;
-    }
+  async #createComponent(type: string): Promise<boolean> {
 
     const result = await this.#loaderService.getComponent<T>(type);
 
     if(!result) {
-      return;
+      return false;
     }
 
     const {componentType, ngModuleRef} = result;
@@ -80,5 +88,7 @@ export class ComponentLoaderDirective<T> implements OnChanges, OnDestroy {
     this.#currentComponentType = type;
 
     this.componentChanged.emit(this.#currentComponent);
+
+    return true;
   }
 }
