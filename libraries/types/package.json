@@ -1,6 +1,6 @@
 {
   "name": "@jamesbenrobb/types",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "James Robb",
   "description": "library containing reusable type definitions and utility functions",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/jamesbrobb/jbr.git"
   },
   "peerDependencies": {
-    "rxjs": "~7.4.0"
+    "rxjs": "^7.8.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
