@@ -7,9 +7,6 @@ import {
   StandardTableColumn,
   StandardTableRendererComponent,
 } from "@jamesbenrobb/ui";
-import {
-  LessonPlanGridComponentModule
-} from "@jamesbenrobb/product";
 import {MatMenuModule} from "@angular/material/menu";
 import {TestComponent} from "./test.component";
 import {ContentHideComponent} from "@jamesbenrobb/ui";
@@ -35,7 +32,6 @@ type blah = Record<keyof Data, unknown>
     StandardTableRendererComponent,
     SortableTableRendererComponent,
     MatMenuModule,
-    LessonPlanGridComponentModule,
     TestComponent,
     ContentHideComponent
   ],

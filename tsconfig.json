@@ -29,9 +29,6 @@
       "@jamesbenrobb/ng": [
         "dist/libraries/@jamesbenrobb/ng"
       ],
-      "@jamesbenrobb/product": [
-        "dist/libraries/@jamesbenrobb/product"
-      ],
       "@jamesbenrobb/types": [
         "dist/libraries/@jamesbenrobb/types"
       ],

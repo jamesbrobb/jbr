@@ -69,39 +69,6 @@
         }
       }
     },
-    "product": {
-      "projectType": "library",
-      "root": "libraries/product",
-      "sourceRoot": "libraries/product/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "libraries/product/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libraries/product/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libraries/product/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "libraries/product/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
-    },
     "types": {
       "projectType": "library",
       "root": "libraries/types",
@@ -236,20 +203,14 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/comp_test/src/favicon.ico",
-              "projects/comp_test/src/assets",
-              {
-                "glob": "**/*.*",
-                "input": "dist/libraries/@jamesbenrobb/product/assets/",
-                "output": "/assets"
-              }
+              "projects/comp_test/src/assets"
             ],
             "styles": [
               "projects/comp_test/src/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "libraries/styles",
-                "libraries/product/src/styles"
+                "libraries/styles"
               ]
             },
             "scripts": [],
