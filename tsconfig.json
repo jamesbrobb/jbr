@@ -20,9 +20,6 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@jamesbenrobb/animation": [
-        "dist/libraries/@jamesbenrobb/animation"
-      ],
       "@jamesbenrobb/core": [
         "dist/libraries/@jamesbenrobb/core"
       ],
