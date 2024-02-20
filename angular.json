@@ -206,14 +206,27 @@
               "projects/comp_test/src/assets"
             ],
             "styles": [
-              "projects/comp_test/src/styles.scss"
+              "projects/comp_test/src/styles.scss",
+              "node_modules/prismjs/themes/prism.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "libraries/styles"
               ]
             },
-            "scripts": [],
+            "scripts": [
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/plugins/toolbar/prism-toolbar.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-css-extras.min.js",
+              "node_modules/prismjs/components/prism-javascript.min.js",
+              "node_modules/prismjs/components/prism-markup.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-sass.min.js",
+              "node_modules/prismjs/components/prism-scss.min.js",
+              "node_modules/prismjs/components/prism-json.min.js"
+            ],
             "allowedCommonJsDependencies": [
               "codemirror",
               "deepmerge",

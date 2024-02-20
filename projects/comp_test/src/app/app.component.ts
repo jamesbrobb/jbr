@@ -9,7 +9,7 @@ import {
 } from "@jamesbenrobb/ui";
 import {MatMenuModule} from "@angular/material/menu";
 import {TestComponent} from "./test.component";
-import {ContentHideComponent} from "@jamesbenrobb/ui";
+import {ContentHideComponent, MarkdownComponent} from "@jamesbenrobb/ui";
 
 
 
@@ -33,7 +33,8 @@ type blah = Record<keyof Data, unknown>
     SortableTableRendererComponent,
     MatMenuModule,
     TestComponent,
-    ContentHideComponent
+    ContentHideComponent,
+    MarkdownComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

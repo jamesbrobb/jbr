@@ -1,7 +1,7 @@
 @use "normalize.css";
 @use '@angular/material' as mat;
 @use "theme" as theme;
-@use "mat-design";
+
 
 html {
   box-sizing: border-box;
@@ -12,6 +12,3 @@ html {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-@include theme.set-themes($_jbr-default-light-theme);

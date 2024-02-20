@@ -1,6 +1,6 @@
 {
   "name": "@jamesbenrobb/ui",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "author": "James Robb",
   "description": "Angular specific UI components",
   "repository": {
@@ -17,6 +17,7 @@
     "@juggle/resize-observer": "^3.4.0",
     "codemirror": "^5.65.13",
     "json-beautify": "^1.1.1",
+    "ngx-markdown": "^17.1.1",
     "resize-observer-polyfill": "^1.5.1"
   },
   "dependencies": {

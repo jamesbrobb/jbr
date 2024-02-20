@@ -1,0 +1,17 @@
+
+@if (uri) {
+  <markdown [hrefListener]="hrefHandler"
+            class="markdown-body"
+            [ngClass]="{hide: !hasLoaded || hasError}"
+            [src]="baseUri + uri"
+            [analyticsHrefListener]="'href-link'"
+            (load)="onLoad($event)"
+            (error)="onError($event)">
+  </markdown>
+}
+
+@if (!hasLoaded) {
+  <div>Loading {{type}}...</div>
+} @else if (hasError) {
+  <div class="error">An error occurred whilst loading the {{type}}.</div>
+}

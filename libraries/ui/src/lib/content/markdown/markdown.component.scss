@@ -1,0 +1,33 @@
+
+:host {
+  display: block;
+
+  --link-color: var(--jbr-markdown-link-color, #0366d6);
+  --divider-color: var(--jbr-markdown-divider-color, #e1e4e8);
+  --code-background-color: var(--jbr-markdown-code-background-color, rgba(0,0,0,0.05));
+
+  markdown {
+    --color-accent-fg: var(--link-color);
+    --color-border-muted: var(--divider-color);
+    --color-canvas-subtle: var(--code-background-color);
+
+    &.hide {
+      display: none;
+    }
+
+    ::ng-deep {
+      hr {
+        height: 0;
+        border: 0;
+        background-color: transparent;
+        border-top: 1px solid var(--divider-color);
+      }
+
+      div[class=code-toolbar]:last-child {
+        pre[class*="language-"] {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
