@@ -35,9 +35,14 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
 @mixin set-themes(
   $light-theme,
   $dark-theme: null,
-  $typography: $_jbr-default-typography,
+  $typography: null,
   $class_name_for_dark_mode: null
 ) {
+
+  @if $typography == null {
+    $typography: $_jbr-default-typography
+  }
+
   @include mat.core();
   @include mat.core-theme($light-theme);
   @include mat.typography-hierarchy($typography);
