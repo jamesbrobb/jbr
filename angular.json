@@ -40,7 +40,27 @@
       "projectType": "library",
       "root": "libraries/ng",
       "sourceRoot": "libraries/ng/src",
-      "prefix": "lib",
+      "prefix": "jbr-ng",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "standalone": true,
+          "skipImport": true,
+          "flat": false,
+          "changeDetection": "OnPush",
+          "displayBlock": true
+        },
+        "@schematics/angular:directive": {
+          "standalone": true,
+          "skipImport": true,
+          "flat": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": true,
+          "skipImport": true,
+          "flat": false
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -139,7 +159,27 @@
       "projectType": "library",
       "root": "libraries/ui",
       "sourceRoot": "libraries/ui/src",
-      "prefix": "lib",
+      "prefix": "jbr-ui",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "standalone": true,
+          "skipImport": true,
+          "flat": false,
+          "changeDetection": "OnPush",
+          "displayBlock": true
+        },
+        "@schematics/angular:directive": {
+          "standalone": true,
+          "skipImport": true,
+          "flat": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": true,
+          "skipImport": true,
+          "flat": false
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -203,7 +243,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/comp_test/src/favicon.ico",
-              "projects/comp_test/src/assets"
+              "projects/comp_test/src/assets",
+              {
+                "glob": "**/*.*",
+                "input": "dist/libraries/@jamesbenrobb/ui/assets/",
+                "output": "/assets"
+              }
             ],
             "styles": [
               "projects/comp_test/src/styles.scss",
@@ -240,7 +285,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "1.5mb"
                 },
                 {
                   "type": "anyComponentStyle",

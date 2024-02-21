@@ -8,6 +8,11 @@
     ]
   },
   "assets": [
-    "src/styles.scss"
+    "src/styles.scss",
+    {
+      "input": "src/assets",
+      "glob": "**/*.*",
+      "output": "/assets"
+    }
   ]
 }

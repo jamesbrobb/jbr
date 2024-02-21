@@ -1,5 +1,7 @@
 <button (click)="onSelect()"
-        [analyticsEvent]="{actionId:'github-link', propertyValueMap: {link: path}}">
+        [analyticsEvent]="{actionId:'github-link', propertyValueMap: {link: path}}"
+        title="View code on Github"
+        aria-label="View code on Github">
 
   <mat-icon svgIcon="github" aria-hidden="false" aria-label="github icon" [inline]="true"></mat-icon>
 

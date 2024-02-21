@@ -7,3 +7,4 @@ export * from './forms';
 export * from './pipes';
 export * from './layout';
 export * from './responsive';
+export * from './styles';

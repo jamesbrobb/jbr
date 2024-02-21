@@ -2,14 +2,14 @@
 
 
 :host {
-  --github-btn-size: var(--jbr-github-btn-size, 40px);
+  --btn-size: var(--jbr-github-btn-size, 40px);
   --icon-color: var(--jbr-github-btn-icon-color, #000000);
 
   display: block;
 
   button {
-    width: var(--github-btn-size);
-    height: var(--github-btn-size);
+    width: var(--btn-size);
+    height: var(--btn-size);
     @include s.button_reset();
 
     mat-icon {
