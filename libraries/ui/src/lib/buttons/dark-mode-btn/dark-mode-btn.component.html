@@ -1,0 +1,7 @@
+<button (click)="toggleDarkMode()">
+  @if (darkMode$|async) {
+    <mat-icon svgIcon="light_mode" aria-hidden="false" aria-label="github icon" [inline]="true"></mat-icon>
+  } @else {
+    <mat-icon svgIcon="dark_mode" aria-hidden="false" aria-label="github icon" [inline]="true"></mat-icon>
+  }
+</button>

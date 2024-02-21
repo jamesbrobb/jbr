@@ -1,0 +1,19 @@
+@use "styles" as s;
+
+
+:host {
+  display: block;
+
+  --btn-size: var(--jbr-dark-mode-btn-size, 30px);
+  --icon-color: var(--jbr-dark-mode-btn-icon-color, #000000);
+
+  button {
+    @include s.button_reset();
+    width: var(--btn-size);
+    height: var(--btn-size);
+
+    mat-icon {
+      color: var(--icon-color);
+    }
+  }
+}
