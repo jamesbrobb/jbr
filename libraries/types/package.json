@@ -1,6 +1,6 @@
 {
   "name": "@jamesbenrobb/types",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "James Robb",
   "description": "library containing reusable type definitions and utility functions",
   "repository": {

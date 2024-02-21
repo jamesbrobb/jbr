@@ -9,6 +9,7 @@ const svg_icons = [
   'dark_mode',
   'expand_less',
   'expand_more',
+  'github',
   'light_mode',
   'menu',
   'menu_open'

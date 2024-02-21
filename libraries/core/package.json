@@ -1,6 +1,6 @@
 {
   "name": "@jamesbenrobb/core",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "James Robb",
   "description": "Core library containing framework agnostic components and utilities",
   "repository": {
@@ -8,6 +8,7 @@
     "url": "https://github.com/jamesbrobb/jbr.git"
   },
   "peerDependencies": {
+    "@jamesbenrobb/types": "^1.0.3",
     "deepmerge": "^4.3.1",
     "moment": "^2.29.1",
     "rxjs": "^7.8.1"
