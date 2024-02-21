@@ -32,7 +32,12 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
 ));
 
 
-@mixin set-themes($light-theme, $dark-theme: null, $typography: $_jbr-default-typography) {
+@mixin set-themes(
+  $light-theme,
+  $dark-theme: null,
+  $typography: $_jbr-default-typography,
+  $class_name_for_dark_mode: null
+) {
   @include mat.core();
   @include mat.core-theme($light-theme);
   @include mat.typography-hierarchy($typography);
@@ -49,23 +54,37 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
   @include mat.menu-theme($light-theme);
 
   @if $dark-theme {
-    @media (prefers-color-scheme: dark) {
-      @include mat.core-color($dark-theme);
-      @include mat.sidenav-color($dark-theme);
-      @include mat.tree-color($dark-theme);
-      @include mat.toolbar-color($dark-theme);
-      @include mat.button-color($dark-theme);
-      @include mat.icon-color($dark-theme);
-      @include mat.tabs-color($dark-theme);
-      @include mat.badge-color($dark-theme);
-      @include mat.expansion-color($dark-theme);
-      @include mat.divider-color($dark-theme);
-      @include mat.menu-color($dark-theme);
+    @if $class_name_for_dark_mode {
+      .#{$class_name_for_dark_mode} {
+        @include _set-comp-colors($dark-theme);
+      }
+    }@else {
+      @media (prefers-color-scheme: dark) {
+        @include _set-comp-colors($dark-theme);
+      }
     }
   }
 }
 
-@mixin set-form-themes($light-theme, $dark-theme) {
+@mixin _set-comp-colors($theme) {
+  @include mat.core-color($theme);
+  @include mat.sidenav-color($theme);
+  @include mat.tree-color($theme);
+  @include mat.toolbar-color($theme);
+  @include mat.button-color($theme);
+  @include mat.icon-color($theme);
+  @include mat.tabs-color($theme);
+  @include mat.badge-color($theme);
+  @include mat.expansion-color($theme);
+  @include mat.divider-color($theme);
+  @include mat.menu-color($theme);
+}
+
+@mixin set-form-themes(
+  $light-theme,
+  $dark-theme: null,
+  $class_name_for_dark_mode: null
+) {
   @include mat.input-theme($light-theme);
   @include mat.select-theme($light-theme);
   @include mat.stepper-theme($light-theme);
@@ -73,14 +92,26 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
   @include mat.checkbox-theme($light-theme);
   @include mat.form-field-theme($light-theme);
 
-  @media (prefers-color-scheme: dark) {
-    @include mat.input-color($dark-theme);
-    @include mat.select-color($dark-theme);
-    @include mat.stepper-color($dark-theme);
-    @include mat.radio-color($dark-theme);
-    @include mat.checkbox-color($dark-theme);
-    @include mat.form-field-color($dark-theme);
+  @if $dark-theme {
+    @if $class_name_for_dark_mode {
+      .#{$class_name_for_dark_mode} {
+        @include _set-form-colors($dark-theme);
+      }
+    }@else {
+      @media (prefers-color-scheme: dark) {
+        @include _set-form-colors($dark-theme);
+      }
+    }
   }
+}
+
+@mixin _set-form-colors($theme) {
+  @include mat.input-color($theme);
+  @include mat.select-color($theme);
+  @include mat.stepper-color($theme);
+  @include mat.radio-color($theme);
+  @include mat.checkbox-color($theme);
+  @include mat.form-field-color($theme);
 }
 
 @function get-palette-from-theme($theme, $palette-type) {
