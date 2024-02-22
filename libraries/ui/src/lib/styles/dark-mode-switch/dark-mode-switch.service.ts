@@ -11,7 +11,7 @@ export const enum ColorMode {
   Light = 'light'
 }
 
-const CLASS_NAME = 'dark-mode';
+const ATTR_NAME = 'data-color-mode';
 
 
 @Injectable({
@@ -75,9 +75,9 @@ export class DarkModeSwitchService {
     }
 
     if (mode === ColorMode.Dark) {
-      this.#document.body.classList.add(CLASS_NAME);
+      this.#document.body.setAttribute(ATTR_NAME,'dark');
     } else {
-      this.#document.body.classList.remove(CLASS_NAME);
+      this.#document.body.setAttribute(ATTR_NAME,'light');
     }
 
     this.#currentMode.next(mode);
