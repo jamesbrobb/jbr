@@ -36,7 +36,7 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
   $light-theme,
   $dark-theme: null,
   $typography: null,
-  $class_name_for_dark_mode: null
+  $selector_for_dark_mode: null
 ) {
 
   @if $typography == null {
@@ -59,7 +59,7 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
   @include mat.menu-theme($light-theme);
 
   @if $dark-theme {
-    @include set-mode($class_name_for_dark_mode) {
+    @include set-mode($selector_for_dark_mode) {
       @include mat.core-color($dark-theme);
       @include mat.sidenav-color($dark-theme);
       @include mat.tree-color($dark-theme);
@@ -78,7 +78,7 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
 @mixin set-form-themes(
   $light-theme,
   $dark-theme: null,
-  $class_name_for_dark_mode: null
+  $selector_for_dark_mode: null
 ) {
   @include mat.input-theme($light-theme);
   @include mat.select-theme($light-theme);
@@ -88,7 +88,7 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
   @include mat.form-field-theme($light-theme);
 
   @if $dark-theme {
-    @include set-mode($class_name_for_dark_mode) {
+    @include set-mode($selector_for_dark_mode) {
       @include mat.input-color($dark-theme);
       @include mat.select-color($dark-theme);
       @include mat.stepper-color($dark-theme);
@@ -99,9 +99,9 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
   }
 }
 
-@mixin set-mode($class_name_for_dark_mode: null) {
-  @if $class_name_for_dark_mode {
-    @include mode-class($class_name_for_dark_mode) {
+@mixin set-mode($selector_for_dark_mode: null) {
+  @if $selector_for_dark_mode {
+    @include mode-selector($selector_for_dark_mode) {
       @content;
     }
   }@else {
@@ -111,8 +111,8 @@ $_jbr-default-dark-theme: mat.define-dark-theme((
   }
 }
 
-@mixin mode-class($class_name_for_dark_mode) {
-  .#{$class_name_for_dark_mode} {
+@mixin mode-selector($selector_for_dark_mode) {
+  #{$selector_for_dark_mode} {
     @content;
   }
 }
