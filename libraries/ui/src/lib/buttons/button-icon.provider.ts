@@ -12,7 +12,8 @@ const svg_icons = [
   'github',
   'light_mode',
   'menu',
-  'menu_open'
+  'menu_open',
+  'search'
 ]
 
 
