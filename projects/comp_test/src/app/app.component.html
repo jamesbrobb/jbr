@@ -29,9 +29,19 @@
   </div>
 </ng-template>
 
-<jbr-ui-dark-mode-btn></jbr-ui-dark-mode-btn>
+<!--<jbr-ui-dark-mode-btn></jbr-ui-dark-mode-btn>-->
 
-<jbr-markdown uri="assets/README.md"></jbr-markdown>
+<!--<jbr-markdown uri="assets/README.md"></jbr-markdown>-->
 
+<grid-layout class="grid-layout" [dataProvider]="dataProvider">
 
+  <ng-template let-item="item">
+
+    <div class="item">
+      <div>{{item.title}}</div>
+    </div>
+
+  </ng-template>
+
+</grid-layout>
 

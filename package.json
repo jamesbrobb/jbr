@@ -19,6 +19,7 @@
     "ts-test-script": "ng build ts --configuration production && tsx ./scripts/ts-test-script.ts",
     "build-all-libraries-dev": "ng build types && ng build ts && ng build core && ng build ng && ng build ui",
     "build-all-libraries": "ng build types --configuration production && ng build ts --configuration production && ng build core --configuration production && ng build ng --configuration production && ng build ui --configuration production",
+    "publish-ui": "ng build ui --configuration production && cd dist/libraries/@jamesbenrobb/ui && npm publish",
     "publish": "npm run build-all-libraries && cd dist/libraries/@jamesbenrobb && npm publish ./core && npm publish ./ng && npm publish ./ts && npm publish ./types && npm publish ./ui"
   },
   "private": true,

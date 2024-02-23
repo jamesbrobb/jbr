@@ -5,7 +5,7 @@ import {
   MixedTableColumnsArray,
   ExternalSortParams,
   StandardTableColumn,
-  StandardTableRendererComponent,
+  StandardTableRendererComponent, GridLayoutComponentModule,
 } from "@jamesbenrobb/ui";
 import {MatMenuModule} from "@angular/material/menu";
 import {TestComponent} from "./test.component";
@@ -35,7 +35,8 @@ type blah = Record<keyof Data, unknown>
     TestComponent,
     ContentHideComponent,
     MarkdownComponent,
-    DarkModeBtnComponent
+    DarkModeBtnComponent,
+    GridLayoutComponentModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
@@ -451,5 +452,5 @@ export class AppComponent {
   ]
 
 
-
+ dataProvider = Array.from(new Array(10)).map((arg, index) => ({title: `Item ${index + 1}`}));
 }

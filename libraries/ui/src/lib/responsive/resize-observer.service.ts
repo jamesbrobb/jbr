@@ -20,6 +20,11 @@ export class ResizeObserverService {
 
     public observe(element: Element, handler: ResizeHandler): void {
 
+        if (this._resizeHandlers && this._resizeHandlers.has(element)) {
+            console.warn('ResizeObserverService: Element already observed');
+            return;
+        }
+
         if (!this._resizeHandlers) {
             this._resizeHandlers = new Map();
         }
