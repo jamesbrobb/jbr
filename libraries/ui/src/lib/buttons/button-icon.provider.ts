@@ -6,6 +6,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 const svg_icons = [
   'chevron_left',
   'chevron_right',
+  'close',
   'dark_mode',
   'expand_less',
   'expand_more',
