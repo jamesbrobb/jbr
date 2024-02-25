@@ -1,0 +1,18 @@
+
+<div class="container" [ngClass]="{'active': active, 'has-value': searchInput.value}">
+
+  <div class="wrapper">
+
+    <button class="search-btn" mat-icon-button (click)="searchClick(searchInput)">
+      <mat-icon svgIcon="search"></mat-icon>
+    </button>
+
+    <input #searchInput class="search-input" type="text" (input)="inputChange($event)" (focus)="inputFocus($event)" (blur)="inputBlur($event)"/>
+
+    <button class="close-btn" mat-icon-button (click)="closeClick(searchInput)">
+      <mat-icon svgIcon="close"></mat-icon>
+    </button>
+
+  </div>
+
+</div>
