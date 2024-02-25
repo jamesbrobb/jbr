@@ -214,16 +214,20 @@
         "@schematics/angular:component": {
           "style": "scss",
           "standalone": true,
-          "flat": true,
           "skipImport": true,
+          "flat": false,
           "changeDetection": "OnPush",
           "displayBlock": true
         },
         "@schematics/angular:directive": {
-          "standalone": true
+          "standalone": true,
+          "skipImport": true,
+          "flat": false
         },
         "@schematics/angular:pipe": {
-          "standalone": true
+          "standalone": true,
+          "skipImport": true,
+          "flat": false
         }
       },
       "root": "projects/comp_test",

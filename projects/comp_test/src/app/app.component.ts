@@ -8,8 +8,7 @@ import {
   StandardTableRendererComponent, GridLayoutComponentModule,
 } from "@jamesbenrobb/ui";
 import {MatMenuModule} from "@angular/material/menu";
-import {TestComponent} from "./test.component";
-import {ContentHideComponent, MarkdownComponent, DarkModeBtnComponent} from "@jamesbenrobb/ui";
+import {ContentHideComponent, MarkdownComponent, DarkModeBtnComponent, SearchInputComponent} from "@jamesbenrobb/ui";
 
 
 
@@ -32,11 +31,11 @@ type blah = Record<keyof Data, unknown>
     StandardTableRendererComponent,
     SortableTableRendererComponent,
     MatMenuModule,
-    TestComponent,
     ContentHideComponent,
     MarkdownComponent,
     DarkModeBtnComponent,
-    GridLayoutComponentModule
+    GridLayoutComponentModule,
+    SearchInputComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

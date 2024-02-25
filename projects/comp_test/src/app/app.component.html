@@ -33,15 +33,8 @@
 
 <!--<jbr-markdown uri="assets/README.md"></jbr-markdown>-->
 
-<grid-layout class="grid-layout" [dataProvider]="dataProvider">
-
-  <ng-template let-item="item">
-
-    <div class="item">
-      <div>{{item.title}}</div>
-    </div>
-
-  </ng-template>
-
-</grid-layout>
+<div class="search-container">
+<jbr-ui-search-input></jbr-ui-search-input>
+<div class="other"></div>
+</div>
 
