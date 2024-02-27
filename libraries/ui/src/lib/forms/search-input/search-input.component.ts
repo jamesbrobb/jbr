@@ -35,7 +35,7 @@ export class SearchInputComponent {
 
   searchClick(arg: HTMLInputElement) {
     this.active = true;
-    arg.focus();
+    arg.focus({preventScroll: true});
   }
 
   closeClick(arg: HTMLInputElement) {

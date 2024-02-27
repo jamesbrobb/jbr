@@ -9,6 +9,7 @@
   --open-border-color: var(--jbr-ui-search-input-open-border-color, #FFFFFF);
   --close-btn-opacity: 0;
   --close-btn-cursor: default;
+  --close-btn-size: var(--jbr-ui-search-input-close-btn-size, calc(var(--height) * 0.6));
   --mdc-icon-button-state-layer-size: var(--height);
   --font-size: var(--jbr-ui-search-input-font-size, 16px);
   --color: var(--jbr-ui-search-input-color, #000000);
@@ -23,6 +24,7 @@
     border-radius: calc(var(--height) / 2);
     border: solid 1px var(--border-color);
     transition: width 500ms, background-color 500ms;
+    overflow: hidden;
 
     &.active {
       --width: var(--open-width);
@@ -51,6 +53,11 @@
         transition: opacity 500ms;
         cursor: var(--close-btn-cursor);
         color: var(--color);
+        --mdc-icon-button-icon-size: var(--close-btn-size);
+        .mat-icon {
+          height: var(--close-btn-size);
+          width: var(--close-btn-size);
+        }
       }
 
       .search-input {

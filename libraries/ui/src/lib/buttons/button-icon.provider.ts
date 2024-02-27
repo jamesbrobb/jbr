@@ -14,7 +14,8 @@ const svg_icons = [
   'light_mode',
   'menu',
   'menu_open',
-  'search'
+  'search',
+  'settings'
 ]
 
 
