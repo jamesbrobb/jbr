@@ -1,6 +1,6 @@
 
 
-@mixin light-colors($accent-color, $border-color) {
+@mixin light-colors($accent-color, $border-color, $canvas-color: #ffffff) {
   --color-prettylights-syntax-comment: #57606a;
   --color-prettylights-syntax-constant: #0550ae;
   --color-prettylights-syntax-entity: #6639ba;
@@ -33,8 +33,8 @@
   --color-prettylights-syntax-constant-other-reference-link: #0a3069;
   --color-fg-muted: #656d76;
   --color-fg-subtle: #6e7781;
-  --color-canvas-default: #ffffff;
-  --color-canvas-subtle: #f6f8fa;
+  --color-canvas-default: rgba(0,0,0,.05);
+  --color-canvas-subtle: rgba(0,0,0,.05);
   --color-border-default: #d0d7de;
   --color-border-muted: #{$border-color};
   --color-neutral-muted: rgba(175, 184, 193, 0.2);
@@ -49,7 +49,6 @@
   --color-danger-emphasis: #cf222e;
   --color-done-fg: #8250df;
   --color-done-emphasis: #8250df;
-  --color-canvas-subtle: rgba(0,0,0,.05);
   --color-fg-default: #24292f;
   --color-bg-code-block: #f6f8fa;
   --color-bg-inline-code-block: rgb(175 184 193 / 20%);
@@ -95,8 +94,8 @@
   --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
   --color-fg-muted: #848d97;
   --color-fg-subtle: #6e7681;
-  --color-canvas-default: #0d1117;
-  --color-canvas-subtle: #161b22;
+  --color-canvas-default: rgba(255,255,255,.05);
+  --color-canvas-subtle: rgba(255,255,255,.05);
   --color-border-default: #30363d;
   --color-border-muted: #{$border-color};
   --color-neutral-muted: rgba(110, 118, 129, 0.4);
@@ -111,7 +110,6 @@
   --color-danger-emphasis: #da3633;
   --color-done-fg: #a371f7;
   --color-done-emphasis: #8957e5;
-  --color-canvas-subtle: rgba(255,255,255,.05);
   --color-fg-default: #c9d1d9;
   --color-bg-code-block: #161b22;
   --color-bg-inline-code-block: rgb(110 118 129 / 40%);
