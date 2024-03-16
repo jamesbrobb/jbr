@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject, TemplateRef, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   SortableTableRendererComponent,
@@ -9,6 +9,7 @@ import {
 } from "@jamesbenrobb/ui";
 import {MatMenuModule} from "@angular/material/menu";
 import {ContentHideComponent, MarkdownComponent, DarkModeBtnComponent, SearchInputComponent} from "@jamesbenrobb/ui";
+import {FormGroup, FormsModule, NgForm} from "@angular/forms";
 
 
 
@@ -35,7 +36,8 @@ type blah = Record<keyof Data, unknown>
     MarkdownComponent,
     DarkModeBtnComponent,
     GridLayoutComponentModule,
-    SearchInputComponent
+    SearchInputComponent,
+    FormsModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
@@ -452,4 +454,36 @@ export class AppComponent {
 
 
  dataProvider = Array.from(new Array(10)).map((arg, index) => ({title: `Item ${index + 1}`}));
+
+  @ViewChild('nameForm', {static: true}) ngForm!: NgForm;
+
+  readonly formData = {
+    firstName: 'barry',
+    lastName: 'barry',
+    akas: {} as { [key: string]: string }
+  }
+
+  ngAfterViewInit() {
+
+    if(!this.ngForm) {
+      return;
+    }
+
+    this.ngForm.valueChanges?.subscribe(console.log);
+  }
+
+  reset() {
+    this.ngForm?.reset();
+  }
+
+  addAka() {
+    const count = Object.keys(this.formData.akas).length;
+    this.formData.akas[count] = '';
+    console.log(this.formData);
+  }
+
+  submit() {
+    console.log(this.ngForm?.value);
+    console.log(this.ngForm?.valid);
+  }
 }
