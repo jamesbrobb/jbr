@@ -6,5 +6,6 @@ export * from './directives';
 export * from './forms';
 export * from './pipes';
 export * from './layout';
+export * from './navigation';
 export * from './responsive';
 export * from './styles';
