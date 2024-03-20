@@ -1,6 +1,6 @@
 {
   "name": "@jamesbenrobb/ng",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": "James Robb",
   "description": "Library containing angular specific implementations of @jamesbenrobb/* libraries",
   "repository": {
@@ -8,8 +8,8 @@
     "url": "https://github.com/jamesbrobb/jbr.git"
   },
   "peerDependencies": {
-    "@angular/common": "^17.2.1",
-    "@angular/core": "^17.2.1",
+    "@angular/common": "^17.3.0",
+    "@angular/core": "^17.3.0",
     "@jamesbenrobb/core": "^1.0.6"
   },
   "dependencies": {

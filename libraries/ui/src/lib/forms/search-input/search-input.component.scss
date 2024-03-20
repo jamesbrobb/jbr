@@ -7,11 +7,12 @@
   --open-background-color: var(--jbr-ui-search-input-open-background-color, #FFFFFF);
   --border-color: var(--jbr-ui-search-input-border-color, transparent);
   --open-border-color: var(--jbr-ui-search-input-open-border-color, #FFFFFF);
+  --search-btn-size: var(--jbr-ui-search-input-search-btn-size, calc(var(--height) * 0.8));
   --close-btn-opacity: 0;
   --close-btn-cursor: default;
   --close-btn-size: var(--jbr-ui-search-input-close-btn-size, calc(var(--height) * 0.6));
   --mdc-icon-button-state-layer-size: var(--height);
-  --font-size: var(--jbr-ui-search-input-font-size, 16px);
+  --font-size: var(--jbr-ui-search-input-font-size, calc(var(--height) / 2));
   --color: var(--jbr-ui-search-input-color, #000000);
 
   display: block;
@@ -46,6 +47,11 @@
 
       .search-btn {
         color: var(--color);
+        --mdc-icon-button-icon-size: var(--search-btn-size);
+        .mat-icon {
+          height: var(--search-btn-size);
+          width: var(--search-btn-size);
+        }
       }
 
       .close-btn {
