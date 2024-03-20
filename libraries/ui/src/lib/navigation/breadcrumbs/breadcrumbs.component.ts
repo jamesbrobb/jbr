@@ -27,7 +27,7 @@ import {NavItemNode} from "../navigation.types";
 })
 export class BreadcrumbsComponent {
 
-  protected readonly navItemNodes = input<NavItemNode[]>();
+  readonly navItemNodes = input<NavItemNode[]>();
 
   @Output() nodeSelected = new EventEmitter<NavItemNode>()
 

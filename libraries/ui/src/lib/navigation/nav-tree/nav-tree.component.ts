@@ -37,8 +37,8 @@ import {NavItemNode} from "../navigation.types";
 })
 export class NavTreeComponent {
 
-  protected readonly navNodes = input<NavItemNode[]>();
-  protected readonly currentNodes = input<NavItemNode[]>();
+  readonly navNodes = input<NavItemNode[]>();
+  readonly currentNodes = input<NavItemNode[]>();
 
   @Output() nodeSelected = new EventEmitter<NavItemNode>();
 

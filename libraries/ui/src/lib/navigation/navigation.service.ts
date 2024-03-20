@@ -1,4 +1,4 @@
-import {BehaviorSubject, Subject, tap} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {NavConfig, NavItemNode} from "./navigation.types";
 
 
@@ -6,10 +6,8 @@ export class NavigationService {
 
   readonly #navConfig: NavConfig;
   readonly #currentNodes = new BehaviorSubject<NavItemNode[]>([])
-  readonly #selectedNode = new Subject<NavItemNode>();
 
   readonly currentNodes$ = this.#currentNodes.asObservable();
-  readonly selectedNode$ = this.#selectedNode.asObservable();
 
   get nodes(): NavItemNode[] {
     return [...this.#navConfig];
@@ -17,10 +15,6 @@ export class NavigationService {
 
   constructor(config?: NavConfig) {
     this.#navConfig = config || [];
-  }
-
-  selectNode(node: NavItemNode): void {
-    this.#selectedNode.next(node);
   }
 
   onUrlUpdate(url: string): void {
